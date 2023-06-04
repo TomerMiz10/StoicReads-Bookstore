@@ -1,0 +1,1 @@
+// represents a product in the store, with properties like name, price, description
