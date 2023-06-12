@@ -1,100 +1,21 @@
-// import the MongoDB driver
-const MongoClient = require('mongodb').MongoClient;
+const express = require('express');   //Imports the Express framework. allows us to create and configure the server.
+const path = require('path'); //Provides utilities for working with file and directory paths.
+const bodyParser = require('body-parser');  //Parses incoming request bodies. makes data available in 'req.body'
+const cors = require('cors'); //Enables Cross-Origin Resources Sharing. allows requests from other domains.
+const mongoose = require('mongoose'); //Connces to a MongoDB database using Mongoose library.
+const indexRouter=require('./routes');  //imports index router file. cotains defined routes for server.
+// const newLocal = require('custom-env')  //Imports custom-env package for configuring environment variables.
+// newLocal.env(process.env.NODE_ENV,'./config');  //Sets the environment variables
 
-//Set up the MongoDB connection
-// Connection URL
-const url = 'mongodb://localhost:27017';
+const PORT = 4000;
+const CONNECTION_STRING = 'mongodb://127.0.0.1/StoicReads'
+mongoose.connect(process.env.CONNECTION_STRING,{useNewUrlParser:true,useUnifiedTopology:true}); //Connects to the MongoDB database using the provided connection string.
+const app = express();  // Creates an instance of the Express application.
+app.use(cors());  // Applies the CORS middleware to allow cross-origin requests.
+app.use(bodyParser.urlencoded({extended:true}));  // Configures the server to parse URL-encoded request bodies.
+app.use(express.json());  //Configures the server to parse JSON request bodies.
+app.use(express.static(path.join(__dirname, './client')));  //Serves static files from specified dir, like HTML, CSS and JS files.
+app.use('/api',indexRouter);  //Mounts the index router at the '/api' endpoint.
 
-// Database Name
-const dbName = 'mydatabase';
-
-//Connect to MongoDB
-MongoClient.connect(url,function(err,client){
-    if(err){
-        console.error('Failed to connect to MongoDB: ', err);
-        return;
-    }
-
-    console.log('Connected successfully to MongoDB');
-
-    const db = client.db(dbName);
-
-    // Perform MongoDB operations
-  // ...
-
-  // Remember to close the connection when done
-  client.close();
-});
-
-
-/*
-//Example of Insert a document into a collection
-const collection = db.collection('mycollection');
-const document = { name: 'John', age: 30 };
-collection.insertOne(document, function(err, result) {
-  if (err) {
-    console.error('Failed to insert document:', err);
-    return;
-  }
-  console.log('Document inserted successfully');
-});
-*/
-
-
-//Example of Querying Documents:
-/*
-const collection = db.collection('mycollection');
-collection.find({}).toArray(function(err, docs) {
-  if (err) {
-    console.error('Failed to retrieve documents:', err);
-    return;
-  }
-  console.log('Documents:', docs);
-});
-*/
-
-
-//example of Inserting Documents:
-/*
-const collection = db.collection('mycollection');
-const document = { name: 'John', age: 30 };
-collection.insertOne(document, function(err, result) {
-  if (err) {
-    console.error('Failed to insert document:', err);
-    return;
-  }
-  console.log('Document inserted successfully');
-});
-*/
-
-//Updating Documents:
-/*
-const collection = db.collection('mycollection');
-const filter = { name: 'John' };
-const update = { $set: { age: 31 } };
-collection.updateOne(filter, update, function(err, result) {
-  if (err) {
-    console.error('Failed to update document:', err);
-    return;
-  }
-  console.log('Document updated successfully');
-});
-*/
-
-
-//Deleting Documents:
-
-/*
-const collection = db.collection('mycollection');
-const filter = { name: 'John' };
-collection.deleteOne(filter, function(err, result) {
-  if (err) {
-    console.error('Failed to delete document:', err);
-    return;
-  }
-  console.log('Document deleted successfully');
-});
-*/
-
-
+app.listen(PORT, ()=>console.log('Server is online.')); //Starts the server and listens for incoming requests on the specified port.
 
