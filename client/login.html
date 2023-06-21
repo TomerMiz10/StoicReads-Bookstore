@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Log In</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+        <div class="flex-center">
+            <div id="manual-signin" class="container col-md-6 offset-md-3 p-4 bg-light">
+                <img src="../images/stoicreads.jpeg" alt="background" width="100%">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a onclick="setActive()" id="login" class="nav-link active" href="#">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a onclick="setActive()" id="signin" class="nav-link active" href="#">Sign In</a>
+                    </li>
+                </ul>
+                <div id="formContainer">
+                    <div id="manual-login" class="flex-center">
+                        <h1>Login</h1>
+                        <label for="email">Enter your email address: </label>
+                        <input type="email" >
+                        <label for="passqord">Enter password: </label>
+                        <input type="password" >
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+
+                    <div id="manual-signin" class="flex-center disappear">
+                        <h1>Sign In</h1>
+                        <label for="email">Enter your email address: </label>
+                        <input type="email" >
+                        <label for="passqord">Enter password: </label>
+                        <input type="password" >
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(function(){
+
+            })
+            function setActive(e){
+                $("#login").toggleClass('active');
+                $("#signin").toggleClass('active');
+            }
+        </script>
+    </body>
+</html>
