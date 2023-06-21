@@ -1,1 +1,0 @@
-// represents a supplier, with properties like name, contact info, etc.
