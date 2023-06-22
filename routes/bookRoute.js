@@ -1,16 +1,20 @@
 // Handling product-realted routes
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-// Get /products - Retrieve all products
-router.get('/', productController.getAllProducts);
+const {
+  getAllBooks,
+  getBooks,
+  getBookByID,
+  createBook,
+} = require("../controllers/bookController");
 
-// Post /products - Create a new product
-router.post('/', productController.createProduct);
-// Here, productController.getAllProducts and productController.createProduct are placeholders for the actual controller methods that will handle these requests.
-// We'll cover controller implementation later.
+// Retrieves all the books
+router.get("/", getAllBooks);
+// Retrieves a book or books matching a title
+router.get("/", getBooks);
+router.get("/:id", getBookByID);
 
+router.post("/", createBook);
 
-
-
-module.exports = router;
+module.exports = bookRoute;
