@@ -17,4 +17,4 @@ router.get("/:id", getBookByID);
 
 router.post("/", createBook);
 
-module.exports = bookRoute;
+module.exports = router;
