@@ -17,7 +17,7 @@ app.get('/login-page', (req,res)=>{
     res.sendFile(__dirname + '/client/login.html')
 })
 
-const port = process.env.PORT || 4000; 
+const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log('Server is running on port:' + port);
 });
