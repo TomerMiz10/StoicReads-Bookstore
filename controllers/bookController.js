@@ -26,8 +26,6 @@ const getBookByID = async (req, res) => {
       .json({ error: "Book not found", success: false });
   }
 };
-
- 
 // Will return books or a book with matching title
 const getBooks = async (req, res) => {
   try {
