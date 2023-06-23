@@ -1,4 +1,4 @@
-//show navbar
+
 document.addEventListener('DOMContentLoaded', function() {
     const navbarContainer = document.getElementById('navbar-container');
     const xhr = new XMLHttpRequest();
@@ -11,8 +11,5 @@ document.addEventListener('DOMContentLoaded', function() {
     xhr.send();
 });
 
-//Todo: add filtering by category
- const handleFilterByCategory = (category) => {
-     alert('category is : '+category);
- }
+
 
