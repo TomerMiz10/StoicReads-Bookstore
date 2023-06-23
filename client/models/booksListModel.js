@@ -6,11 +6,11 @@ function getBooks() {
         url: 'http://localhost:3000/books',
         type: 'GET',
         success: function(response) {
-            // Handle the response here
+            $('h1').text('All Books');
             books = response; // Assuming the response is an array of book objects
             container.empty();
             books.forEach(function(book) {
-                var bookElement = $('<div>');
+                var bookElement = $('<div class="flex-center ">');
                 bookElement.text(book.title);
                 container.append(bookElement);
             });
