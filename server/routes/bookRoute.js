@@ -1,4 +1,3 @@
-// Handling product-realted routes
 const express = require("express");
 const bookRoute = express.Router();
 
@@ -10,9 +9,9 @@ const {
 } = require("../controllers/bookController");
 
 // Retrieves all the books
-bookRoute.get("/", getAllBooks);
+bookRoute.get("/books", getAllBooks);
 // Retrieves a book or books matching a title
-bookRoute.get("/", getBooks);
+bookRoute.get("/search", getBooks);
 bookRoute.get("/:id", getBookByID);
 
 bookRoute.post("/", createBook);
