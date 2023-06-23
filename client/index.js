@@ -10,3 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     xhr.open('GET', 'navbar.html', true);
     xhr.send();
 });
+
+//Todo: add filtering by category
+ const handleFilterByCategory = (category) => {
+     alert('category is : '+category);
+ }
+

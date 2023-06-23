@@ -28,13 +28,13 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
         <div class="dropdown-menu" aria-labelledby="dropdown05">
-          <a class="dropdown-item" href="#">fantasy</a>
+          <a class="dropdown-item" onclick="handleFilterByCategory('fantasy')">fantasy</a>
           <a class="dropdown-item" href="#">philosophy</a>
           <a class="dropdown-item" href="#">psychology</a>
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-md-0">
+    <form class="form-inline my-2 my-md-0" id="search-by-name-form">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search by name...">
         <div class="input-group-append">
