@@ -25,7 +25,6 @@
       text-align: center;
   
     }
-  
     .border-bottom{
       border-bottom: 1px solid black;
     }
@@ -42,5 +41,5 @@
     .disappear{
       display: none;
     }
-  
+
     
