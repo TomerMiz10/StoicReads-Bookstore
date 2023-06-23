@@ -6,12 +6,12 @@ const createBook = async (data) => {
   return await newBook.save();
 };
 
-const getAllBooks = async () => await Book.find({}).exec();
+const getAllBooks = async () => await Book.find({});
 
 const getBooks = async (titleBook) =>
-  await Book.find({ title: `${titleBook}` }).exec();
+  await Book.find({ title: titleBook });
 
-const getBookByID = async (bookID) => await Book.findById(bookID).exec();
+const getBookByID = async (bookID) => await Book.findById(bookID);
 
 module.exports = {
   createBook,

@@ -4,7 +4,8 @@ const booksDbService = require("../services/booksDbService");
 
 const getAllBooks = async (req, res) => {
   try {
-    const books = await booksDbService.getBooks();
+    const books = await booksDbService.getAllBooks();
+    console.log(books)
     res.status(200).json(books);
   } catch (err) {
     console.log(err);
@@ -17,7 +18,7 @@ const getAllBooks = async (req, res) => {
 // Will return a book by it's ID
 const getBookByID = async (req, res) => {
   try {
-    const book = await booksDbService.getBook(req.params.id);
+    const book = await booksDbService.getBookByID(req.params.id);
     res.status(200).json(book);
   } catch (err) {
     console.log(err);
@@ -29,7 +30,7 @@ const getBookByID = async (req, res) => {
 // Will return books or a book with matching title
 const getBooks = async (req, res) => {
   try {
-    const book = await booksDbService.getBooks(req.params.title);
+    const book = await booksDbService.getBooks(req.query.title);
     res.status(200).json(book);
   } catch (err) {
     console.log(err);
