@@ -11,15 +11,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="nav-link" href="index.html">Go back</a>
+<a class="nav-link" href="index.html">Go back</a>
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-lg-4 col-md-6 col-sm-8">
       <h2 class="text-center mb-4">Sign Up</h2>
       <form>
         <div class="form-group">
-          <label for="fullname">Full Name:</label>
-          <input type="text" class="form-control" id="fullname" placeholder="Enter full name">
+          <label for="full-name">Full Name:</label>
+          <input type="text" class="form-control" id="full-name" placeholder="Enter full name">
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
@@ -28,6 +28,10 @@
         <div class="form-group">
           <label for="password">Password:</label>
           <input type="password" class="form-control" id="password" placeholder="Enter password">
+        </div>
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" class="form-control" id="age" placeholder="Enter age">
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Sign Up</button>
@@ -40,5 +44,6 @@
   </div>
 </div>
 <script src="models/showNavbar.js"></script>
+<script src="models/signupModel.js"></script>
 </body>
 </html>
