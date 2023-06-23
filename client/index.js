@@ -1,3 +1,4 @@
+//show navbar
 document.addEventListener('DOMContentLoaded', function() {
     const navbarContainer = document.getElementById('navbar-container');
     const xhr = new XMLHttpRequest();
