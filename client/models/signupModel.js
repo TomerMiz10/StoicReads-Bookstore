@@ -1,25 +1,15 @@
 $(document).ready(function() {
     $('form').submit(function(event) {
         event.preventDefault();
-        var fullName = $('#fullname').val();
+        var fullName = $('#full-name').val();
         var email = $('#email').val();
         var password = $('#password').val();
-        var age = $('#age').val();
-
-        // Perform validation if needed
-        if (age < 13) {
-            alert('most be older than 13 to sign up!');
-            return;
-        }
-
 
         var userData = {
             fullName: fullName,
             email: email,
-            password: password,
-            age: age
+            password: password
         };
-
         // Send the user data to the server using AJAX or other methods
         // Example AJAX code:
         $.ajax({
