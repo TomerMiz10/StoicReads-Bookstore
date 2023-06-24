@@ -1,5 +1,3 @@
-// contains methods to handle book-related operations
-
 const booksDbService = require("../services/booksDbService");
 
 const getAllBooks = async (req, res) => {
@@ -15,7 +13,6 @@ const getAllBooks = async (req, res) => {
   }
 };
 
-// Will return a book by it's ID
 const getBookByID = async (req, res) => {
   try {
     const { bookID } = req.params;
@@ -32,10 +29,9 @@ const getBookByID = async (req, res) => {
   }
 };
 
-// Will return books or a book with matching title
-const getBooks = async (req, res) => {
+const getBooksBySearch = async (req, res) => {
   try {
-    const book = await booksDbService.getBooks(req.query.title);
+    const book = await booksDbService.getBooksBySearch(req.query.title);
     console.log('Successfully retrieved the book or books as requested')
     res.status(200).json(book);
   } catch (err) {
@@ -47,9 +43,9 @@ const getBooks = async (req, res) => {
 };
 
 // Only an admin can use this post call
-const createBook = async (req, res) => {
+const createBookByAdmin = async (req, res) => {
   try {
-    const newBook = await booksDbService.createBook(req.body);
+    const newBook = await booksDbService.createBookByAdmin(req.body);
     console.log('Successfully created a new book and inserted it into the DB')
     res.status(201).json(newBook);
   } catch (err) {
@@ -84,8 +80,8 @@ const updateBookImages = async (req, res) => {
 module.exports = {
   getAllBooks,
   getBookByID,
-  getBooks,
-  createBook,
+  getBooksBySearch,
+  createBookByAdmin,
   updateBookImages,
 };
 

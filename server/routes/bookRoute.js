@@ -3,21 +3,17 @@ const bookRoute = express.Router();
 
 const {
   getAllBooks,
-  getBooks,
+  getBooksBySearch,
   getBookByID,
-  createBook,
+  createBookByAdmin,
   updateBookImages,
 } = require("../controllers/bookController");
 
-// Retrieves all the books
-bookRoute.get("/books", getAllBooks);
-// Retrieves a book or books matching a title
-bookRoute.get("/search", getBooks);
-// Updates existing books in the document with images
-bookRoute.get("/update-images", updateBookImages);
-// Retrieves a book by it's ID (bookID)
+bookRoute.get("/book/getAllBooks", getAllBooks);
+bookRoute.get("/book/search", getBooksBySearch);
+bookRoute.get("/book/update-images", updateBookImages); // Updates existing books in the document with images
 bookRoute.get("/book/:bookID", getBookByID);
 
-bookRoute.post("/", createBook);
+bookRoute.post("/book/createBook", createBookByAdmin);
 
 module.exports = bookRoute;

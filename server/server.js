@@ -9,8 +9,10 @@ const uri = "mongodb+srv://mssplinter10:masterBookstore12@cluster0.lcmwfcu.mongo
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// TO use the book routing
-app.use("/", require("./routes/bookRoute"));
+
+
+// Routing
+app.use("/book", require("./routes/bookRoute"));
 
 const port = process.env.PORT || 3000;
 

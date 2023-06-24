@@ -4,9 +4,7 @@ const { getBookDetails, extractImageLink } = require('./googlebookService');
 const axios = require('axios');
 
 
-// A special function to create books
-// Only an admin can access it
-const createBook = async (data) => {
+const createBookByAdmin = async (data) => {
   const { bookID, title, price } = data;
 
   try {
@@ -53,15 +51,15 @@ const updateBookImages = async () => {
 };
 
 
-const getBooks = async (titleBook) =>
+const getBooksBySearch = async (titleBook) =>
   await Book.find({ title: titleBook });
 
 const getBookByID = async (bookID) => await Book.findOne({ bookID });
 
 module.exports = {
-  createBook,
+  createBookByAdmin,
   getAllBooks,
-  getBooks,
+  getBooksBySearch,
   getBookByID,
   updateBookImages,
 };
