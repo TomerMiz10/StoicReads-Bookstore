@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 // Routing
-app.use("/book", require("./routes/bookRoute"));
+app.use("/", require("./routes/bookRoute"));
 
 const port = process.env.PORT || 3000;
 
