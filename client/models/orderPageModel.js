@@ -10,16 +10,16 @@ const onLoaded = () => {
     const bookDescription = document.getElementById('bookDescription');
     const bookImage = document.getElementById('bookImage');
     $.ajax({
-        url: baseUrl+'/books/id/' + bookId,
+        url: baseUrl+'/book/' + bookId,
         type: 'GET',
         success: function(response) {
-            const book = response[0];
+            const book = response;
             bookTitle.innerHTML = book.title;
             bookAuthor.innerHTML = "<b>By: </b>"+book.author;
             bookGenre.innerHTML ="<b>Genre: </b>"+ book.genre;
             bookPrice.innerHTML ="<b>Price: </b>"+ book.price+"$" ;
             bookDescription.innerHTML = "<b>Description: </b>"+book.description;
-            bookImage.src = book.image;
+            bookImage.src = book.imageLinks.thumbnail;
             console.log(book.description);
         },
         error: function(xhr, status, error) {
