@@ -47,7 +47,7 @@ function getBooks() {
 }
 function getBooksByGenre(genre) {
     $.ajax({
-        url:baseUrl+'/books/' + genre,
+        url:baseUrl+'/books/genre/' + genre,
         type: 'GET',
         success: function(response) {
             books = response;
