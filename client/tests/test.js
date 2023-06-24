@@ -38,9 +38,17 @@ app.get('/books', async function(req, res, next) {
     }
 });
 
-app.get('/books/:genre', async function(req, res, next) {
+app.get('/books/genre/:genre', async function(req, res, next) {
     try {
         const docs = await testBookModel.find({ genre: req.params.genre }).exec();
+        res.status(200).json(docs);
+    } catch (err) {
+        console.log('Failed to retrieve the Course List: ' + err);
+    }
+})
+app.get('/books/id/:id', async function(req, res, next) {
+    try {
+        const docs = await testBookModel.find({ bookID: req.params.id }).exec();
         res.status(200).json(docs);
     } catch (err) {
         console.log('Failed to retrieve the Course List: ' + err);
