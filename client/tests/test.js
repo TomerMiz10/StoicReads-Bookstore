@@ -43,7 +43,7 @@ app.get('/books/genre/:genre', async function(req, res, next) {
         const docs = await testBookModel.find({ genre: req.params.genre }).exec();
         res.status(200).json(docs);
     } catch (err) {
-        console.log('Failed to retrieve the Course List: ' + err);
+        console.log('Failed to retrieve the books: ' + err);
     }
 })
 app.get('/books/id/:id', async function(req, res, next) {
