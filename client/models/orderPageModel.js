@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get('id');
 const baseUrl = 'http://localhost:3000';
 
-const onLoaded = () => {
+const renderSpecificBookDetails = () => {
     const bookTitle = document.getElementById('bookTitle');
     const bookAuthor = document.getElementById('bookAuthor');
     const bookGenre = document.getElementById('bookGenre');
@@ -10,7 +10,7 @@ const onLoaded = () => {
     const bookDescription = document.getElementById('bookDescription');
     const bookImage = document.getElementById('bookImage');
     $.ajax({
-        url: baseUrl+'/book/' + bookId,
+        url: baseUrl+'/book/bookId/' + bookId,
         type: 'GET',
         success: function(response) {
             const book = response;
@@ -27,4 +27,4 @@ const onLoaded = () => {
         }
     });
 }
-window.addEventListener('load', onLoaded);
+window.addEventListener('load', renderSpecificBookDetails);
