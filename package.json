@@ -6,7 +6,7 @@
   "scripts": {
     "//comment": "need to change the path of start to server/server.js",
     "test": "SET NODE_ENV=test&& nodemon ./server/server.js",
-    "start": "SET NODE_ENV=local&& nodemon .client/tests/test.js"
+    "start": "SET NODE_ENV=local&& nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,5 @@
 var books = [];
 const baseUrl = 'http://localhost:3000';
-
 function renderNoBooksFound() {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
@@ -21,7 +20,7 @@ function renderBooks() {
     const booksListHtmlAsCards = books.map((book, index) => {
         return `
             <div class="card" style="width: 18rem;">
-                <img src="#" class="card-img-top" alt="...">
+                <img src=${book.imageLinks.thumbnail} class="card-img-top" alt="...">
                   <div class="card-body">
                      <h5 class="card-title">${book.title}</h5>
                      <p class="card-text">By: ${book.author}</p>
@@ -37,20 +36,7 @@ function renderBooks() {
 
 function getBooks() {
     $.ajax({
-        url: baseUrl+'/books',
-        type: 'GET',
-        success: function(response) {
-            books = response;
-            renderBooks();
-        },
-        error: function(xhr, status, error) {
-            console.log('Failed to retrieve books:', error);
-        }
-    });
-}
-function getBooksByGenre(genre) {
-    $.ajax({
-        url:baseUrl+'/books/genre/' + genre,
+        url: baseUrl+'/book/getAllBooks',
         type: 'GET',
         success: function(response) {
             books = response;
