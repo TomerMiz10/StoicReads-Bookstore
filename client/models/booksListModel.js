@@ -19,8 +19,8 @@ function renderBooks() {
     }
     const booksListHtmlAsCards = books.map((book, index) => {
         return `
-            <div class="card" style="width: 18rem;">
-                <img src=${book.imageLinks.thumbnail} class="card-img-top" alt="...">
+            <div class="card m-2 " style="width: 18rem;">
+                <img src=${book.imageLinks.thumbnail} class="card-img" alt="">
                   <div class="card-body">
                      <h5 class="card-title">${book.title}</h5>
                      <p class="card-text">By: ${book.author}</p>
@@ -29,7 +29,7 @@ function renderBooks() {
                   </div>
             </div>`;
     }).join('');
-    const classesToMakeCardsAlign = 'd-flex flex-wrap justify-content-around';
+    const classesToMakeCardsAlign = 'd-flex flex-wrap justify-content-center';
     booksListContainer.addClass(classesToMakeCardsAlign);
     booksListContainer.append(booksListHtmlAsCards);
 }
