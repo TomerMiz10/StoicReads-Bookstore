@@ -1,21 +1,65 @@
 const Book = require("../models/bookModel");
+const { getBookDetails, extractImageLink } = require('./googlebookService');
 
-const createBook = async (data) => {
+const axios = require('axios');
+
+
+const createBookByAdmin = async (data) => {
   const { bookID, title, price } = data;
-  const newBook = new Book({ bookID, title, price });
-  return await newBook.save();
+
+  try {
+    const bookDetails = await getBookDetails(title);
+
+    // Extract the relevant book information including the image links
+    const { imageLinks } = bookDetails;
+
+    // Create a new book with the extracted information
+    const newBook = new Book({ bookID, title, price, imageLinks });
+
+    return await newBook.save();
+  } catch (error) {
+    console.log(error);
+    throw new Error('An error occurred while fetching book details from the Google Books API.');
+  }
 };
 
 const getAllBooks = async () => await Book.find({});
 
-const getBooks = async (titleBook) =>
+// A special function intended to update existing books in the DB with images from the API
+const updateBookImages = async () => {
+  try {
+    const books = await getAllBooks();
+    for (const book of books) {
+      const { title } = book;
+
+      const bookDetails = await getBookDetails(title);
+      const imageLink = extractImageLink(bookDetails);
+
+      // Update the book's image link in the database
+      await Book.findOneAndUpdate(
+          { title: title },
+          { $set: { "imageLinks.thumbnail": imageLink } },
+          { new: true, useFindAndModify: false }
+      );
+    }
+
+    console.log('Book images updated successfully.');
+  } catch (error) {
+    console.log(error);
+    throw new Error('An error occurred while updating book images from the Google Books API.');
+  }
+};
+
+
+const getBooksBySearch = async (titleBook) =>
   await Book.find({ title: titleBook });
 
-const getBookByID = async (bookID) => await Book.findById(bookID);
+const getBookByID = async (bookID) => await Book.findOne({ bookID });
 
 module.exports = {
-  createBook,
+  createBookByAdmin,
   getAllBooks,
-  getBooks,
+  getBooksBySearch,
   getBookByID,
+  updateBookImages,
 };
