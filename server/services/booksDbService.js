@@ -56,10 +56,13 @@ const getBooksBySearch = async (titleBook) =>
 
 const getBookByID = async (bookID) => await Book.findOne({ bookID });
 
+const getBooksByGenre = async (genre) => await Book.find({ genre });
+
 module.exports = {
   createBookByAdmin,
   getAllBooks,
   getBooksBySearch,
   getBookByID,
   updateBookImages,
+    getBooksByGenre,
 };

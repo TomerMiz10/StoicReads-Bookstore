@@ -72,6 +72,20 @@ const updateBookImages = async (req, res) => {
   }
 };
 
+const getBooksByGenre = async (req, res) => {
+  const { genre } = req.params;
+    try {
+        const books = await booksDbService.getBooksByGenre(genre);
+        console.log('Successfully retrieved all books by genre')
+        res.status(200).json(books);
+    }catch (err) {
+      console.log(err);
+      res
+        .status(404)
+        .json({ error: "Couldn't find books by genre", success: false });
+    }
+}
+
 
 // Other controller methods...
 // Update (Price, Quantity, etc.), Delete,
@@ -83,6 +97,7 @@ module.exports = {
   getBooksBySearch,
   createBookByAdmin,
   updateBookImages,
+  getBooksByGenre,
 };
 
 
