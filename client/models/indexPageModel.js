@@ -1,6 +1,6 @@
 var books = [];
 const baseUrl = 'http://localhost:3000';
-function renderNoBooksFound() {
+const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
     const noBooksFound = $('<div class="card mb-3">');
@@ -10,7 +10,7 @@ function renderNoBooksFound() {
     noBooksFound.append(cardBody);
     booksListContainer.append(noBooksFound);
 }
-function renderBooks() {
+const renderBooks= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
     if (books.length === 0) {
@@ -34,7 +34,7 @@ function renderBooks() {
     booksListContainer.append(booksListHtmlAsCards);
 }
 
-function getBooks() {
+const getBooks= ()=> {
     $.ajax({
         url: baseUrl+'/book/getAllBooks',
         type: 'GET',
@@ -47,6 +47,20 @@ function getBooks() {
         }
     });
 }
+
+const getBooksByGenre =  (genre) => {
+    $.ajax({
+        url: baseUrl+'/book/genre/'+genre,
+        type: 'GET',
+        success: function(response) {
+            books = response;
+            renderBooks();
+        },
+        error: function(xhr, status, error) {
+            console.log('Failed to retrieve books:', error);
+        }
+    });
+};
 $(document).ready(function() {
     getBooks();
 });
