@@ -4,41 +4,42 @@
     <meta charset="UTF-8">
     <title>StoicReads</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="shortcut icon" href="favicon (2).ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="bookIcon.png" type="image/x-icon">
+  <link rel="stylesheet" href="bootStrap.css">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="index.html"><img src="favicon (2).ico" alt=""></a>
+  <a class="navbar-brand" href="index.html"><img src="bookIcon.png" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarsExample04" bis_skin_checked="1">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="signup.html">Sign-up</a>
+        <a class="nav-link fs-3" href="signup.html">Sign-up</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login.html">login</a>
+        <a class="nav-link fs-3" href="login.html">login</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">All books <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown fs-3">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
         <div class="dropdown-menu" aria-labelledby="dropdown05">
-          <a class="dropdown-item" href="#" onclick="getBooksByGenre('Self-help')">Self-help</a>
-          <a class="dropdown-item" href="#" onclick="getBooksByGenre('Fantasy')">Fantasy</a>
-          <a class="dropdown-item" href="#" onclick="getBooksByGenre('Science Fiction')">Science Fiction</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooks()">All</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Self-help')">Self-help</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Fantasy')">Fantasy</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Science Fiction')">Science Fiction</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login.html"><img src="cartIcon.png" alt="" class="btn"></a>
+      </li>
     </ul>
-    <form class="form-inline my-2 my-md-0" id="search-by-name-form">
+    <form class="form-inline my-2 my-md-0 " id="search-by-name-form">
       <div class="input-group">
-        <input id='search-input' type="text" class="form-control" placeholder="Search by name...">
+        <input id='search-input' type="text" class="form-control-lg" placeholder="Search by name...">
         <div class="input-group-append">
-          <button class="btn btn-primary" type="submit">Search</button>
+          <button class="btn btn-primary btn-group-lg" type="submit">Search</button>
         </div>
       </div>
     </form>
