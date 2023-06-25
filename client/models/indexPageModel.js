@@ -1,6 +1,6 @@
 var books = [];
 const baseUrl = 'http://localhost:3000';
-function renderNoBooksFound() {
+const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
     const noBooksFound = $('<div class="card mb-3">');
@@ -10,7 +10,7 @@ function renderNoBooksFound() {
     noBooksFound.append(cardBody);
     booksListContainer.append(noBooksFound);
 }
-function renderBooks() {
+const renderBooks= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
     if (books.length === 0) {
@@ -19,8 +19,8 @@ function renderBooks() {
     }
     const booksListHtmlAsCards = books.map((book, index) => {
         return `
-            <div class="card" style="width: 18rem;">
-                <img src=${book.imageLinks.thumbnail} class="card-img-top" alt="...">
+            <div class="card m-2 " style="width: 18rem;">
+                <img src=${book.imageLinks.thumbnail} class="card-img" alt="">
                   <div class="card-body">
                      <h5 class="card-title">${book.title}</h5>
                      <p class="card-text">By: ${book.author}</p>
@@ -29,12 +29,12 @@ function renderBooks() {
                   </div>
             </div>`;
     }).join('');
-    const classesToMakeCardsAlign = 'd-flex flex-wrap justify-content-around';
+    const classesToMakeCardsAlign = 'd-flex flex-wrap justify-content-center';
     booksListContainer.addClass(classesToMakeCardsAlign);
     booksListContainer.append(booksListHtmlAsCards);
 }
 
-function getBooks() {
+const getBooks= ()=> {
     $.ajax({
         url: baseUrl+'/book/getAllBooks',
         type: 'GET',
@@ -47,6 +47,20 @@ function getBooks() {
         }
     });
 }
+
+const getBooksByGenre =  (genre) => {
+    $.ajax({
+        url: baseUrl+'/book/genre/'+genre,
+        type: 'GET',
+        success: function(response) {
+            books = response;
+            renderBooks();
+        },
+        error: function(xhr, status, error) {
+            console.log('Failed to retrieve books:', error);
+        }
+    });
+};
 $(document).ready(function() {
     getBooks();
 });
