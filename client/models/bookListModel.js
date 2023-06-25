@@ -1,4 +1,4 @@
-var books = [];
+let books = [];
 const baseUrl = 'http://localhost:3000';
 const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
@@ -19,13 +19,11 @@ const renderBooks= ()=> {
     }
     const booksListHtmlAsCards = books.map((book, index) => {
         return `
-            <div class="card m-2 " style="width: 18rem;">
-                <img src=${book.imageLinks.thumbnail} class="card-img" alt="">
+            <div class="card m-4 " style="width: 12rem;">
+                <a href="order.html?id=${book.bookID}"><div><img src=${book.imageLinks.thumbnail} class="card-img-top" alt=""></div></a>
                   <div class="card-body">
                      <h5 class="card-title">${book.title}</h5>
-                     <p class="card-text">By: ${book.author}</p>
-                     <p class="card-text">${book.description}</p>   
-                    <a href="order.html?id=${book.bookID}" class="btn btn-primary">Order Now</a>
+                     <p class="card-text"> ${book.author}</p>  
                   </div>
             </div>`;
     }).join('');
