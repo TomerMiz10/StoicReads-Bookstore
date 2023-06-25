@@ -31,16 +31,32 @@ const getBookByID = async (req, res) => {
 
 const getBooksBySearch = async (req, res) => {
   try {
-    const book = await booksDbService.getBooksBySearch(req.query.title);
-    console.log('Successfully retrieved the book or books as requested')
-    res.status(200).json(book);
+    let books;
+
+    // If the user wants to search by Book Title
+    if(req.query.title)
+      books = await booksDbService.getBooksBySearch({ title: req.query.title});
+    else if(req.query.author) // If the user wants to search by the Book's Author
+      books = await booksDbService.getBooksBySearch({ author: req.query.author });
+    else
+      return res.status(404).json({ error: "Books not found", success: false });
+
+    console.log('Matching Books:', books);
+
+    if (books.length === 0) {
+      console.log('No matching books found');
+      return res.status(404).json({ error: "Books not found", success: false });
+    }
+
+    console.log('Successfully retrieved the book or books as requested');
+    res.status(200).json(books);
   } catch (err) {
     console.log(err);
-    res
-      .status(404)
-      .json({ error: "Book not found", success: false });
+    res.status(500).json({ error: "Internal server error", success: false });
   }
 };
+
+
 
 // Only an admin can use this post call
 const createBookByAdmin = async (req, res) => {
@@ -72,6 +88,19 @@ const updateBookImages = async (req, res) => {
   }
 };
 
+const updateBookDescriptions = async (req, res) => {
+  try {
+    await booksDbService.updateBookDescriptions();
+    res.status(200).json({ message: "Book descriptions updated successfully" });
+  } catch (err) {
+    console.log(err);
+    res
+        .status(500)
+        .json({ error: "An error occurred while updating book descriptions" });
+  }
+};
+
+
 const getBooksByGenre = async (req, res) => {
   const { genre } = req.params;
     try {
@@ -97,6 +126,7 @@ module.exports = {
   getBooksBySearch,
   createBookByAdmin,
   updateBookImages,
+  updateBookDescriptions,
   getBooksByGenre,
 };
 
