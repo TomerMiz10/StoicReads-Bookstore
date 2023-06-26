@@ -9,6 +9,7 @@ const {
   createBookByAdmin,
   updateBookImages,
   updateBookDescriptions,
+  getBooksByGenre,
 } = require("../controllers/bookController");
 
 bookRoute.get("/book/getAllBooks", getAllBooks);
