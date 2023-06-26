@@ -88,6 +88,7 @@ const updateBookImages = async (req, res) => {
   }
 };
 
+
 const updateBookDescriptions = async (req, res) => {
   try {
     await booksDbService.updateBookDescriptions();
@@ -99,7 +100,6 @@ const updateBookDescriptions = async (req, res) => {
         .json({ error: "An error occurred while updating book descriptions" });
   }
 };
-
 
 const getBooksByGenre = async (req, res) => {
   const { genre } = req.params;

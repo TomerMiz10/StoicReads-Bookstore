@@ -17,13 +17,14 @@ const renderBooks= ()=> {
         renderNoBooksFound();
         return;
     }
-    const booksListHtmlAsCards = books.map((book, index) => {
+
+    const booksListHtmlAsCards = books.map((bookItem, index) => {
         return `
             <div class="card m-4 " style="width: 12rem;">
-                <a href="order.html?id=${book.bookID}"><div><img src=${book.imageLinks.thumbnail} class="card-img-top" alt=""></div></a>
+                <a href="order.html?id=${bookItem.bookID}"><div><img src=${bookItem.imageLinks.thumbnail} class="card-img-top" alt=""></div></a>
                   <div class="card-body">
-                     <h5 class="card-title">${book.title}</h5>
-                     <p class="card-text"> ${book.author}</p>  
+                     <h5 class="card-title">${bookItem.title}</h5>
+                     <p class="card-text"> ${bookItem.author}</p>  
                   </div>
             </div>`;
     }).join('');
