@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiKey = 'AIzaSyDYXySI-D9XnR-o6H8YO2br6f8fKeKA63A';
+const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
 
 // Function to fetch book details from the Google Books API
 const getBookDetails = async (title) => {
