@@ -35,10 +35,22 @@ const extractImagesLinks = (data, book) => {
 
     const sizes = ['smallThumbnail', 'thumbnail', 'small', 'medium', 'large', 'extraLarge'];
 
+    let thumbnailUrl = imageLinks.thumbnail;
+    const zoomMatch = thumbnailUrl.match(/zoom=(\d+)/);
+    let zoomValue = zoomMatch ? parseInt(zoomMatch[1]) : 1;
+
+
     // Iterate over the sizes and add the existing image links to the extractedImageLinks object
     sizes.forEach((size) => {
         if (imageLinks[size]) {
-            extractedImageLinks[size] = imageLinks[size];
+            extractedImageLinks[size] = imageLinks[size].replace(/^http:\/\//i, 'https://');
+        } else if(size === 'extraLarge'){
+            extractedImageLinks[size] = thumbnailUrl.replace(/zoom=\d+/,`zoom=${0}` ).replace(/^http:\/\//i, 'https://');
+        }else {
+            // Modify the thumbnail URL to request a larger version with the desired zoom value
+            zoomValue += 1;
+
+            extractedImageLinks[size] = thumbnailUrl.replace(/zoom=\d+/, `zoom=${zoomValue}`).replace(/^http:\/\//i, 'https://');
         }
     });
 
