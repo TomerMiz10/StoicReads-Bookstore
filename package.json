@@ -2,9 +2,8 @@
   "name": "wad-project-shop",
   "version": "1.0.0",
   "description": "web store project",
-  "main": "client/tests/test.js",
+  "main": "./server/server.js",
   "scripts": {
-    "//comment": "need to change the path of start to server/server.js",
     "test": "SET NODE_ENV=test&& nodemon ./server/server.js",
     "start": "SET NODE_ENV=local&& nodemon ./server/server.js"
   },
