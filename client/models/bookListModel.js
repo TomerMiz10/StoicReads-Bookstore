@@ -17,6 +17,7 @@ const renderBooks= ()=> {
         renderNoBooksFound();
         return;
     }
+
     const booksListHtmlAsCards = books.map((bookItem, index) => {
         return `
             <div class="card m-4 " style="width: 12rem;">

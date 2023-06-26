@@ -6,15 +6,36 @@ const Book = new Schema({
     bookID: {
         type: Number,
         required: true,
+        unique:true,
     },
     title: {
         type: String,
         required: true,
     },
     imageLinks: {
+        smallThumbnail: {
+            type: String,
+            required: false,
+        },
         thumbnail: {
             type: String,
             required: true,
+        },
+        small: {
+            type: String,
+            required: false,
+        },
+        medium: {
+            type: String,
+            required: false,
+        },
+        large: {
+            type: String,
+            required: false,
+        },
+        extraLarge: {
+            type: String,
+            required: false,
         },
     },
     author: {
