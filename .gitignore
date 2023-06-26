@@ -1,3 +1,13 @@
-node_modules
-.env
+node_modules/
 
+package.json
+package-lock.json
+
+.env
+.env.local
+.env.test
+
+server/.env
+server/config
+server/config/.env.local
+server/config/.env.test
