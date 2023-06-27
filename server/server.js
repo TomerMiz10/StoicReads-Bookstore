@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 // Routing
-app.use("/", require("./routes/bookRoute"));
+app.use("/", require("./routes/bookRoute/getAllBooks"));
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then(() => {
