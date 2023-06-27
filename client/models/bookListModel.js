@@ -81,6 +81,7 @@ const getBooksBySearch = () => {
         },
         error: function(xhr, status, error) {
             console.log('Failed to retrieve books:', error);
+            renderNoBooksFound();
         }
     });
 }
