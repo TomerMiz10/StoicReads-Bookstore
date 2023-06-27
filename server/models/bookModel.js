@@ -12,31 +12,9 @@ const Book = new Schema({
         type: String,
         required: true,
     },
-    imageLinks: {
-        smallThumbnail: {
-            type: String,
-            required: false,
-        },
-        thumbnail: {
-            type: String,
-            required: true,
-        },
-        small: {
-            type: String,
-            required: false,
-        },
-        medium: {
-            type: String,
-            required: false,
-        },
-        large: {
-            type: String,
-            required: false,
-        },
-        extraLarge: {
-            type: String,
-            required: false,
-        },
+    image: {
+        type: String,
+        required: true,
     },
     author: {
         type: String,

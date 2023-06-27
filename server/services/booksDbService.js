@@ -1,5 +1,6 @@
 const Book = require("../models/bookModel");
-const { getBookDetails, extractImagesLinks, extractBookDescription } = require('./googlebookService');
+const { getBookDetails } = require('./googlebookService');
+const { extractBookCoverImage } = require('./bookimagesService');
 
 const axios = require('axios');
 
@@ -26,56 +27,55 @@ const createBookByAdmin = async (data) => {
 
 const getAllBooks = async () => await Book.find({});
 
-// A special function intended to update existing books in the DB with images from the API
-const updateBookImages = async () => {
+const updateBookCoverImages = async () => {
   try {
     const books = await getAllBooks();
     for (const book of books) {
+
       const { title, author } = book;
 
-      const bookDetails = await getBookDetails(title);
-      const imageLinks = extractImagesLinks(bookDetails, { title, author });
+      const imageURL = await extractBookCoverImage(title, author);
 
       // Update the book's image links in the database
       await Book.findOneAndUpdate(
           { title: title },
-          { $set: { imageLinks: imageLinks } },
+          { $set: { image: imageURL } },
           { new: true, useFindAndModify: false }
       );
     }
 
     console.log('Book images updated successfully.');
   } catch (error) {
-    console.log(error);
-    throw new Error('An error occurred while updating book images from the Google Books API.');
+    console.error('Error extracting book cover image:', error);
   }
-};
+}
 
 
-const updateBookDescriptions = async () => {
-  try {
-    const books = await Book.find();
-
-    for (const book of books) {
-      const { title, author } = book;
-
-      const bookDetails = await getBookDetails(title);
-      const description = await extractBookDescription(bookDetails, { title, author });
-
-      // Update the book's description in the database
-      await Book.findOneAndUpdate(
-          { title: title },
-          { $set: { description: description } },
-          { new: true, useFindAndModify: false }
-      );
-    }
-
-    console.log('Book descriptions updated successfully.');
-  } catch (error) {
-    console.log(error);
-    throw new Error('An error occurred while updating book descriptions from the Google Books API.');
-  }
-};
+// this is an example for the Google book API
+// const updateBookDescriptions = async () => {
+//   try {
+//     const books = await Book.find();
+//
+//     for (const book of books) {
+//       const { title, author } = book;
+//
+//       const bookDetails = await getBookDetails(title);
+//       const description = await extractBookDescription(bookDetails, { title, author });
+//
+//       // Update the book's description in the database
+//       await Book.findOneAndUpdate(
+//           { title: title },
+//           { $set: { description: description } },
+//           { new: true, useFindAndModify: false }
+//       );
+//     }
+//
+//     console.log('Book descriptions updated successfully.');
+//   } catch (error) {
+//     console.log(error);
+//     throw new Error('An error occurred while updating book descriptions from the Google Books API.');
+//   }
+// };
 
 
 
@@ -104,8 +104,8 @@ module.exports = {
   getAllBooks,
   getBooksBySearch,
   getBookByID,
-  getBooksByGenre,
   updateBookImages,
   updateBookDescriptions,
-    getBooksByGenre
+  updateBookCoverImages,
+  getBooksByGenre,
 };
