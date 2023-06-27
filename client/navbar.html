@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>StoicReads</title>
+  <meta charset="UTF-8">
+  <title>StoicReads</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="shortcut icon" href="bookIcon.png" type="image/x-icon">
   <link rel="stylesheet" href="bootStrap.css">
@@ -14,13 +14,13 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarsExample04" bis_skin_checked="1">
+  <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link fs-3" href="signup.html">Sign-up</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link fs-3" href="login.html">login</a>
+        <a class="nav-link fs-3" href="login.html">Login</a>
       </li>
       <li class="nav-item dropdown fs-3">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
@@ -35,14 +35,25 @@
         <a class="nav-link" href="login.html"><img src="cartIcon.png" alt="" class="btn"></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-md-0 " id="search-by-name-form">
-      <div class="input-group">
-        <input id='search-input' type="text" class="form-control-lg" placeholder="Search by name...">
-        <div class="input-group-append">
-          <button class="btn btn-primary btn-group-lg" type="submit">Search</button>
-        </div>
+    <div class="align-items-center">
+      <div style="width: 200px;">
+        <select class="dropdown-menu-lg-end " id="search-by" style="left: 105px">
+          <option value="none">Search by...</option>
+          <option value="author">Author</option>
+          <option value="title">Title</option>
+        </select>
       </div>
-    </form>
+      <div class="search-bar ml-2">
+        <form id="book-search-form">
+          <div class="input-group">
+            <input id="search-input" type="text" class="form-control" maxlength="255"  />
+            <div class="input-group-append">
+              <input id="search-btn" class="btn btn-primary" value="Search" onclick="getBooksBySearch()"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </nav>
 </body>
