@@ -1,4 +1,4 @@
-let books = [];
+var books = [];
 const baseUrl = 'http://localhost:3000';
 const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
@@ -17,11 +17,10 @@ const renderBooks= ()=> {
         renderNoBooksFound();
         return;
     }
-
     const booksListHtmlAsCards = books.map((bookItem, index) => {
         return `
             <div class="card m-4 " style="width: 12rem;">
-                <a href="order.html?id=${bookItem.bookID}"><div><img src=${bookItem.imageLinks.thumbnail} class="card-img-top" alt=""></div></a>
+                <a href="order.html?id=${bookItem.bookID}"><div><img src=${bookItem.imageLinks.medium} class="card-img-top" alt=""></div></a>
                   <div class="card-body">
                      <h5 class="card-title">${bookItem.title}</h5>
                      <p class="card-text"> ${bookItem.author}</p>  
@@ -60,6 +59,31 @@ const getBooksByGenre =  (genre) => {
         }
     });
 };
-$(document).ready(function() {
-    getBooks();
-});
+const getBooksBySearch = () => {
+    const searchInput = $('#search-input').val();
+    const searchBy = $('#search-by').val();
+    let URL = '';
+    if(searchBy === 'title')
+        URL = baseUrl+'/book/search/?title='+searchInput;
+    else if(searchBy === 'author')
+        URL = baseUrl+'/book/search/?author='+searchInput;
+    else {
+        alert('Please select a search option');
+        return;
+    }
+    console.log('URL:', URL);
+    $.ajax({
+        url: URL,
+        type: 'GET',
+        success: function(response) {
+            books = response;
+            renderBooks();
+        },
+        error: function(xhr, status, error) {
+            console.log('Failed to retrieve books:', error);
+            renderNoBooksFound();
+        }
+    });
+}
+
+$(document).ready(getBooks);

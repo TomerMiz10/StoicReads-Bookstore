@@ -105,6 +105,5 @@ module.exports = {
   getBookByID,
   getBooksByGenre,
   updateBookImages,
-  updateBookDescriptions,
-    getBooksByGenre
+  updateBookDescriptions
 };
