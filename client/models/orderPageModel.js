@@ -19,7 +19,7 @@ const renderSpecificBookDetails = () => {
             bookGenre.innerHTML ="<b>Genre: </b>"+ book.genre;
             bookPrice.innerHTML ="<b>Price: </b>"+ book.price+"$" ;
             bookDescription.innerHTML = "<b>Description: </b>"+book.description;
-            bookImage.src = book.imageLinks.large;
+            bookImage.src = book.image;
             console.log(book.description);
         },
         error: function(xhr, status, error) {
