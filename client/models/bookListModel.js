@@ -87,3 +87,6 @@ const getBooksBySearch = () => {
 }
 
 $(document).ready(getBooks);
+
+module.exports = { getBooksByGenre, renderBooks,renderNoBooksFound };
+
