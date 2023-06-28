@@ -9,27 +9,6 @@ const getBookDetails = async (title) => {
     return response.data;
 };
 
-
-// Keeping this for now as an example how to extract data from the API
-// const extractBookDescription = (data, book) => {
-//
-//
-//     const match = data.items.find((item) => {
-//         const itemTitle = item.volumeInfo.title.toLowerCase();
-//         const itemAuthors = item.volumeInfo.authors || [];
-//         const bookTitle = book.title.toLowerCase();
-//         const bookAuthor = book.author.toLowerCase();
-//
-//         return (
-//             (itemTitle === bookTitle && itemAuthors.includes(bookAuthor)) ||
-//             itemAuthors.includes(bookAuthor)
-//         );
-//     });
-//
-//     return match?.volumeInfo?.description || data.items?.[0]?.volumeInfo?.description;
-// };
-
-
 module.exports = {
     getBookDetails,
 };

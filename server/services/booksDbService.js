@@ -1,5 +1,5 @@
 const Book = require("../models/bookModel");
-const { getBookDetails } = require('./googlebookService');
+const { getBookDetails, extractBookDescription } = require('./googlebookService');
 const { extractBookCoverImage } = require('./bookimagesService');
 
 const axios = require('axios');
@@ -50,35 +50,6 @@ const updateBookCoverImages = async () => {
   }
 }
 
-
-// this is an example for the Google book API
-// const updateBookDescriptions = async () => {
-//   try {
-//     const books = await Book.find();
-//
-//     for (const book of books) {
-//       const { title, author } = book;
-//
-//       const bookDetails = await getBookDetails(title);
-//       const description = await extractBookDescription(bookDetails, { title, author });
-//
-//       // Update the book's description in the database
-//       await Book.findOneAndUpdate(
-//           { title: title },
-//           { $set: { description: description } },
-//           { new: true, useFindAndModify: false }
-//       );
-//     }
-//
-//     console.log('Book descriptions updated successfully.');
-//   } catch (error) {
-//     console.log(error);
-//     throw new Error('An error occurred while updating book descriptions from the Google Books API.');
-//   }
-// };
-
-
-
 const getBooksBySearch = async (query) => {
   const searchQuery = {};
 
@@ -93,8 +64,6 @@ const getBooksBySearch = async (query) => {
   return Book.find(searchQuery);
 };
 
-
-
 const getBookByID = async (bookID) => await Book.findOne({ bookID });
 
 const getBooksByGenre = async (genre) => await Book.find({ genre });
@@ -104,8 +73,6 @@ module.exports = {
   getAllBooks,
   getBooksBySearch,
   getBookByID,
-  updateBookImages,
-  updateBookDescriptions,
   updateBookCoverImages,
   getBooksByGenre,
 };
