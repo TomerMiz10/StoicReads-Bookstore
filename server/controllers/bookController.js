@@ -75,10 +75,10 @@ const createBookByAdmin = async (req, res) => {
   }
 };
 
-// Update book images from Google Books API
-const updateBookImages = async (req, res) => {
+const updateBookCoverImages = async(req,res) => {
+
   try {
-    await booksDbService.updateBookImages();
+    await booksDbService.updateBookCoverImages();
     res.status(200).json({ message: "Book images updated successfully" });
   } catch (err) {
     console.log(err);
@@ -86,20 +86,8 @@ const updateBookImages = async (req, res) => {
         .status(500)
         .json({ error: "An error occurred while updating book images" });
   }
-};
 
-
-const updateBookDescriptions = async (req, res) => {
-  try {
-    await booksDbService.updateBookDescriptions();
-    res.status(200).json({ message: "Book descriptions updated successfully" });
-  } catch (err) {
-    console.log(err);
-    res
-        .status(500)
-        .json({ error: "An error occurred while updating book descriptions" });
-  }
-};
+}
 
 const getBooksByGenre = async (req, res) => {
   const { genre } = req.params;
@@ -124,10 +112,9 @@ module.exports = {
   getAllBooks,
   getBookByID,
   getBooksBySearch,
-  createBookByAdmin,
-  updateBookImages,
-  updateBookDescriptions,
   getBooksByGenre,
+  createBookByAdmin,
+  updateBookCoverImages,
 };
 
 
