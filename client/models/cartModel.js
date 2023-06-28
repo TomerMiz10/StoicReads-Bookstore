@@ -1,20 +1,21 @@
 let books = [];
 const baseUrl = 'http://localhost:3000';
-const booksCartContainer = $('#books-cards-container');
+const bookCardsContainer = $('#books-cards-container');
+
 
 
 const renderNoBooksFound= ()=>{
-    booksCartContainer.empty();
+    bookCardsContainer.empty();
     const noBooksFound = $('<div class="card mb-3">');
     const cardBody = $('<div class="card-body">');
     const titleElement = $('<h5 class="card-title">No books found</h5>');
     cardBody.append(titleElement);
     noBooksFound.append(cardBody);
-    booksCartContainer.append(noBooksFound);
+    bookCardsContainer.append(noBooksFound);
 }
 
 const renderBooks = () => {
-    booksCartContainer.empty();
+    bookCardsContainer.empty();
     if(books.length === 0){
         renderNoBooksFound();
         return;
@@ -43,11 +44,11 @@ const renderBooks = () => {
             </div>;`
     }).join('');
     const classesToMakeCardsAlign = 'd-flex flex-wrap justify-content-center align-items-center';
-    booksCartContainer.addClass(classesToMakeCardsAlign);
-    booksCartContainer.append(booksCardsHtml);
+    bookCardsContainer.addClass(classesToMakeCardsAlign);
+    bookCardsContainer.append(booksCardsHtml);
 }
 
-booksCartContainer.addEventListener("click", (e)=>{
+bookCardsContainer.addEventListener("click", (e)=>{
    if(e.target.classList.contains("decrease-quantity")){
        const quantityInput = e.target.nextElementSibling;
        const currentValue = parseInt(quantityInput.value);
@@ -99,4 +100,4 @@ Array.from(quantityInputs).forEach(quantityInput => {
     quantityInput.addEventListener("change", updateOrderSummary);
 });
 
-// $(document).ready(getBooks);
+$(document).ready(getBooks);
