@@ -1,5 +1,7 @@
 var books = [];
 const baseUrl = 'http://localhost:3000';
+// const cartModel = new CartModel();
+
 const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
@@ -10,6 +12,7 @@ const renderNoBooksFound= ()=> {
     noBooksFound.append(cardBody);
     booksListContainer.append(noBooksFound);
 }
+
 const renderBooks= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
@@ -21,14 +24,16 @@ const renderBooks= ()=> {
         return `
             <div class="card m-4 " style="width: 12rem;">
                 <a href="order.html?id=${bookItem.bookID}">
-                <div>
-                <img src=${bookItem.imageLinks.medium} class="card-img-top" alt="">
-                </div>
+                    <div>
+                        <img src=${bookItem.image} class="card-img-top" alt="Book Cover">
+                    </div>
                 </a>
-                  <div class="card-body">
-                     <h5 class="card-title">${bookItem.title}</h5>
-                     <p class="card-text"> ${bookItem.author}</p>  
-                  </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title">${bookItem.title}</h5>
+                    <p class="card-text"> ${bookItem.author}</p>  
+                    <button class="add-to-cart-btn">Add To Cart</button>
+                </div>
             </div>`;
     }).join('');
     const classesToMakeCardsAlign = 'd-flex flex-wrap justify-content-center';
@@ -90,4 +95,27 @@ const getBooksBySearch = () => {
     });
 }
 
-$(document).ready(getBooks);
+// Retrieve books and render them
+
+$(document).ready(function() {
+    getBooks();
+});
+
+// Add event listener to "Add To Cart" buttons
+const addToCartButton = document.getElementsByClassName("add-to-cart-btn");
+Array.from(addToCartButton).forEach((button, index) => {
+    button.addEventListener('click', ()=>{
+        addToCart(index);
+    });
+});
+
+// Function to add a book to the cart
+const addToCart = (bookIndex) => {
+    const selectedBook = books[bookIndex];
+    // Push the selected book to the books array in cartModel.js file
+    cartModel.addToCart(selectedBook);
+    // Call the renderBooks() function in cartModel.js to update the cart view
+    cartModel.renderBooks();
+};
+
+
