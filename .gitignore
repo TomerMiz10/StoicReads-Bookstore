@@ -3,8 +3,8 @@ package.json
 package-lock.json
 
 .env
-#.env.local
-#.env.test
+.env.local
+.env.test
 
 #server/.env
 #server/config
@@ -12,3 +12,4 @@ server/config/.env.local
 server/config/.env.test
 
 /.idea/git_toolbox_prj.xml
+/.idea/jsLibraryMappings.xml
