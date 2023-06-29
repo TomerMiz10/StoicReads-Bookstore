@@ -8,10 +8,11 @@ const getAllBooks = async (req, res) => {
   } catch (err) {
     console.log(err);
     res
-      .status(404)
-      .json({ error: "Couldn`t fetch books 404 error", success: false });
+        .status(404)
+        .json({ error: "Couldn`t fetch books 404 error", success: false });
   }
 };
+
 
 const getBookByID = async (req, res) => {
   try {
@@ -28,6 +29,7 @@ const getBookByID = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error, couldn't fetch book by it's ID", success: false });
   }
 };
+
 
 const getBooksBySearch = async (req, res) => {
   try {
@@ -75,10 +77,9 @@ const createBookByAdmin = async (req, res) => {
   }
 };
 
-// Update book images from Google Books API
-const updateBookImages = async (req, res) => {
+const updateBookCoverImages = async (req, res) => {
   try {
-    await booksDbService.updateBookImages();
+    await booksDbService.updateBookCoverImages();
     res.status(200).json({ message: "Book images updated successfully" });
   } catch (err) {
     console.log(err);
@@ -88,18 +89,6 @@ const updateBookImages = async (req, res) => {
   }
 };
 
-
-const updateBookDescriptions = async (req, res) => {
-  try {
-    await booksDbService.updateBookDescriptions();
-    res.status(200).json({ message: "Book descriptions updated successfully" });
-  } catch (err) {
-    console.log(err);
-    res
-        .status(500)
-        .json({ error: "An error occurred while updating book descriptions" });
-  }
-};
 
 const getBooksByGenre = async (req, res) => {
   const { genre } = req.params;
@@ -124,11 +113,7 @@ module.exports = {
   getAllBooks,
   getBookByID,
   getBooksBySearch,
-  createBookByAdmin,
-  updateBookImages,
-  updateBookDescriptions,
   getBooksByGenre,
+  createBookByAdmin,
+  updateBookCoverImages,
 };
-
-
-
