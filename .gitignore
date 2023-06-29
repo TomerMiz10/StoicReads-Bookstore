@@ -1,15 +1,17 @@
-node_modules
 package.json
 package-lock.json
+node_modules/
 
 .env
 .env.local
 .env.test
 
-#server/.env
-#server/config
+server/.env
 server/config/.env.local
 server/config/.env.test
+server/config
 
 /.idea/git_toolbox_prj.xml
 /.idea/jsLibraryMappings.xml
+
+

@@ -38,7 +38,7 @@ const renderBooks= ()=> {
     const classesToMakeCardsAlign = 'd-flex flex-wrap justify-content-center';
     booksListContainer.addClass(classesToMakeCardsAlign);
     booksListContainer.append(booksListHtmlAsCards);
-}
+};
 
 const getBooks= ()=> {
     $.ajax({
@@ -93,10 +93,6 @@ const getBooksBySearch = () => {
         }
     });
 };
-
-// Retrieve books and render them
-
-
 
 // Add event listener to "Add To Cart" buttons
 const addToCartButton = document.getElementsByClassName("add-to-cart-btn");
