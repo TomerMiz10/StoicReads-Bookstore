@@ -67,6 +67,8 @@ const getBooksByGenre =  (genre) => {
         }
     });
 };
+
+
 const getBooksBySearch = () => {
     const searchInput = $('#search-input').val();
     const searchBy = $('#search-by').val();
@@ -93,6 +95,8 @@ const getBooksBySearch = () => {
         }
     });
 };
+
+
 
 // Add event listener to "Add To Cart" buttons
 const addToCartButton = document.getElementsByClassName("add-to-cart-btn");
@@ -127,7 +131,6 @@ const updateCartItemCount = (count) => {
     // Append the new item count element
     cartIcon.appendChild(itemCountElement);
 };
-
 
 $(document).ready(function() {
     getBooks();

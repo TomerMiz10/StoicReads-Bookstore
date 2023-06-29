@@ -11,58 +11,59 @@
 
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="index.html"><img src="bookIcon.png" alt=""></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarsExample04">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link fs-3" href="signup.html">Sign-up</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link fs-3" href="login.html">Login</a>
-      </li>
-      <li class="nav-item dropdown fs-3">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown05">
-          <a class="dropdown-item fs-3" href="#" onclick="getBooks()">All</a>
-          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Self-help')">Self-help</a>
-          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Fantasy')">Fantasy</a>
-          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Science Fiction')">Science Fiction</a>
-        </div>
-      </li>
-      <li class="nav-item">
-<!--        change here -->
-        <a class="nav-link" href="cart.html">
-          <img src="cartIcon.png" alt="" class="btn" id="cart-icon">
-        </a>
-      </li>
-    </ul>
-    <div class="align-items-center">
-      <div style="width: 200px;">
-        <label for="search-by">Search By:</label>
-        <select class="dropdown-menu-sm-start " id="search-by">
-          <option value="none">Search by...</option>
-          <option value="author">Author</option>
-          <option value="title">Title</option>
-        </select>
-      </div>
-      <div class="search-bar ml-2">
-        <form id="book-search-form">
-          <div class="input-group">
-            <label for="search-input"></label>
-            <input id="search-input" placeholder="Search book by Author/Title..." type="text" style="width: 220px" class="col-form-label-sm" maxlength="255"  />
-            <div class="input-group-append">
-              <label for="search-btn"></label>
-              <input id="search-btn" class="btn btn-primary" style="width: 100px" value="Search"  onclick="getBooksBySearch()"/>
-            </div>
+  <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="index.html"><img src="bookIcon.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link fs-3" href="signup.html">Sign-up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-3" href="login.html">Login</a>
+        </li>
+        <li class="nav-item dropdown fs-3">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown05">
+            <a class="dropdown-item fs-3" href="#" onclick="getBooks()">All</a>
+            <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Self-help')">Self-help</a>
+            <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Fantasy')">Fantasy</a>
+            <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Science Fiction')">Science Fiction</a>
           </div>
-        </form>
+        </li>
+        <li class="nav-item">
+  <!--        change here -->
+          <a class="nav-link" href="cart.html">
+            <img src="cartIcon.png" alt="" class="btn" id="cart-icon">
+          </a>
+        </li>
+      </ul>
+      <div class="align-items-center">
+        <div style="width: 200px;">
+          <label for="search-by">Search By:</label>
+          <select class="dropdown-menu-sm-start " id="search-by">
+            <option value="none">Search by...</option>
+            <option value="author">Author</option>
+            <option value="title">Title</option>
+          </select>
+        </div>
+        <div class="search-bar ml-2">
+          <form id="book-search-form">
+            <div class="input-group">
+              <label for="search-input"></label>
+              <input id="search-input" placeholder="Search book by Author/Title..." type="text" style="width: 220px" class="col-form-label-sm" maxlength="255"/>
+              <div class="input-group-append">
+                <label for="search-btn"></label>
+                <input id="search-btn" class="btn btn-primary" style="width: 100px" value="Search" type="button" onclick="getBooksBySearch()"/>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+
 </body>
 </html>
