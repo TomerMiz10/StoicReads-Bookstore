@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>StoicReads</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+
   <link rel="shortcut icon" href="bookIcon.png" type="image/x-icon">
   <link rel="stylesheet" href="bootStrap.css">
 </head>
@@ -33,11 +34,14 @@
       </li>
       <li class="nav-item">
 <!--        change here -->
-        <a class="nav-link" href="cart.html"><img src="cartIcon.png" alt="" class="btn"></a>
+        <a class="nav-link" href="cart.html">
+          <img src="cartIcon.png" alt="" class="btn" id="cart-icon">
+        </a>
       </li>
     </ul>
     <div class="align-items-center">
       <div style="width: 200px;">
+        <label for="search-by">Search By:</label>
         <select class="dropdown-menu-lg-end " id="search-by" style="left: 105px">
           <option value="none">Search by...</option>
           <option value="author">Author</option>
@@ -47,8 +51,10 @@
       <div class="search-bar ml-2">
         <form id="book-search-form">
           <div class="input-group">
+            <label for="search-input"></label>
             <input id="search-input" type="text" class="form-control" maxlength="255"  />
             <div class="input-group-append">
+              <label for="search-btn"></label>
               <input id="search-btn" class="btn btn-primary" value="Search" onclick="getBooksBySearch()"/>
             </div>
           </div>

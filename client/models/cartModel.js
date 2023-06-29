@@ -3,6 +3,30 @@ const baseUrl = 'http://localhost:3000';
 const bookCardsContainer = $('#books-cards-container');
 
 
+class CartModel {
+    constructor() {
+        this.books = [];
+    }
+
+    addToCart(book) {
+        this.books.push(book);
+    }
+
+    removeFromCart(bookIndex) {
+        this.books.splice(bookIndex, 1);
+    }
+
+    clearCart() {
+        this.books = [];
+    }
+
+    getCartItemCount() {
+        return this.books.length;
+    }
+
+}
+
+
 
 const renderNoBooksFound= ()=>{
     bookCardsContainer.empty();
@@ -67,16 +91,19 @@ bookCardsContainer.addEventListener("click", (e)=>{
        const bookCard = e.target.closest(".card");
        bookCard.remove();
        updateOrderSummary();
+       const bookIndex = Array.from(bookCardsContainer.children()).indexOf(bookCard);
+       cartModel.removeFromCart(bookIndex);
    }
 });
 
 const updateOrderSummary = ()=>{
-    const bookCards = document.getElementsByClassName("card");
+    const bookCards = Array.from(bookCardsContainer.children());
+    //const bookCards = document.getElementsByClassName("card");
 
     let totalPrice = 0;
     let totalItems = 0;
 
-    Array.from(bookCards).forEach(card => {
+    bookCards.forEach((card) => {
         const quantityInput = card.querySelector(".book-quantity");
         const priceElement = card.querySelector(".card-text:last-child");
 
@@ -92,12 +119,23 @@ const updateOrderSummary = ()=>{
 
     totalItemsElement.textContent = totalItems;
     totalPriceElement.textContent = totalPrice.toFixed(2);
+
+    cartModel.books = bookCards.map((card) =>{
+       return{
+           title: card.querySelector(".card-title").textContent,
+           author: card.querySelector(".card-text:nth-child(2)").textContent,
+           genre: card.querySelector(".card-text:nth-child(3)").textContent,
+           price: parseFloat(card.querySelector(".card-text:last-child").textContent),
+           // price: card.querySelector(".card-text:nth-child(4)").textContent,
+       };
+    });
 };
 
 // Attach event listeners to quantity inputs
 const quantityInputs = document.getElementsByClassName("book-quantity");
-Array.from(quantityInputs).forEach(quantityInput => {
+Array.from(quantityInputs).forEach((quantityInput) => {
     quantityInput.addEventListener("change", updateOrderSummary);
 });
 
 $(document).ready(getBooks);
+const cartModel = new CartModel();

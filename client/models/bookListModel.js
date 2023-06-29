@@ -1,6 +1,5 @@
-var books = [];
+let books = [];
 const baseUrl = 'http://localhost:3000';
-// const cartModel = new CartModel();
 
 const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
@@ -97,9 +96,7 @@ const getBooksBySearch = () => {
 
 // Retrieve books and render them
 
-$(document).ready(function() {
-    getBooks();
-});
+
 
 // Add event listener to "Add To Cart" buttons
 const addToCartButton = document.getElementsByClassName("add-to-cart-btn");
@@ -111,11 +108,31 @@ Array.from(addToCartButton).forEach((button, index) => {
 
 // Function to add a book to the cart
 const addToCart = (bookIndex) => {
+    const cartModel = new CartModel();
     const selectedBook = books[bookIndex];
-    // Push the selected book to the books array in cartModel.js file
     cartModel.addToCart(selectedBook);
-    // Call the renderBooks() function in cartModel.js to update the cart view
-    cartModel.renderBooks();
+    const cartItemCount = cartModel.getCartItemCount();
+    updateCartItemCount(cartItemCount);
+    renderBooks();
+};
+
+const updateCartItemCount = (count) => {
+    const cartIcon = document.getElementById('cart-icon');
+    const itemCountElement = document.createElement('span');
+    itemCountElement.className = 'cart-item-count';
+    itemCountElement.textContent = count.toString();
+
+    // Remove any existing item count element
+    const existingItemCountElement = cartIcon.querySelector('.cart-item-count');
+    if(existingItemCountElement){
+        existingItemCountElement.remove();
+    }
+
+    // Append the new item count element
+    cartIcon.appendChild(itemCountElement);
 };
 
 
+$(document).ready(function() {
+    getBooks();
+});
