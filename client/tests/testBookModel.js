@@ -5,7 +5,6 @@ const BookSchema = new Schema({
     bookID: {
         type: Number,
         required: true,
-        unique: true
     },
     title: {
         type: String,

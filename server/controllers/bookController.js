@@ -77,7 +77,8 @@ const createBookByAdmin = async (req, res) => {
   }
 };
 
-const updateBookCoverImages = async (req, res) => {
+const updateBookCoverImages = async(req,res) => {
+
   try {
     await booksDbService.updateBookCoverImages();
     res.status(200).json({ message: "Book images updated successfully" });
@@ -87,21 +88,21 @@ const updateBookCoverImages = async (req, res) => {
         .status(500)
         .json({ error: "An error occurred while updating book images" });
   }
-};
 
+}
 
 const getBooksByGenre = async (req, res) => {
   const { genre } = req.params;
-    try {
-        const books = await booksDbService.getBooksByGenre(genre);
-        console.log('Successfully retrieved all books by genre')
-        res.status(200).json(books);
-    }catch (err) {
-      console.log(err);
-      res
+  try {
+    const books = await booksDbService.getBooksByGenre(genre);
+    console.log('Successfully retrieved all books by genre')
+    res.status(200).json(books);
+  }catch (err) {
+    console.log(err);
+    res
         .status(404)
         .json({ error: "Couldn't find books by genre", success: false });
-    }
+  }
 }
 
 
