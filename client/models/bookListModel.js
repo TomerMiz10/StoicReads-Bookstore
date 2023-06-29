@@ -52,7 +52,7 @@ const getBooks= ()=> {
             console.log('Failed to retrieve books:', error);
         }
     });
-}
+};
 
 const getBooksByGenre =  (genre) => {
     $.ajax({
@@ -92,7 +92,7 @@ const getBooksBySearch = () => {
             renderNoBooksFound();
         }
     });
-}
+};
 
 // Retrieve books and render them
 
