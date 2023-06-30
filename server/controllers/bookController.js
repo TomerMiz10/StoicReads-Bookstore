@@ -90,9 +90,11 @@ const updateBookCoverImages = async(req,res) => {
 }
 
 const getBooksByGenre = async (req, res) => {
+  let books;
   const { genre } = req.params;
-    try {
-        const books = await booksDbService.getBooksByGenre(genre);
+  try {
+    if(genre === 'all')  books = await booksDbService.getAllBooks();
+    else books = await booksDbService.getBooksByGenre(genre);
         console.log('Successfully retrieved all books by genre')
         res.status(200).json(books);
     }catch (err) {
