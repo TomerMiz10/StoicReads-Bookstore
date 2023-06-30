@@ -14,3 +14,4 @@ server/config/.env.local
 server/config/.env.test
 node_modules
 
+/.idea/git_toolbox_prj.xml
