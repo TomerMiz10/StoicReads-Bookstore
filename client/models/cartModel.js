@@ -126,15 +126,27 @@ const updateOrderSummary = ()=>{
            author: card.querySelector(".card-text:nth-child(2)").textContent,
            genre: card.querySelector(".card-text:nth-child(3)").textContent,
            price: parseFloat(card.querySelector(".card-text:last-child").textContent),
-           // price: card.querySelector(".card-text:nth-child(4)").textContent,
        };
     });
+
 };
 
 // Attach event listeners to quantity inputs
 const quantityInputs = document.getElementsByClassName("book-quantity");
 Array.from(quantityInputs).forEach((quantityInput) => {
     quantityInput.addEventListener("change", updateOrderSummary);
+});
+
+
+
+
+
+// Add event listener to "Add To Cart" buttons
+const addToCartButton = document.getElementsByClassName("add-to-cart-btn");
+Array.from(addToCartButton).forEach((button, index) => {
+    button.addEventListener('click', ()=>{
+        addToCart(index);
+    });
 });
 
 $(document).ready(getBooks);

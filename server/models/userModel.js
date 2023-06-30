@@ -1,4 +1,4 @@
-// represents a customer, with properties like name, email, address, etc.
+// represents a user, with properties like name, email, address, etc.
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
