@@ -29,6 +29,3 @@ This is the README file for the final project in the web application development
 7. Access the web application through the provided URL.
 8. Explore the different features and functionalities of the online store.
 
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
