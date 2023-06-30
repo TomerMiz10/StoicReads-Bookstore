@@ -96,42 +96,6 @@ const getBooksBySearch = () => {
     });
 };
 
-
-
-// Add event listener to "Add To Cart" buttons
-const addToCartButton = document.getElementsByClassName("add-to-cart-btn");
-Array.from(addToCartButton).forEach((button, index) => {
-    button.addEventListener('click', ()=>{
-        addToCart(index);
-    });
-});
-
-// Function to add a book to the cart
-const addToCart = (bookIndex) => {
-    const cartModel = new CartModel();
-    const selectedBook = books[bookIndex];
-    cartModel.addToCart(selectedBook);
-    const cartItemCount = cartModel.getCartItemCount();
-    updateCartItemCount(cartItemCount);
-    renderBooks();
-};
-
-const updateCartItemCount = (count) => {
-    const cartIcon = document.getElementById('cart-icon');
-    const itemCountElement = document.createElement('span');
-    itemCountElement.className = 'cart-item-count';
-    itemCountElement.textContent = count.toString();
-
-    // Remove any existing item count element
-    const existingItemCountElement = cartIcon.querySelector('.cart-item-count');
-    if(existingItemCountElement){
-        existingItemCountElement.remove();
-    }
-
-    // Append the new item count element
-    cartIcon.appendChild(itemCountElement);
-};
-
 $(document).ready(function() {
     getBooks();
 });
