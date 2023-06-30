@@ -9,9 +9,7 @@ const User = new Schema({
     password: {type: String, required: true, unique: true},
     fullName: {type: String},
     address: {type: String},
-    isAdmin: {type: Boolean, required: true},
-    currentShoppingCart: {},
-    orderHistory: {}
+    isAdmin: {type: Boolean, required: true}
 });
 
 module.exports = mongoose.model('User', User);
