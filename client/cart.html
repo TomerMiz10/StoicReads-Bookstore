@@ -12,19 +12,35 @@
 <body>
 <div id="navbar-container"></div>
 <header>
-    <h1 class="flex-center bg-secondary text-light display-4"></h1>
+    <h1 class="flex-center bg-secondary text-light display-4">Welcome to your shopping cart</h1>
 </header>
 
 <div id="shopping-cart-container">
-    <!--        list of book cards-->
-    <div id="books-cards-container">
 
+    <div class="cart-row flex-center">
+        <span class="cart-item cart-header cart-column">Item</span>
+        <span class="cart-price cart-header cart-column">Price</span>
+        <span class="cart-quantity cart-header cart-column">Quantity</span>
     </div>
 
-    <!--        order summary-->
+    <div class="cart-items">
+        <div class="cart-row">
+            <div class="cart-item cart-column">
+                <span class="cart-item-title cart-column"></span>
+            </div>
+            <span class="cart-price cart-column"></span>
+            <div class="cart-quantity cart-column">
+                <label for="cart-quantity"></label>
+                <input id="cart-quantity" class="cart-quantity-input" type="number" value="1">
+                <button class="btn btn-danger" type="button">Remove</button>
+            </div>
+        </div>
+    </div>
+
+
     <div id="order-summary">
         <h3>Order Summary</h3>
-        <p>Total Items: <span id="total-items"></span></p>
+<!--        <p>Total Items: <span id="total-items"></span></p>-->
         <p>Total Price: <span id="total-price"></span></p>
         <button id="checkout-button">Checkout</button>
     </div>
@@ -37,6 +53,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="models/showNavbar.js"></script>
-<script src="models/cartModel.js"></script>
+<script src="models/cartModel.js" async></script>
 </body>
 </html>

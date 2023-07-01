@@ -7038,6 +7038,15 @@ textarea.form-control-lg {
     display: inline-flex !important;
 }
 
+#stock-status{
+    font-weight: bold;
+    color: green;
+}
+
+#stock-status.out-of-stock{
+    color: red;
+}
+
 .d-none {
     display: none !important;
 }
