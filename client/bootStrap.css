@@ -3628,7 +3628,8 @@ textarea.form-control-lg {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
     position: relative;
 }
-.badge{
+
+#cart-item-count{
     position: absolute;
     top: -3px;
     right: -3px;
