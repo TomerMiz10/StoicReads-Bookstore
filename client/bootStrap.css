@@ -3626,7 +3626,14 @@ textarea.form-control-lg {
     color: var(--bs-nav-link-color);
     text-decoration: none;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    position: relative;
 }
+.badge{
+    position: absolute;
+    top: -3px;
+    right: -3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .nav-link {
         transition: none;
