@@ -32,7 +32,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login.html"><img src="cartIcon.png" alt="" class="btn"></a>
+        <a class="nav-link" href="cart.html"><img src="cartIcon.png" alt="" class="btn"></a>
       </li>
     </ul>
     <div class="align-items-center">
@@ -46,8 +46,10 @@
       <div class="search-bar ml-2">
         <form id="book-search-form">
           <div class="input-group">
+            <label for="search-input"></label>
             <input id="search-input" placeholder="Search book by Author/Title..." type="text" style="width: 220px" class="col-form-label-sm" maxlength="255"  />
             <div class="input-group-append">
+              <label for="search-btn"></label>
               <input id="search-btn" class="btn btn-primary" style="width: 100px" value="Search"  onclick="getBooksBySearch()"/>
             </div>
           </div>
