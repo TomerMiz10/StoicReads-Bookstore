@@ -25,14 +25,20 @@
       <li class="nav-item dropdown fs-3">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
         <div class="dropdown-menu" aria-labelledby="dropdown05">
-          <a class="dropdown-item fs-3" href="#" onclick="getBooks()">All</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('all')">All</a>
           <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Self-help')">Self-help</a>
           <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Fantasy')">Fantasy</a>
           <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Science Fiction')">Science Fiction</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Philosophy')">Philosophy</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Relationships')">Relationships</a>
+          <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Business')">Business</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login.html"><img src="cartIcon.png" alt="" class="btn"></a>
+        <a class="nav-link" href="cart.html">
+          <img src="cartIcon.png" alt="" class="btn">
+          <span id="cart-item-count" class="badge badge-primary">0</span>
+        </a>
       </li>
     </ul>
     <div class="align-items-center">
@@ -46,8 +52,10 @@
       <div class="search-bar ml-2">
         <form id="book-search-form">
           <div class="input-group">
+            <label for="search-input"></label>
             <input id="search-input" placeholder="Search book by Author/Title..." type="text" style="width: 220px" class="col-form-label-sm" maxlength="255"  />
             <div class="input-group-append">
+              <label for="search-btn"></label>
               <input id="search-btn" class="btn btn-primary" style="width: 100px" value="Search"  onclick="getBooksBySearch()"/>
             </div>
           </div>

@@ -1,3 +1,5 @@
+const User = require("../models/userModel");
+
 const config = {
     authRequired: false,
     auth0Logout: true,
@@ -7,6 +9,9 @@ const config = {
     issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
 };
 
+const getUserByID = async (userID) => await User.findOne({userID});
+
 module.exports = {
     config,
+    getUserByID
 };

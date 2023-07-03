@@ -22,6 +22,7 @@ const renderSpecificBookDetails = () => {
             bookPrice.innerHTML ="<b>Price: </b>"+ book.price+"$" ;
             bookDescription.innerHTML = "<b>Description: </b>"+book.description;
             bookImage.src = book.image;
+            updateStockStatus();
             getRecommendedBooks();
         },
         error: function(xhr, status, error) {
@@ -62,4 +63,24 @@ const getRecommendedBooks = () => {
         }
     });
 }
+
+const updateStockStatus = () => {
+  const stockStatus = document.getElementById('stock-status');
+
+  $.ajax({
+      url: baseUrl + '/book/bookId/' + bookId,
+      type: 'GET',
+      success: function(response) {
+        const isBookInStock = response.quantity > 1;
+        stockStatus.innerHTML = isBookInStock? 'In Stock' : 'Out of Stock';
+        stockStatus.classList.toggle('out-of-stock',!isBookInStock);
+      },
+      error: function(xhr, status, error) {
+        console.log('Failed to check stock of book:', error);
+        stockStatus.innerHTML = 'Error checking stock';
+        stockStatus.classList.add('out-of-stock');
+      }
+  });
+};
+
 window.addEventListener('load', renderSpecificBookDetails);

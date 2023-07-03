@@ -3626,7 +3626,15 @@ textarea.form-control-lg {
     color: var(--bs-nav-link-color);
     text-decoration: none;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    position: relative;
 }
+
+#cart-item-count{
+    position: absolute;
+    top: -3px;
+    right: -3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .nav-link {
         transition: none;
@@ -7029,6 +7037,15 @@ textarea.form-control-lg {
 
 .d-inline-flex {
     display: inline-flex !important;
+}
+
+#stock-status{
+    font-weight: bold;
+    color: green;
+}
+
+#stock-status.out-of-stock{
+    color: red;
 }
 
 .d-none {
