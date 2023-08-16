@@ -8,7 +8,6 @@ const User = new Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true, unique: true},
     fullName: {type: String},
-    address: {type: String},
     isAdmin: {type: Boolean, required: true}
 });
 

@@ -4,24 +4,16 @@ const mongoose = require("mongoose");
 const app = express();
 const env = require("custom-env").env();
 
-const { auth } = require('express-openid-connect');
-const { config } = require('./services/auth0Service');
-
-
-
-
-
 //Middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
 
 
 // Routing
 app.use("/book", require("./routes/bookRoute"));
-app.use("/", require("./routes/auth0Route"));
+app.use("/auth", require("./routes/authRoute"));
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then(() => {
