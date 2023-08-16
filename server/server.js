@@ -20,7 +20,7 @@ app.use(auth(config));
 
 
 // Routing
-app.use("/", require("./routes/bookRoute"));
+app.use("/book", require("./routes/bookRoute"));
 app.use("/", require("./routes/auth0Route"));
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
@@ -30,3 +30,4 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
         console.log('MongoDB Connected')
     })
     .catch(err => console.log(err));
+

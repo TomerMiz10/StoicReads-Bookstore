@@ -10,12 +10,12 @@ const {
   updateBookCoverImages,
 } = require("../controllers/bookController");
 
-bookRoute.get("/book/getAllBooks", getAllBooks);
-bookRoute.get("/book/search", getBooksBySearch);
-bookRoute.get("/book/update-images", updateBookCoverImages); // Updates existing books in the document with images
-bookRoute.get("/book/bookId/:bookID", getBookByID);
-bookRoute.get("/book/genre/:genre", getBooksByGenre);
+bookRoute.get("/getAllBooks", getAllBooks);
+bookRoute.get("/search", getBooksBySearch);
+bookRoute.get("/update-images", updateBookCoverImages); // Updates existing books in the document with images
+bookRoute.get("/bookId/:bookID", getBookByID);
+bookRoute.get("/genre/:genre", getBooksByGenre);
 
-bookRoute.post("/book/createBook", createBookByAdmin);
+bookRoute.post("/createBook", createBookByAdmin);
 
 module.exports = bookRoute;
