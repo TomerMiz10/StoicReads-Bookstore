@@ -1,4 +1,4 @@
-const Book = require("../models/bookModel");
+const Book = require("../models/Book");
 const { getBookDetails, extractBookDescription } = require('./googlebookService');
 const { extractBookCoverImage } = require('./bookimagesService');
 
