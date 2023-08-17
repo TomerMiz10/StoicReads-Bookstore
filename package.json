@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "custom-env": "^2.0.2",
@@ -22,7 +23,8 @@
     "express-openid-connect": "^2.16.0",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "validator": "^13.11.0"
   },
   "keywords": []
 }

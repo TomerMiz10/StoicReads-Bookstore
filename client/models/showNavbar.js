@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     const navbarContainer = document.getElementById('navbar-container');
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             navbarContainer.innerHTML = this.responseText;
         }
     };
-    xhr.open('GET', 'navbar.html', true);
+    await xhr.open('GET', 'navbar.html', true);
     xhr.send();
 });
 
