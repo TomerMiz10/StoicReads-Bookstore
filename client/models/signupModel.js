@@ -9,16 +9,17 @@ form.submit((e) => {
     const fullName = $('#fullName').val();
     const user = {email, password,userName,fullName};
     console.log(user);
-    // $.ajax({
-    //     url: baseUrl+'/auth/signup',
-    //     type: 'POST',
-    //     data: user,
-    //     success: function(response) {
-    //         console.log(response);
-    //         window.location.href = 'login.html';
-    //     },
-    //     error: function(xhr, status, error) {
-    //         console.log('Failed to signup:', error);
-    //     }
-    // });
+    $.ajax({
+        url: baseUrl+'/auth/signup',
+        type: 'POST',
+        data: user,
+        success: function(response) {
+            console.log(response);
+            alert('You have successfully signed up! now you will redirect to login page');
+            window.location.href = 'login.html';
+        },
+        error: function(xhr, status, error) {
+            console.log('Failed to signup:', error);
+        }
+    });
 })

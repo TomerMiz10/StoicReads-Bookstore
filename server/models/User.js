@@ -21,9 +21,11 @@ const User = new Schema({
         required: [true,"please enter a password"],
         minlength: [6,"password must be at least 6 characters"]
     },
-    userName: {type: String,
+    userName: {
+        type: String,
         required: [true,"please enter a userName"],
-        unique: true
+        unique: true,
+        match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
     },
     fullName: {
         type: String

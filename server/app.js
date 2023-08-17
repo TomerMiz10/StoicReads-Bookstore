@@ -23,3 +23,8 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     })
     .catch(err => console.log(err));
 
+app.get('/set-cookies', (req, res) => {
+    res.setHeader('Set-Cookie', 'newUser=true');
+    res.send('you got the cookies!');
+})
+
