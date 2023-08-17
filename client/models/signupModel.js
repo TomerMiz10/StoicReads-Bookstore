@@ -7,6 +7,11 @@ form.submit((e) => {
     const password = $('#password').val();
     const userName = $('#userName').val();
     const fullName = $('#fullName').val();
+    const confirmPassword = $('#confirm-password').val();
+    if(password !== confirmPassword){
+        alert('passwords are not match');
+        return;
+    }
     const user = {email, password,userName,fullName};
     console.log(user);
     $.ajax({
@@ -19,7 +24,8 @@ form.submit((e) => {
             window.location.href = 'login.html';
         },
         error: function(xhr, status, error) {
-            console.log('Failed to signup:', error);
+            const errors = xhr.responseJSON;
+            console.log(errors);
         }
     });
 })
