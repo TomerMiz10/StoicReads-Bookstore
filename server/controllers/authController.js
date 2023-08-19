@@ -1,6 +1,7 @@
 const User = require('../models/User');
-const ALREADY_EXIST_IN_DATABASE = 11000;
-
+const jwt = require('jsonwebtoken');
+const ALREADY_EXIST_IN_DATABASE_CODE = 11000;
+const THREE_DAYS = 3 * 24 * 60 * 60;
 const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = {email: '', password: '',userName:''};
@@ -21,13 +22,21 @@ const handleErrors = (err) => {
     if(err.message.includes( 'incorrect password')){
         errors.password = 'that password is incorrect';
     }
-    if(err.code === ALREADY_EXIST_IN_DATABASE ){
-        errors.email = 'that userName or email is already registered';
-        errors.userName = 'that userName or email is already registered';
+    if(err.code === ALREADY_EXIST_IN_DATABASE_CODE ){
+        if(err.keyPattern.email)
+            errors.email = 'that email is already registered';
+        if(err.keyPattern.userName)
+            errors.userName = 'that userName is already registered';
         return errors;
     }
 
     return errors;
+}
+
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: THREE_DAYS
+    });
 }
 
 module.exports.signup_post =  (req, res) => {
@@ -35,7 +44,9 @@ module.exports.signup_post =  (req, res) => {
     const {email, password,userName,fullName} = req.body;
     User.create({userID,email, password,userName,fullName, isAdmin: false})
         .then((user) => {
-            res.status(201).json(user);
+            const token = createToken(user._id);
+           res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 1000 });
+            res.status(201).json(user._id);
         })
         .catch((err) => {
             const errors = handleErrors(err);

@@ -3,11 +3,13 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 const env = require("custom-env").env();
+const cookieParser = require('cookie-parser');
 
 //Middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 
 
@@ -23,8 +25,5 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     })
     .catch(err => console.log(err));
 
-app.get('/set-cookies', (req, res) => {
-    res.setHeader('Set-Cookie', 'newUser=true');
-    res.send('you got the cookies!');
-})
+
 

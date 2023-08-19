@@ -1,5 +1,9 @@
 const baseUrl = 'http://localhost:3000';
 const form = $('#signup-form');
+const confirmPasswordError = $('#confirm-password-error');
+const emailError = $('#email-error');
+const passwordError = $('#password-error');
+const userNameError = $('#userName-error');
 
 form.submit((e) => {
     e.preventDefault();
@@ -8,8 +12,12 @@ form.submit((e) => {
     const userName = $('#userName').val();
     const fullName = $('#fullName').val();
     const confirmPassword = $('#confirm-password').val();
-    if(password !== confirmPassword){
-        alert('passwords are not match');
+    confirmPasswordError.text('');
+    emailError.text('');
+    passwordError.text('');
+    userNameError.text('');
+    if(password!==confirmPassword){
+        confirmPasswordError.text('passwords do not match');
         return;
     }
     const user = {email, password,userName,fullName};
@@ -25,7 +33,12 @@ form.submit((e) => {
         },
         error: function(xhr, status, error) {
             const errors = xhr.responseJSON;
-            console.log(errors);
+            if(errors.password)
+                passwordError.text(errors.password);
+            if(errors.email)
+                emailError.text(errors.email);
+            if(errors.userName)
+                userNameError.text(errors.userName);
         }
     });
 })
