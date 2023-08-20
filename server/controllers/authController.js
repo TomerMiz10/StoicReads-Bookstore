@@ -17,10 +17,10 @@ const handleErrors = (err) => {
         return errors;
     }
     if(err.message.includes( 'incorrect email')){
-        errors.email = 'that email is not registered';
+        errors.email = 'email or password are incorrect';
     }
     if(err.message.includes( 'incorrect password')){
-        errors.password = 'that password is incorrect';
+        errors.email = 'email or password are incorrect';
     }
     if(err.code === ALREADY_EXIST_IN_DATABASE_CODE ){
         if(err.keyPattern.email)
