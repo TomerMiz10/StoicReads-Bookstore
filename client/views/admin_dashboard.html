@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <!-- Include Bootstrap CSS -->
+    <style>
+        body {
+            background: #CC95C0;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+    </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="text-center">
@@ -31,16 +38,35 @@
 
         <div class="col-md-6">
             <h2>Search Books from API</h2>
-            <!-- Add your search form for API books here -->
+            <form id="searchForm">
+                <div class="form-group">
+                    <label for="searchInput">Search by Title:</label>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Enter title">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                </tr>
+                </thead>
+                <tbody id="apiBooks">
+                <!-- API search results will be added here using JavaScript -->
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="../services/AjaxWrapper.js"></script>
+<script src="../models/adminRendering.js"></script>
 
 <script>
-]</script>
+</script>
 </body>
 </html>

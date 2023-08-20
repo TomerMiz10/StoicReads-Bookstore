@@ -32,7 +32,7 @@ const renderBooks= ()=> {
     booksListContainer.append(booksListHtmlAsCards);
 }
 
-const getBooks= ()=> {
+const getBooks = ()=> {
     $.ajax({
         url: baseUrl+'/book/getAllBooks',
         type: 'GET',
