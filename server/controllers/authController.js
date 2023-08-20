@@ -10,7 +10,6 @@ const handleErrors = (err) => {
             errors[properties.path] = properties.message;
         });
     }
-
     if(err.message.includes('User validation failed')){
         console.log(err);
         fillErrorsObjectWithMessages();
@@ -45,7 +44,7 @@ module.exports.signup_post =  (req, res) => {
     User.create({userID,email, password,userName,fullName, isAdmin: false})
         .then((user) => {
             const token = createToken(user._id);
-           res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 10000 });
+            res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 1000, domain: 'localhost' });
             res.status(200).json(user._id);
         })
         .catch((err) => {

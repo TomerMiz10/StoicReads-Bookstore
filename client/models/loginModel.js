@@ -14,7 +14,10 @@ form.submit((e) => {
         url: baseUrl+'/auth/login',
         type: 'POST',
         data: user,
-        success: function(response) {
+        xhrFields: {
+            withCredentials: true
+        },
+        success:async function(response) {
             console.log(response);
             alert('You have successfully logged in!');
             window.location.href = 'index.html';
