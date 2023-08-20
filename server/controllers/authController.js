@@ -81,3 +81,7 @@ module.exports.checkUserStatus = async (req, res) => {
         res.json({ status: false });
     }
 }
+module.exports.logout_get = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 }); // Set the cookie expiration to a very short time
+    res.json({ status: 'logged out' });
+}

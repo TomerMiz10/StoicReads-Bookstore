@@ -1,6 +1,7 @@
 var books = [];
 const baseUrl = 'http://localhost:3000';
 const welcomeMessage = $('#welcome-message');
+const logOutButton = $('#logout-button');
 const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
@@ -96,9 +97,27 @@ const getBooksBySearch = () => {
             welcomeMessage.text('Welcome back '+data.userName+ '! browse books from our collection');
         }
         else{
-            welcomeMessage.text('Welcome to Stoic Reads book store! browse books from our collections! sign up or log in to make a purchase');
+            welcomeMessage.text('Welcome to Stoic Reads book store! browse books from our collections! sign up or login to make a purchase');
         }
     };
+const logOut = () => {
+        $.ajax({
+            url: baseUrl + '/auth/logout',
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) {
+                console.log(response.status); // Should print 'logged out'
+                alert('Logged out successfully!');
+                window.location.href = '../views/login.html'; // Redirect to login or any other page
+            },
+            error: function(error) {
+                console.error('Error during logout:', error);
+            }
+        });
+
+};
 
 
 
