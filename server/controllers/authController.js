@@ -38,19 +38,18 @@ const createToken = (id) => {
     });
 }
 
-module.exports.signup_post =  (req, res) => {
+module.exports.signup_post = async (req, res) => {
     const userID = Math.floor(Math.random() * 1000000000);
     const {email, password,userName,fullName} = req.body;
-    User.create({userID,email, password,userName,fullName, isAdmin: false})
-        .then((user) => {
-            const token = createToken(user._id);
-            res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 1000, domain: 'localhost' });
-            res.status(200).json(user._id);
-        })
-        .catch((err) => {
-            const errors = handleErrors(err);
-            res.status(400).json(errors);
-        });
+    try{
+        const user = await User.create({userID,email, password,userName,fullName, isAdmin: false})
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 1000, domain: 'localhost' });
+        res.status(200).json(user._id);
+    }catch (err){
+        const errors = handleErrors(err);
+        res.status(400).json(errors);
+    }
 }
 module.exports.login_post = async (req, res) => {
     const { email, password } = req.body;
