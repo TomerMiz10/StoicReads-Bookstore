@@ -56,12 +56,28 @@ module.exports.login_post = async (req, res) => {
     try{
         const user = await User.login(email, password);
         const token = createToken(user._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 1000, domain: 'localhost' });
+        res.cookie('jwt', token, { maxAge: THREE_DAYS * 1000, domain: 'localhost' });
         res.status(200).json({ user: user._id });
     }catch (err){
         const errors = handleErrors(err);
         res.status(400).json(errors);
     }
+}
 
+module.exports.checkUserStatus = async (req, res) => {
+    const token = req.cookies.jwt;
 
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+            if (err) {
+                // Token is not valid or has expired
+                res.json({ status: false });
+            } else {
+                // Token is valid
+                res.json({ status: true, userId: decodedToken.id });
+            }
+        });
+    } else {
+        res.json({ status: false });
+    }
 }
