@@ -9,7 +9,6 @@ app.use(cors({
     origin: 'http://localhost:63342',
     credentials: true
 }));
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
