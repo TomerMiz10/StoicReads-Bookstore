@@ -17,10 +17,10 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link fs-3" href="signup.html">Sign-up</a>
+        <a id="sign-up-button" class="nav-link fs-3" href="signup.html">Sign-up</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link fs-3" href="login.html">Login</a>
+        <a id="login-button" class="nav-link fs-3" href="#" onclick="redirectToLogin()">Login</a>
       </li>
       <li class="nav-item dropdown fs-3">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
@@ -64,5 +64,10 @@
     </div>
   </div>
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://cdn.auth0.com/js/auth0/9.18/auth0.min.js"></script>
+<script src="models/authNavbar.js"></script>
+
 </body>
 </html>

@@ -56,25 +56,6 @@ const getBooksBySearch = async (req, res) => {
   }
 };
 
-
-
-// Only an admin can use this post call
-const createBookByAdmin = async (req, res) => {
-  try {
-    const newBook = await booksDbService.createBookByAdmin(req.body);
-    console.log('Successfully created a new book and inserted it into the DB')
-    res.status(201).json(newBook);
-  } catch (err) {
-    console.log(err);
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while creating the product",
-        success: false,
-      });
-  }
-};
-
 const updateBookCoverImages = async(req,res) => {
 
   try {
@@ -115,7 +96,6 @@ module.exports = {
   getBookByID,
   getBooksBySearch,
   getBooksByGenre,
-  createBookByAdmin,
   updateBookCoverImages,
 };
 
