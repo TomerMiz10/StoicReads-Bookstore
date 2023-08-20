@@ -32,11 +32,9 @@ const getBookByID = async (req, res) => {
 const getBooksBySearch = async (req, res) => {
   try {
     let books;
-
-    // If the user wants to search by Book Title
     if(req.query.title)
       books = await booksDbService.getBooksBySearch({ title: req.query.title});
-    else if(req.query.author) // If the user wants to search by the Book's Author
+    else if(req.query.author)
       books = await booksDbService.getBooksBySearch({ author: req.query.author });
     else
       return res.status(404).json({ error: "Books not found", success: false });

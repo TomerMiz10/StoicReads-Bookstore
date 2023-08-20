@@ -10,7 +10,6 @@ const handleErrors = (err) => {
             errors[properties.path] = properties.message;
         });
     }
-
     if(err.message.includes('User validation failed')){
         console.log(err);
         fillErrorsObjectWithMessages();
@@ -39,31 +38,50 @@ const createToken = (id) => {
     });
 }
 
-module.exports.signup_post =  (req, res) => {
+module.exports.signup_post = async (req, res) => {
     const userID = Math.floor(Math.random() * 1000000000);
     const {email, password,userName,fullName} = req.body;
-    User.create({userID,email, password,userName,fullName, isAdmin: false})
-        .then((user) => {
-            const token = createToken(user._id);
-           res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 10000 });
-            res.status(200).json(user._id);
-        })
-        .catch((err) => {
-            const errors = handleErrors(err);
-            res.status(400).json(errors);
-        });
+    try{
+        const user = await User.create({userID,email, password,userName,fullName, isAdmin: false})
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { maxAge: THREE_DAYS * 1000, domain: 'localhost' });
+        res.status(200).json(user._id);
+    }catch (err){
+        const errors = handleErrors(err);
+        res.status(400).json(errors);
+    }
 }
 module.exports.login_post = async (req, res) => {
     const { email, password } = req.body;
     try{
         const user = await User.login(email, password);
         const token = createToken(user._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: THREE_DAYS * 1000 });
+        res.cookie('jwt', token, { maxAge: THREE_DAYS * 1000, domain: 'localhost' });
         res.status(200).json({ user: user._id });
     }catch (err){
         const errors = handleErrors(err);
         res.status(400).json(errors);
     }
+}
 
-
+module.exports.checkUserStatus = async (req, res) => {
+    const token = req.cookies.jwt;
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+            if (err) {
+                // Token is not valid or has expired
+                res.json({status: false});
+            } else {
+                const user = await User.findOne({_id: decodedToken.id});
+                const userName = user.userName;
+                res.json({status: true, userId: decodedToken.id, userName: userName});
+            }
+        });
+    } else {
+        res.json({ status: false });
+    }
+}
+module.exports.logout_get = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 }); // Set the cookie expiration to a very short time
+    res.json({ status: 'logged out' });
 }

@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>StoicReads</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="shortcut icon" href="bookIcon.png" type="image/x-icon">
-  <link rel="stylesheet" href="bootStrap.css">
+  <link rel="shortcut icon" href="../bookIcon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../bootStrap.css">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="index.html"><img src="bookIcon.png" alt=""></a>
+  <a class="navbar-brand" href="index.html"><img src="../bookIcon.png" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link fs-3" href="signup.html">Sign-up</a>
+        <a id= "signupNav" class="nav-link fs-3" href="signup.html">Sign-up</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link fs-3" href="login.html">Login</a>
+        <a id="loginNav" class="nav-link fs-3" href="login.html">Login</a>
+      </li>
+      <li class="nav-item">
+        <a id="logout-button" class="nav-link fs-3" href="#" onclick="logOut()" >Logout</a>
       </li>
       <li class="nav-item dropdown fs-3">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
@@ -36,7 +38,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="cart.html">
-          <img src="cartIcon.png" alt="" class="btn">
+          <img src="../cartIcon.png" alt="" class="btn">
           <span id="cart-item-count" class="badge badge-primary">0</span>
         </a>
       </li>
