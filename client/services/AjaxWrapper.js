@@ -21,6 +21,8 @@ class AjaxWrapper {
         try {
             const searchInput = title;
 
+            if(searchInput)
+
             const cachedResponse = this.cache["responses"].find(item => item.searchInput === searchInput);
             if (cachedResponse) {
                 return cachedResponse["data"];

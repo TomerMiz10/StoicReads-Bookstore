@@ -2,8 +2,21 @@ class AdminService {
     baseUrl = 'http://localhost:3000';
 
 
-    async createBook(title, image) {
+    async createBook(title, author) {
         try {
+            const data = {
+                title: title,
+                author: author
+            };
+
+            const response = await $.ajax({
+                url: `${this.baseUrl}/admin/createBook`,
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            });
+
+            return response;
 
         } catch (error) {
             console.log('Failed to create Book:', error);

@@ -1,15 +1,17 @@
 const Book = require("../models/Book");
 const {getBookDetails} = require('./googlebookService');
 const axios = require('axios');
+const {extractBookCoverImage} = require("./bookimagesService");
 
-const createBook = async (title, price) => {
+const createBook = async (title, author) => {
 
     try {
         const bookDetails = await getBookDetails(title);
-        const {imageLinks, description} = bookDetails;
+        const { description } = bookDetails;
+        const imageURL = await extractBookCoverImage(title, author);
 
         const bookID = Number(await Book.findOne({}, {}, {sort: {bookID: -1}})) + 1;
-        const newBook = new Book({bookID, title, price, imageLinks, description});
+        const newBook = new Book({bookID, title, price: 0, image: imageURL, description});
 
         return await newBook.save();
     } catch (error) {

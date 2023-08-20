@@ -2,7 +2,8 @@ const adminService = require("../services/adminService");
 
 const createBook = async (req, res) => {
     try {
-        const newBook = await adminService.createBook(req.params.title);
+        const {title, author} = req.body;
+        const newBook = await adminService.createBook(title, author);
         console.log('Successfully created a new book and inserted it into the DB')
         res.status(201).json(newBook);
     } catch (err) {
@@ -35,7 +36,7 @@ const deleteBook = async (req, res) => {
 
 const changeBookPrice = async (req, res) => {
     try {
-        const { bookID, price } = req.params;
+        const {bookID, price} = req.params;
 
         await adminService.changeBookPrice(bookID, price);
         console.log('Successfully updated the book price')

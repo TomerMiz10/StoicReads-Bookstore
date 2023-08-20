@@ -56,20 +56,6 @@ const getBooksBySearch = async (req, res) => {
   }
 };
 
-const updateBookCoverImages = async(req,res) => {
-
-  try {
-    await booksDbService.updateBookCoverImages();
-    res.status(200).json({ message: "Book images updated successfully" });
-  } catch (err) {
-    console.log(err);
-    res
-        .status(500)
-        .json({ error: "An error occurred while updating book images" });
-  }
-
-}
-
 const getBooksByGenre = async (req, res) => {
   let books;
   const { genre } = req.params;
@@ -87,16 +73,11 @@ const getBooksByGenre = async (req, res) => {
 }
 
 
-// Other controller methods...
-// Update (Price, Quantity, etc.), Delete,
-
-
 module.exports = {
   getAllBooks,
   getBookByID,
   getBooksBySearch,
   getBooksByGenre,
-  updateBookCoverImages,
 };
 
 
