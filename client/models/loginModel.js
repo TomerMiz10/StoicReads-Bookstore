@@ -2,6 +2,18 @@ const baseUrl = 'http://localhost:3000';
 const form = $('#login-form');
 const emailError = $('#email-error');
 const passwordError = $('#password-error');
+const baseURL = 'http://localhost:3000';
+
+document.addEventListener('DOMContentLoaded', async function() {
+    const response = await fetch(baseUrl+'/auth/status', {
+        method: 'GET',
+        credentials: 'include'
+    });
+    const data = await response.json();
+    if(data.status) {
+        alert('You are already logged in! going back to main page');
+        window.location.href = 'index.html';
+    }});
 
 form.submit((e) => {
     e.preventDefault();
@@ -14,7 +26,10 @@ form.submit((e) => {
         url: baseUrl+'/auth/login',
         type: 'POST',
         data: user,
-        success: function(response) {
+        xhrFields: {
+            withCredentials: true
+        },
+        success:async function(response) {
             console.log(response);
             alert('You have successfully logged in!');
             window.location.href = 'index.html';
