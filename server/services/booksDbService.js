@@ -5,30 +5,6 @@ const {extractBookCoverImage} = require('./bookimagesService');
 const axios = require('axios');
 
 const getAllBooks = async () => await Book.find({});
-
-const updateBookCoverImages = async () => {
-    try {
-        const books = await getAllBooks();
-        for (const book of books) {
-
-            const {title, author} = book;
-
-            const imageURL = await extractBookCoverImage(title, author);
-
-            // Update the book's image links in the database
-            await Book.findOneAndUpdate(
-                {title: title},
-                {$set: {image: imageURL}},
-                {new: true, useFindAndModify: false}
-            );
-        }
-
-        console.log('Book images updated successfully.');
-    } catch (error) {
-        console.error('Error extracting book cover image:', error);
-    }
-}
-
 const getBooksBySearch = async (query) => {
     const searchQuery = {};
 

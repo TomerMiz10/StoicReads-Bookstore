@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-// Function to extract a book cover image from the API and update the image field in the database
+// Function to extract a book cover image from the API
 const extractBookCoverImage = async (title, author) => {
     try {
         // Encode the book title and author name for the URL
