@@ -101,6 +101,10 @@ const getBooksBySearch = () => {
         }
     };
 const logOut = () => {
+    if(welcomeMessage.text().includes('Welcome to Stoic Reads book store! browse books from our collections! sign up or login to make a purchase')){
+        alert('You are not logged in!');
+        return;
+    }
         $.ajax({
             url: baseUrl + '/auth/logout',
             type: 'GET',
