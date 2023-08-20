@@ -9,9 +9,9 @@ const {
 } = require("../controllers/adminController");
 
 
-adminRoute.post("/admin/createBooks", createBook);
-adminRoute.get("/admin/changeBookPrice", changeBookPrice);
-adminRoute.delete("/admin/deleteBook", deleteBook);
+adminRoute.post("/createBooks", createBook);
+adminRoute.get("/changeBookPrice/:bookID", changeBookPrice);
+adminRoute.delete("/deleteBook/:bookID", deleteBook);
 
 
 module.exports = adminRoute;
