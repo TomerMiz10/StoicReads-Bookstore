@@ -2,10 +2,10 @@
   "name": "wad-project-shop",
   "version": "1.0.0",
   "description": "web store project",
-  "main": "./server/server.js",
+  "main": "server/app.js",
   "scripts": {
-    "test": "SET NODE_ENV=test&& nodemon ./server/server.js",
-    "start": "SET NODE_ENV=local&& nodemon ./server/server.js"
+    "test": "SET NODE_ENV=test&& nodemon server/app.js",
+    "start": "SET NODE_ENV=local&& nodemon server/app.js"
   },
   "repository": {
     "type": "git",
@@ -15,14 +15,18 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "custom-env": "^2.0.2",
     "express": "^4.18.2",
     "express-openid-connect": "^2.16.0",
+    "jsonwebtoken": "^9.0.1",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "validator": "^13.11.0"
   },
   "keywords": []
 }

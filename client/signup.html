@@ -15,22 +15,30 @@
   <div class="row justify-content-center mt-5">
     <div class="col-lg-4 col-md-6 col-sm-8">
       <h2 class="text-center mb-4">Sign Up</h2>
-      <form>
+      <form id="signup-form">
         <div class="form-group">
-          <label for="full-name">Full Name:</label>
-          <input type="text" class="form-control" id="full-name" placeholder="Enter full name">
+          <label for="fullName">Enter Full Name:</label>
+          <input type="text" class="form-control" id="fullName" placeholder="example: Israel Israeli">
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email">
+          <label for="userName">Enter userName</label>
+          <input type="text" class="form-control" id="userName" placeholder="example: israel123">
+            <p id="userName-error" class="text-danger"></p>
+        </div>
+        <div class="form-group">
+          <label for="email">Enter your email:</label>
+          <input type="email" class="form-control" id="email" placeholder="example@provider.com">
+          <p id="email-error" class="text-danger"></p>
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
           <input type="password" class="form-control" id="password" placeholder="Enter password">
+          <p id="password-error" class="text-danger"></p>
         </div>
         <div class="form-group">
           <label for="confirm-password">Confirm Password:</label>
           <input type="password" class="form-control" id="confirm-password" placeholder="Confirm password">
+            <p id="confirm-password-error" class="text-danger"></p>
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Sign Up</button>
@@ -44,7 +52,6 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="models/showNavbar.js"></script>
 <script src="models/signupModel.js"></script>
 </body>
 </html>
