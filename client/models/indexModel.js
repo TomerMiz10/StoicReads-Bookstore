@@ -108,9 +108,9 @@ const logOut = () => {
                 withCredentials: true
             },
             success: function(response) {
-                console.log(response.status); // Should print 'logged out'
+                console.log(response.status);
                 alert('Logged out successfully!');
-                window.location.href = '../views/login.html'; // Redirect to login or any other page
+                window.location.href = '../views/login.html';
             },
             error: function(error) {
                 console.error('Error during logout:', error);
