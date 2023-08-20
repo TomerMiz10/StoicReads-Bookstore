@@ -7,7 +7,7 @@ const createBook = async (title, author) => {
 
     try {
         const bookDetails = await getBookDetails(title);
-        const { description } = bookDetails;
+        const {description} = bookDetails;
         const imageURL = await extractBookCoverImage(title, author);
 
         const bookID = Number(await Book.findOne({}, {}, {sort: {bookID: -1}})) + 1;
@@ -22,12 +22,7 @@ const createBook = async (title, author) => {
 
 
 const deleteBook = async (bookID) => {
-    try {
-        return await Book.findOneAndDelete({bookID});
-    } catch (error) {
-        console.log(error);
-        throw new Error('An error occurred when trying to delete a book from DB');
-    }
+    return Book.findOneAndDelete({bookID});
 }
 
 const changeBookPrice = async (bookID, newPrice) => {

@@ -73,11 +73,26 @@ const getBooksByGenre = async (req, res) => {
 }
 
 
+const getGoogleBooksDetails = async (req, res) => {
+  const { title } = req.params;
+  try {
+    let books = await booksDbService.getGoogleBooksDetails()
+    return res.status(200).json(books);
+  }catch (err) {
+    console.log(err);
+    res
+        .status(404)
+        .json({ error: "Couldn't find books from google books API", success: false });
+  }
+}
+
+
 module.exports = {
   getAllBooks,
   getBookByID,
   getBooksBySearch,
   getBooksByGenre,
+  getGoogleBooksDetails,
 };
 
 

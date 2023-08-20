@@ -32,18 +32,20 @@ async function renderBooksBySearch() {
 
         try {
             const searchInput = $('#searchInput').val();
-            const response = await ajaxWrapper.getBooksFromAPI(searchInput);
+            const response = await adminService.getBooksFromAPI(searchInput);
 
             const apiBooksTable = $('#apiBooks');
             apiBooksTable.empty();
 
             response.forEach(book => {
+                const author = book.volumeInfo.authors[0];
                 const row = `
                     <tr>
-                        <td>${book.title}</td>
-                        <td>${book.image}</td>
+                        <td>${book.volumeInfo.title}</td>
+                        <td><img src="${book.volumeInfo.imageLinks.thumbnail}" alt="Book Cover"></td>
+                        <td>${author}</td>
                         <td>
-                        <button class="btn btn-success" onclick="changePrice(${book.bookID})">Add Book</button>
+                            <button class="btn btn-success" onclick="addBook('${book.volumeInfo.title}', '${author}')">Add Book</button>
                         </td>
                     </tr>
                 `;
@@ -54,5 +56,16 @@ async function renderBooksBySearch() {
         }
     });
 }
+
+async function addBook(title, author) {
+    try {
+        const response = await adminService.createBook(title, author);
+        console.log('Book added successfully:', response);
+    } catch (error) {
+        console.error('Error adding book:', error);
+    }
+}
+
+
 
 $(document).ready(renderExistingBooks, renderBooksBySearch);

@@ -1,6 +1,42 @@
 class AdminService {
     baseUrl = 'http://localhost:3000';
 
+    constructor() {
+        this.cache = {};
+    }
+
+    async doesExistInDB(searchInput) {
+        const response = await $.ajax({
+            url: this.baseUrl + '/book/search/?title=' + searchInput,
+            type: 'GET'
+        });
+
+        return response.title === searchInput;
+    }
+
+    async getBooksFromAPI(title) {
+        try {
+            const searchInput = title;
+
+            if (this.doesExistInDB) return;
+
+            const cachedResponse = this.cache["responses"].find(item => item.searchInput === searchInput);
+            if (cachedResponse) {
+                return cachedResponse["data"];
+            }
+
+            const response = await $.ajax({
+                url: this.baseUrl + '/book/getGoogleBooksDetails/' + searchInput,
+                type: 'GET'
+            });
+
+            this.cache["responses"].push({searchInput, data: response});
+
+            return response;
+        } catch (error) {
+            console.log('Failed to retrieve books:', error);
+        }
+    }
 
     async createBook(title, author) {
         try {
