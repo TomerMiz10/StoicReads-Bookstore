@@ -1,5 +1,6 @@
 var books = [];
 const baseUrl = 'http://localhost:3000';
+const welcomeMessage = $('#welcome-message');
 const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
@@ -85,8 +86,23 @@ const getBooksBySearch = () => {
         }
     });
 }
+    const isUserLoggedIn = async () => {
+        const response = await fetch(baseUrl + '/auth/status', {
+            method: 'GET',
+            credentials: 'include'
+        });
+        const data = await response.json();
+        if(data.status){
+            welcomeMessage.text('Welcome back '+data.userName+ '! browse books from our collection');
+        }
+        else{
+            welcomeMessage.text('Welcome to Stoic Reads book store! browse books from our collections! sign up or log in to make a purchase');
+        }
+    };
+
+
 
 $(document).ready(getBooks);
-
+$(document).ready(isUserLoggedIn);
 
 

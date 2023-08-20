@@ -66,15 +66,15 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.checkUserStatus = async (req, res) => {
     const token = req.cookies.jwt;
-
     if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
             if (err) {
                 // Token is not valid or has expired
-                res.json({ status: false });
+                res.json({status: false});
             } else {
-                // Token is valid
-                res.json({ status: true, userId: decodedToken.id });
+                const user = await User.findOne({_id: decodedToken.id});
+                const userName = user.userName;
+                res.json({status: true, userId: decodedToken.id, userName: userName});
             }
         });
     } else {
