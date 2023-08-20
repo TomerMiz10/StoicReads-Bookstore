@@ -2,7 +2,7 @@ class AdminService {
     baseUrl = 'http://localhost:3000';
 
 
-    async createBook(title) {
+    async createBook(title, image) {
         try {
 
         } catch (error) {
@@ -26,8 +26,12 @@ class AdminService {
 
     async changeBookPrice(bookID) {
         try {
+            const response = await $.ajax({
+                url: `${this.baseUrl}/admin/changeBookPrice/${bookID}`,
+                type: 'GET'
+            });
 
-
+            return response;
         } catch (error) {
             console.log("Failed to change the book's price:", error);
         }

@@ -1,4 +1,5 @@
 const ajaxWrapper = new AjaxWrapper();
+const adminService = new AdminService();
 
 async function renderExistingBooks() {
     try {
@@ -13,8 +14,8 @@ async function renderExistingBooks() {
                     <td>${book.title}</td>
                     <td>${book.price}</td>
                     <td>
-                        <button class="btn btn-danger" onclick="deleteBook(${book.bookID})">Delete</button>
-                        <button class="btn btn-success" onclick="changePrice(${book.bookID})">Change Price</button>
+                        <button class="btn btn-danger" onclick="adminService.deleteBook(${book.bookID})">Delete</button>
+                        <button class="btn btn-success" onclick="adminService.changeBookPrice(${book.bookID})">Change Price</button>
                     </td>
                 </tr>
             `;
