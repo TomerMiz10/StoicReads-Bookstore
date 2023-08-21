@@ -1,10 +1,12 @@
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get('id');
 const baseUrl = 'http://localhost:3000';
+const user = urlParams.get('user');
 let book = {};
 let recommendedBooks = [];
 
 const renderSpecificBookDetails = () => {
+    console.log('user: ', user);
     const bookTitle = document.getElementById('bookTitle');
     const bookAuthor = document.getElementById('bookAuthor');
     const bookGenre = document.getElementById('bookGenre');
@@ -83,4 +85,12 @@ const updateStockStatus = () => {
   });
 };
 
-window.addEventListener('load', renderSpecificBookDetails);
+window.addEventListener('load', () => {
+
+    if(user === ''){
+        alert('You must be logged in to order a book!');
+        window.location.href = 'login.html';
+    }
+    else renderSpecificBookDetails();
+});
+

@@ -1,7 +1,8 @@
 var books = [];
+let user = '';
 const baseUrl = 'http://localhost:3000';
 const welcomeMessage = $('#welcome-message');
-const logOutButton = $('#logout-button');
+
 const renderNoBooksFound= ()=> {
     const booksListContainer = $('#books-list-container');
     booksListContainer.empty();
@@ -22,7 +23,7 @@ const renderBooks= ()=> {
     const booksListHtmlAsCards = books.map((bookItem, index) => {
         return `
             <div class="card m-4 " style="width: 12rem;">
-                <a href="order.html?id=${bookItem.bookID}"><div><img src=${bookItem.image} class="card-img-top" alt=""></div></a>
+                <a href="order.html?id=${bookItem.bookID}&user=${user}"><div><img src=${bookItem.image} class="card-img-top" alt=""></div></a>
                   <div class="card-body">
                      <h5 class="card-title">${bookItem.title}</h5>
                      <p class="card-text"> ${bookItem.author}</p>  
@@ -87,14 +88,15 @@ const getBooksBySearch = () => {
         }
     });
 }
-    const isUserLoggedIn = async () => {
+    const setWelcomeMessage = async () => {
         const response = await fetch(baseUrl + '/auth/status', {
             method: 'GET',
             credentials: 'include'
         });
         const data = await response.json();
         if(data.status){
-            welcomeMessage.text('Welcome back '+data.userName+ '! browse books from our collection');
+            user = data.user;
+            welcomeMessage.text('Welcome back '+data.user.userName+ '! browse books from our collection');
         }
         else{
             welcomeMessage.text('Welcome to Stoic Reads book store! browse books from our collections! sign up or login to make a purchase');
@@ -124,8 +126,8 @@ const logOut = () => {
 };
 
 
-
+$(document).ready(setWelcomeMessage);
 $(document).ready(getBooks);
-$(document).ready(isUserLoggedIn);
+
 
 
