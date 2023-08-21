@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.use("/book", require("./routes/bookRoute"));
 app.use("/auth", require("./routes/authRoute"));
 app.use("/admin", require("./routes/adminRoute"));
+app.use("/cart", require("./routes/cartRoute"));
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then(() => {

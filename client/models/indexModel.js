@@ -1,5 +1,5 @@
 var books = [];
-let user = '';
+let userId = '';
 const baseUrl = 'http://localhost:3000';
 const welcomeMessage = $('#welcome-message');
 
@@ -23,7 +23,7 @@ const renderBooks= ()=> {
     const booksListHtmlAsCards = books.map((bookItem, index) => {
         return `
             <div class="card m-4 " style="width: 12rem;">
-                <a href="order.html?id=${bookItem.bookID}&user=${user}"><div><img src=${bookItem.image} class="card-img-top" alt=""></div></a>
+                <a href="order.html?id=${bookItem.bookID}&userId=${userId}&_id=${bookItem._id}"><div><img src=${bookItem.image} class="card-img-top" alt=""></div></a>
                   <div class="card-body">
                      <h5 class="card-title">${bookItem.title}</h5>
                      <p class="card-text"> ${bookItem.author}</p>  
@@ -95,7 +95,7 @@ const getBooksBySearch = () => {
         });
         const data = await response.json();
         if(data.status){
-            user = data.user;
+            userId = data.userId;
             welcomeMessage.text('Welcome back '+data.user.userName+ '! browse books from our collection');
         }
         else{

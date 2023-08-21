@@ -3,6 +3,19 @@ const Schema = mongoose.Schema;
 const {isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 
+const BookInCartSchema = new Schema({
+    bookId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Book',  // Assuming you have a Product model/schema
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        default: 1
+    }
+});
+
 const User = new Schema({
     userID: {
         type: Number,
@@ -33,7 +46,8 @@ const User = new Schema({
     isAdmin: {
         type: Boolean,
         required: true
-    }
+    },
+    cart: [BookInCartSchema]
 });
 User.post('save', function(doc, next) {
     console.log('new user was created & saved', doc);
