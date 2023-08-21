@@ -1,78 +1,37 @@
 const Book = require("../models/Book");
-const { getBookDetails, extractBookDescription } = require('./googlebookService');
-const { extractBookCoverImage } = require('./bookimagesService');
+const {getBookDetails, extractBookDescription} = require('./googlebookService');
+const {extractBookCoverImage} = require('./bookimagesService');
 
 const axios = require('axios');
 
-
-const createBookByAdmin = async (data) => {
-  const { bookID, title, price } = data;
-
-  try {
-    const bookDetails = await getBookDetails(title);
-
-    // Extract the relevant book information including the image links and description
-    const { imageLinks, description } = bookDetails;
-
-    // Create a new book with the extracted information
-    const newBook = new Book({ bookID, title, price, imageLinks, description });
-
-    return await newBook.save();
-  } catch (error) {
-    console.log(error);
-    throw new Error('An error occurred while fetching book details from the Google Books API.');
-  }
-};
-
-
 const getAllBooks = async () => await Book.find({});
+const getBooksBySearch = async (query) => {
+    const searchQuery = {};
 
-const updateBookCoverImages = async () => {
-  try {
-    const books = await getAllBooks();
-    for (const book of books) {
-
-      const { title, author } = book;
-
-      const imageURL = await extractBookCoverImage(title, author);
-
-      // Update the book's image links in the database
-      await Book.findOneAndUpdate(
-          { title: title },
-          { $set: { image: imageURL } },
-          { new: true, useFindAndModify: false }
-      );
+    if (query.title) {
+        searchQuery.title = {$regex: query.title, $options: "i"};
     }
 
-    console.log('Book images updated successfully.');
-  } catch (error) {
-    console.error('Error extracting book cover image:', error);
-  }
-}
+    if (query.author) {
+        searchQuery.author = {$regex: query.author, $options: "i"};
+    }
 
-const getBooksBySearch = async (query) => {
-  const searchQuery = {};
-
-  if (query.title) {
-    searchQuery.title = { $regex: query.title, $options: "i" };
-  }
-
-  if (query.author) {
-    searchQuery.author = { $regex: query.author, $options: "i" };
-  }
-
-  return Book.find(searchQuery);
+    return Book.find(searchQuery);
 };
 
-const getBookByID = async (bookID) => await Book.findOne({ bookID });
+const getBookByID = async (bookID) => await Book.findOne({bookID});
 
-const getBooksByGenre = async (genre) => await Book.find({ genre });
+const getBooksByGenre = async (genre) => await Book.find({genre});
+
+const getGoogleBooksDetails = async (title) => {
+    const response = await getBookDetails(title);
+    return response.data;
+};
 
 module.exports = {
-  createBookByAdmin,
-  getAllBooks,
-  getBooksBySearch,
-  getBookByID,
-  updateBookCoverImages,
-  getBooksByGenre,
+    getAllBooks,
+    getBooksBySearch,
+    getBookByID,
+    getBooksByGenre,
+    getGoogleBooksDetails,
 };

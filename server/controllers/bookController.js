@@ -54,39 +54,6 @@ const getBooksBySearch = async (req, res) => {
   }
 };
 
-
-
-// Only an admin can use this post call
-const createBookByAdmin = async (req, res) => {
-  try {
-    const newBook = await booksDbService.createBookByAdmin(req.body);
-    console.log('Successfully created a new book and inserted it into the DB')
-    res.status(201).json(newBook);
-  } catch (err) {
-    console.log(err);
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while creating the product",
-        success: false,
-      });
-  }
-};
-
-const updateBookCoverImages = async(req,res) => {
-
-  try {
-    await booksDbService.updateBookCoverImages();
-    res.status(200).json({ message: "Book images updated successfully" });
-  } catch (err) {
-    console.log(err);
-    res
-        .status(500)
-        .json({ error: "An error occurred while updating book images" });
-  }
-
-}
-
 const getBooksByGenre = async (req, res) => {
   let books;
   const { genre } = req.params;
@@ -104,8 +71,18 @@ const getBooksByGenre = async (req, res) => {
 }
 
 
-// Other controller methods...
-// Update (Price, Quantity, etc.), Delete,
+const getGoogleBooksDetails = async (req, res) => {
+  const { title } = req.params;
+  try {
+    let books = await booksDbService.getGoogleBooksDetails()
+    return res.status(200).json(books);
+  }catch (err) {
+    console.log(err);
+    res
+        .status(404)
+        .json({ error: "Couldn't find books from google books API", success: false });
+  }
+}
 
 
 module.exports = {
@@ -113,8 +90,7 @@ module.exports = {
   getBookByID,
   getBooksBySearch,
   getBooksByGenre,
-  createBookByAdmin,
-  updateBookCoverImages,
+  getGoogleBooksDetails,
 };
 
 
