@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const BookInCartSchema = new Schema({
     bookId: {
         type: Schema.Types.ObjectId,
-        ref: 'Book',  // Assuming you have a Product model/schema
+        ref: 'Book',
         required: true
     },
     quantity: {

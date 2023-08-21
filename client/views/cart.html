@@ -1,57 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Your Shopping Cart</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../bookIcon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../bootStrap.css">
+    <title>Cart</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-<div id="navbar-container"></div>
-<header>
-    <h1 class="flex-center bg-secondary text-light display-4">Welcome to your shopping cart</h1>
-</header>
 
-<div id="shopping-cart-container">
-
-    <div class="cart-row flex-center">
-        <span class="cart-item cart-header cart-column">Item</span>
-        <span class="cart-price cart-header cart-column">Price</span>
-        <span class="cart-quantity cart-header cart-column">Quantity</span>
-    </div>
-
-    <div class="cart-items">
-        <div class="cart-row">
-            <div class="cart-item cart-column">
-                <span class="cart-item-title cart-column"></span>
-            </div>
-            <span class="cart-price cart-column"></span>
-            <div class="cart-quantity cart-column">
-                <label for="cart-quantity"></label>
-                <input id="cart-quantity" class="cart-quantity-input" type="number" value="1">
-                <button class="btn btn-danger" type="button">Remove</button>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="order-summary">
-        <h3>Order Summary</h3>
-        <p>Total Price: <span id="total-price"></span></p>
-        <button id="checkout-button">Checkout</button>
+<div class="container mt-5">
+    <h2>Your Shopping Cart</h2>
+    <table class="table table-bordered mt-3">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Cart items will be added here using JavaScript -->
+        </tbody>
+    </table>
+    <div class="text-right mt-3">
+        <strong id="total-price"></strong> <!-- Adjust with actual total -->
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2023 Online Store. All rights reserved.</p>
-</footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="../models/showNavbar.js"></script>
-<script src="../models/cartModel.js" async></script>
+<script src="../models/cartModel.js"></script>
 </body>
+
 </html>
