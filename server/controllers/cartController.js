@@ -21,3 +21,18 @@ module.exports.addToCart = async (req, res)  =>{
         res.status(500).json({ message: "Error adding book to cart" });
     }
 };
+
+module.exports.getCart = async (req, res) => {
+    const userId = req.params.userId;
+    console.log('userId:', userId)
+    try {
+        const user = await User.findById(userId).populate('cart.bookId');
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(user.cart);
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Error fetching cart" });
+    }
+};

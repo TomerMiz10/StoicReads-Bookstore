@@ -2,8 +2,7 @@ let books = [];
 const baseUrl = 'http://localhost:3000';
 const totalPriceDiv = document.querySelector('#total-price');
 const tableBody = document.querySelector('.table tbody');
-
-console.log(baseUrl + 'here in cartModel.js');
+var cart = [];
 
 const mapBookToTableRow = (book)=> {
     const row = document.createElement('tr');
@@ -43,34 +42,45 @@ const mapBookToTableRow = (book)=> {
 
     return row;
 }
-const calculateTotalPrice = () => {
-    let totalPrice = 0;
-    booksInCart.forEach(book => {
-        totalPrice += book.price * book.quantity;
+function fetchAndRenderCart(userId) {
+    $.ajax({
+        url: baseUrl + '/cart/getCart/' + userId,
+        type: 'GET',
+        success: function(cartItems) {
+            cart = cartItems;
+            const tableBody = $('.table tbody');
+            tableBody.empty();  // Clear current contents
+            cartItems.forEach(item => {
+                const book = item.bookId; // because we populated the book details
+                book.quantity = item.quantity; // Add quantity to book object for the mapper function
+                tableBody.append(mapBookToTableRow(book));
+            });
+            totalPriceDiv.textContent = "total price: " + calculateTotalPrice(cartItems) + "$";
+        },
+        error: function(error) {
+            console.error('Error fetching cart:', error);
+            alert('Error fetching cart. Please try again.');
+        }
     });
-    totalPriceDiv.textContent = `total price: ${totalPrice}$`;
-};
+}
+function calculateTotalPrice(cartItems) {
+    return cartItems.reduce((total, item) => {
+        return total + item.bookId.price * item.quantity;
+    }, 0);
+}
+window.onload = async () => {
+    const response = await fetch(baseUrl + '/auth/status', {
+        method: 'GET',
+        credentials: 'include'
+    });
+    const data = await response.json();
+    if (data.status) {
+        fetchAndRenderCart(data.userId);
+    }
+    else {
+        alert('Please login to view your cart')
+        window.location.href = 'login.html';
+    }
+}
 
-
-
-// Usage example
-const book = {
-    title: "Example Book Title",
-    author: "John Doe",
-    quantity: 2,
-    price: 50
-};
-
-
-
-// Example books fetched from the server
-const booksInCart = [
-    { title: "Example Book 1", author: "Author 1", quantity: 2, price: 50 },
-    { title: "Example Book 2", author: "Author 2", quantity: 1, price: 30 }
-];
-
-booksInCart.forEach(book => {
-    tableBody.appendChild(mapBookToTableRow(book));
-    calculateTotalPrice();
-});
 
