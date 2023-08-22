@@ -2,7 +2,6 @@ let books = [];
 const baseUrl = 'http://localhost:3000';
 const totalPriceDiv = document.querySelector('#total-price');
 const tableBody = document.querySelector('.table tbody');
-var cart = [];
 
 const mapBookToTableRow = (book)=> {
     const row = document.createElement('tr');
@@ -47,7 +46,6 @@ function fetchAndRenderCart(userId) {
         url: baseUrl + '/cart/getCart/' + userId,
         type: 'GET',
         success: function(cartItems) {
-            cart = cartItems;
             const tableBody = $('.table tbody');
             tableBody.empty();  // Clear current contents
             cartItems.forEach(item => {

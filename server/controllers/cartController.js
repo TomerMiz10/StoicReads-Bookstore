@@ -7,13 +7,24 @@ module.exports.addToCart = async (req, res)  =>{
     const quantity = req.body.quantity || 1;
 
     try {
-        console.log("bookId", bookId)
-        console.log("userId", userId);
+        const book = await Book.findById(bookId);
+        if (!book) {
+            return res.status(404).json({ message: "Book not found" });
+        }
+
+        // Ensure book stock is available
+        if (book.quantity < quantity) {
+            return res.status(400).json({ message: "Not enough stock available" });
+        }
+        // Decrement book quantity
+        book.quantity -= quantity;
+        await book.save();
+
         let user = await User.findOne({ _id: userId })
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-       user.cart.push({bookId, quantity});
+       user.cart.push({bookId , quantity});
         await user.save();
         res.status(200).json(user.cart);
     } catch (error) {
@@ -22,7 +33,7 @@ module.exports.addToCart = async (req, res)  =>{
     }
 };
 
-module.exports.getCart = async (req, res) => {
+module.exports.getOneUserCart = async (req, res) => {
     const userId = req.params.userId;
     console.log('userId:', userId)
     try {
