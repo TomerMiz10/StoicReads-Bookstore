@@ -85,7 +85,10 @@ const updateStockStatus = () => {
 };
 
 const addToCart = () => {
-
+    if(userId === ''){
+        alert('You must be logged in to order a book!');
+        window.location.href = 'login.html';
+    }
     $.ajax({
         url: baseUrl + '/cart/addToCart',
         type: 'POST',
@@ -102,11 +105,7 @@ const addToCart = () => {
 };
 
 
-window.addEventListener('load', () => {
-    if(userId === ''){
-        alert('You must be logged in to order a book!');
-        window.location.href = 'login.html';
-    }
-    else renderSpecificBookDetails();
-});
+window.addEventListener('load', renderSpecificBookDetails);
+
+
 
