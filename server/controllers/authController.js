@@ -73,8 +73,7 @@ module.exports.checkUserStatus = async (req, res) => {
                 res.json({status: false});
             } else {
                 const user = await User.findOne({_id: decodedToken.id});
-                const userName = user.userName;
-                res.json({status: true, userId: decodedToken.id, userName: userName});
+                res.json({status: true, userId: decodedToken.id, user: user});
             }
         });
     } else {

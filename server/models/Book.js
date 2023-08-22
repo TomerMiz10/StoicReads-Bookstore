@@ -39,6 +39,7 @@ const Book = new Schema({
     quantity: {
         type: Number,
         required: true,
+        min: [0, 'Quantity cannot be less than zero'],
     },
 });
 
