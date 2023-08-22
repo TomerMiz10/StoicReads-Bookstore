@@ -72,9 +72,9 @@ const updateStockStatus = () => {
       url: baseUrl + '/book/bookId/' + bookId,
       type: 'GET',
       success: function(response) {
-        const isBookInStock = response.quantity > 1;
+        const isBookInStock = response.quantity > 0;
         stockStatus.innerHTML = isBookInStock? 'In Stock' : 'Out of Stock';
-        stockStatus.classList.toggle('out-of-stock',!isBookInStock);
+        isBookInStock ? stockStatus.style.color = 'green' : stockStatus.style.color = 'red';
       },
       error: function(xhr, status, error) {
         console.log('Failed to check stock of book:', error);
@@ -92,9 +92,11 @@ const addToCart = () => {
         data: {book_id, userId},
         success: function (response) {
             alert('Book added to cart successfully!');
+            window.location.reload();
         },
         error: function (error) {
-            alert('Error adding book to cart. Please try again.');
+            const errorMessage = error.responseJSON.message;
+            errorMessage.includes('out of stock') ? alert('Book is out of stock') : alert('Error adding book to cart. Please try again.');
         }
     });
 };

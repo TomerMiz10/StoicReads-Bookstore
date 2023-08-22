@@ -14,7 +14,7 @@ module.exports.addToCart = async (req, res)  =>{
 
         // Ensure book stock is available
         if (book.quantity < quantity) {
-            return res.status(400).json({ message: "Not enough stock available" });
+            return res.status(400).json({ message: "Book is out of stock" });
         }
         // Decrement book quantity
         book.quantity -= quantity;
