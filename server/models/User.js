@@ -55,8 +55,7 @@ User.post('save', function(doc, next) {
 });
 
 User.pre('save', async function(next) {
-    const salt = await bcrypt.genSaltSync();
-    this.password = await bcrypt.hashSync(this.password, salt);
+    this.password = await bcrypt.hashSync(this.password, process.env.SALT);
     next();
 });
 
