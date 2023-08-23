@@ -67,6 +67,7 @@ function fetchAndRenderCart(userId) {
                 tableBody.append(mapBookToTableRow(book,userId));
             });
             totalPriceDiv.textContent = "total price: " + calculateTotalPrice(cartItems) + "$";
+            document.getElementById('cart-item-count').textContent = cartItems.length;  //cart item count=length of cartItems array
         },
         error: function(error) {
             console.error('Error fetching cart:', error);
