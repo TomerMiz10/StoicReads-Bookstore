@@ -2,9 +2,10 @@ const express = require('express');
 const userRoute = express.Router();
 
 const {
-    getUserByID
+    getUserByID,
+    getAllUsers
 } = require("../controllers/userController");
 
-userRoute.get("user/userId/:userID",getUserByID);
-
+userRoute.get("/userId/:userID",getUserByID);
+userRoute.get("allUsers", getAllUsers);
 module.exports = userRoute;
