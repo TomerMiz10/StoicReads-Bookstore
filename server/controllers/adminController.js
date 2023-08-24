@@ -20,8 +20,8 @@ const createBook = async (req, res) => {
 const deleteBook = async (req, res) => {
     try {
         await adminService.deleteBook(req.params.bookID);
-        console.log('Successfully created a new book and inserted it into the DB')
-        return res.status(201);
+        console.log('Successfully deleted a book from the DB')
+        return res.status(201).json({ message: 'Book deleted successfully', success:true});
     } catch (err) {
         console.log(err);
         res
@@ -36,11 +36,11 @@ const deleteBook = async (req, res) => {
 
 const changeBookPrice = async (req, res) => {
     try {
-        const {bookID, price} = req.params;
+       const bookID = req.body.bookID;
+       const newPrice = req.body.price;
 
-        await adminService.changeBookPrice(bookID, price);
-        console.log('Successfully updated the book price')
-        return res.status(201);
+        await adminService.changeBookPrice(bookID, newPrice);
+        res.status(200).json({ message: 'Price changed successfully', success: true});
     } catch (err) {
         console.log(err);
         res

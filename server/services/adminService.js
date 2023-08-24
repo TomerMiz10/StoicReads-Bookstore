@@ -22,6 +22,7 @@ const createBook = async (title, author) => {
 
 
 const deleteBook = async (bookID) => {
+    console.log(bookID)
     return Book.findOneAndDelete({bookID});
 }
 

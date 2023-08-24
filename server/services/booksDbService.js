@@ -1,5 +1,5 @@
 const Book = require("../models/Book");
-const {getBookDetails, extractBookDescription} = require('./googlebookService');
+const {getBookDetails } = require('./googlebookService');
 const {extractBookCoverImage} = require('./bookimagesService');
 
 const axios = require('axios');
@@ -24,8 +24,13 @@ const getBookByID = async (bookID) => await Book.findOne({bookID});
 const getBooksByGenre = async (genre) => await Book.find({genre});
 
 const getGoogleBooksDetails = async (title) => {
-    const response = await getBookDetails(title);
-    return response.data;
+    try{
+        const response = await getBookDetails(title);
+        return response;
+    } catch(err) {
+        console.log('Error when fetching the google book API details: ' + err);
+    }
+
 };
 
 module.exports = {

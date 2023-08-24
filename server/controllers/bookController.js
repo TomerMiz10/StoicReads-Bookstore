@@ -73,8 +73,9 @@ const getBooksByGenre = async (req, res) => {
 
 const getGoogleBooksDetails = async (req, res) => {
   const { title } = req.params;
+  console.log(title);
   try {
-    let books = await booksDbService.getGoogleBooksDetails()
+    let books = await booksDbService.getGoogleBooksDetails(title)
     return res.status(200).json(books);
   }catch (err) {
     console.log(err);

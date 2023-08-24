@@ -10,7 +10,7 @@ const {
 
 
 adminRoute.post("/createBooks", createBook);
-adminRoute.get("/changeBookPrice/:bookID", changeBookPrice);
+adminRoute.put("/changeBookPrice", changeBookPrice);
 adminRoute.delete("/deleteBook/:bookID", deleteBook);
 
 

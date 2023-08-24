@@ -38,13 +38,11 @@
 
         <div class="col-md-6">
             <h2>Search Books from API</h2>
-            <form id="searchForm">
-                <div class="form-group">
-                    <label for="searchInput">Search by Title:</label>
-                    <input type="text" class="form-control" id="searchInput" placeholder="Enter title">
-                </div>
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
+            <div class="form-group">
+                <label for="searchInput">Search by Title:</label>
+                <input type="text" class="form-control" id="searchInput" placeholder="Enter title">
+            </div>
+            <button id="searchButton" class="btn btn-primary">Search</button>
             <table class="table">
                 <thead>
                 <tr>
@@ -60,6 +58,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
