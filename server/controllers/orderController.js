@@ -1,17 +1,18 @@
 const Order = require('../models/Order');
 const User = require('../models/User');
 const orderService = require('../services/orderService');
+const cartController = require('../controllers/cartController');
 
 const createOrder = async (req, res) => {
     try{
         const userId = req.userID;
         const user = await User.findById(userId);
+        const cartItems = cartController.getOneUserCart();
+        await orderService.createOrder(userId, cartItems);
 
         if(!user){
             return res.status(404).json({message: 'User not found'});
         }
-
-        const cartItems = user.cart;
         const order = new Order({
             userId: userId,
             items: cartItems
@@ -42,4 +43,4 @@ const deleteOrder = async (req, res) => {
 module.exports ={
     createOrder,
     deleteOrder
-}
+};
