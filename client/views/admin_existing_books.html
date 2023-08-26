@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Manage Existing Books</title>
     <style>
         body {
             margin: 0;
@@ -11,43 +11,66 @@
             background: #CC95C0;
             background: -webkit-linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0);
             background: linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0);
-            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
         }
 
         .container {
             background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 600px;
+            width: 100%;
+            overflow: auto;
             text-align: center;
         }
 
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+        .container h1 {
+            margin-bottom: 20px; /* Add spacing below the title */
         }
 
-        .btn {
-            margin: 0 10px;
+        .table-container {
+            margin-top: 20px; /* Add spacing above the table */
+        }
+
+
+
+        .col-md-6 {
+            width: 100%;
         }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container mt-5">
+    <h1 class="mb-4">Manage Existing Books</h1>
 
-<div class="container">
-    <h1 class="mb-4">Admin Dashboard</h1>
+    <a href="admin_dashboard.html" class="btn btn-secondary mt-3">Go Back to Admin Dashboard</a>
 
-    <div class="btn-container">
-        <a href="admin_api_books.html" class="btn btn-primary">Search and Add Books from API</a>
-        <a href="admin_existing_books.html" class="btn btn-primary">Manage existing books in the store</a>
-        <a href="index.html" class="btn btn-secondary btn-back">Go Back to Store</a>
+
+    <div class="row">
+    <div class="col-md-6">
+        <h2>Existing Books</h2>
+        <div class="table-container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="existingBooks">
+            <!-- Existing books will be added here using JavaScript -->
+            </tbody>
+        </table>
+        </div>
+    </div>
     </div>
 </div>
 
