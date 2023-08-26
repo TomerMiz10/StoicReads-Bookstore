@@ -46,24 +46,27 @@ async function renderBooksBySearch() {
                 response.items.forEach(book => {
                     const selfLink = book.selfLink;
                     const title = book.volumeInfo.title;
-                    const author = book.volumeInfo?.authors[0] || book.volumeInfo?.authors;
-                    const thumbnail = book.volumeInfo.imageLinks.thumbnail
+                    const thumbnail = book.volumeInfo.imageLinks?.thumbnail || 'No Image Available';
                     const id = book.id;
 
-                    const row = `
-                        <tr>
-                            <td><img src="${thumbnail}" alt="Book Cover"></td>
-                            <td>${title}</td>
-                            <td>${author}</td>
-                            <td>
-                                <input type="number" id="priceInput_${id}" placeholder="Price" min="0" max="100">
-                                <input type="number" id="quantityInput_${id}" placeholder="Quantity" min="0" max="100">
-                                <a class="btn btn-success" href="${selfLink}" target="_blank">View Details</a>
-                                <button class="btn btn-success" onclick="addBook('${title}', '${author}', '${selfLink}', '${id}')">Add Book</button>
-                            </td>
-                        </tr>
-                    `;
-                    apiBooksTable.append(row);
+                    if (book.volumeInfo.authors && Array.isArray(book.volumeInfo.authors) && book.volumeInfo.authors.length > 0) {
+                        const author = book.volumeInfo.authors[0];
+
+                        const row = `
+                            <tr>
+                                <td><img src="${thumbnail}" alt="Book Cover"></td>
+                                <td>${title}</td>
+                                <td>${author}</td>
+                                <td>
+                                    <input type="number" id="priceInput_${id}" placeholder="Price" min="0" max="100">
+                                    <input type="number" id="quantityInput_${id}" placeholder="Quantity" min="0" max="100">
+                                    <a class="btn btn-success" href="${selfLink}" target="_blank">View Details</a>
+                                    <button class="btn btn-success" onclick="addBook('${title}', '${author}', '${selfLink}', '${id}')">Add Book</button>
+                                </td>
+                            </tr>
+                        `;
+                        apiBooksTable.append(row);
+                    }
                 });
             } else {
                 console.log('Book does not exist in DB or API');
@@ -73,6 +76,7 @@ async function renderBooksBySearch() {
         }
     });
 }
+
 
 async function addBook(title, author, bookDetails, id) {
     const priceInput = $(`#priceInput_${id}`).val();
@@ -152,9 +156,7 @@ async function changeQuantity(bookID) {
 }
 
 
-
-
-$(document).ready(function(){
+$(document).ready(function () {
     renderExistingBooks();
     renderBooksBySearch();
 });
