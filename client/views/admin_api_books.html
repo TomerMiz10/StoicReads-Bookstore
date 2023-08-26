@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books from API</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #CC95C0;
+            background: -webkit-linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0);
+            background: linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            overflow: auto;
+            text-align: center;
+        }
+
+        .container h1 {
+            margin-bottom: 20px; /* Add spacing below the title */
+        }
+
+        .table-container {
+            margin-top: 20px; /* Add spacing above the table */
+        }
+
+        .col-md-6 {
+            width: 100%;
+        }
+
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Search Books from API</h1>
+
+    <a href="admin_dashboard.html" class="btn btn-secondary btn-back">Go Back to Admin Dashboard</a>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="table-container">
+                <div class="form-group">
+                    <label for="searchInput">Search by Title:</label>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Enter title">
+                </div>
+                <button id="searchButton" class="btn btn-primary">Search</button>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                    </tr>
+                    </thead>
+                    <tbody id="apiBooks">
+                    <!-- API search results will be added here using JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="../services/AjaxWrapper.js"></script>
+<script src="../services/AdminService.js"></script>
+<script src="../models/adminRendering.js"></script>
+
+<script>
+</script>
+</body>
+</html>

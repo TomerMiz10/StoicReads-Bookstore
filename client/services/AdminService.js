@@ -2,23 +2,35 @@ class AdminService {
     baseUrl = 'http://localhost:3000';
 
     constructor() {
-        this.cache = {};
+        this.cache = {
+            responses: []
+        };
     }
 
     async doesExistInDB(searchInput) {
-        const response = await $.ajax({
-            url: this.baseUrl + '/book/search/?title=' + searchInput,
-            type: 'GET'
-        });
+        try {
+            const response = await $.ajax({
+                url: this.baseUrl + '/book/search/?title=' + searchInput,
+                type: 'GET'
+            });
 
-        return response.title === searchInput;
+            return true;
+        } catch (err) {
+            if (err.status === 404) {
+                return false;
+            } else {
+                console.error('Error checking if book exists in DB:', err);
+                return true; // Return true for other status codes to avoid throwing an error
+            }
+        }
     }
+
 
     async getBooksFromAPI(title) {
         try {
             const searchInput = title;
 
-            if (this.doesExistInDB) return;
+            if (await this.doesExistInDB(searchInput)) return;
 
             const cachedResponse = this.cache["responses"].find(item => item.searchInput === searchInput);
             if (cachedResponse) {
@@ -38,18 +50,12 @@ class AdminService {
         }
     }
 
-    async createBook(title, author) {
+    async createBook(title, author, price, quantity, bookDetails) {
         try {
-            const data = {
-                title: title,
-                author: author
-            };
-
             const response = await $.ajax({
-                url: `${this.baseUrl}/admin/createBook`,
+                url: `${this.baseUrl}/admin/createBooks`,
                 type: 'POST',
-                data: JSON.stringify(data),
-                contentType: 'application/json'
+                data: {title, author, price, quantity, bookDetails},
             });
 
             return response;
@@ -73,11 +79,29 @@ class AdminService {
     }
 
 
-    async changeBookPrice(bookID) {
+    async changeBookPrice(bookID, price) {
         try {
+
+            console.log(`${bookID} + ${price}`)
             const response = await $.ajax({
-                url: `${this.baseUrl}/admin/changeBookPrice/${bookID}`,
-                type: 'GET'
+                url: `${this.baseUrl}/admin/changeBookPrice`,
+                type: 'PUT',
+                data: {bookID, price}
+            });
+
+            return response;
+        } catch (error) {
+            console.log("Failed to change the book's price:", error);
+        }
+    }
+
+    async updateBookQuantity(bookID, quantity) {
+        try {
+            console.log(`${bookID} + ${quantity}`)
+            const response = await $.ajax({
+                url: `${this.baseUrl}/admin/changeBookQuantity`,
+                type: 'PUT',
+                data: {bookID, quantity}
             });
 
             return response;
