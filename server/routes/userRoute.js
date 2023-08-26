@@ -7,5 +7,6 @@ const {
 } = require("../controllers/userController");
 
 userRoute.get("/userId/:userID",getUserByID);
-userRoute.get("allUsers", getAllUsers);
+userRoute.get("/getAllUsers", getAllUsers);
+
 module.exports = userRoute;
