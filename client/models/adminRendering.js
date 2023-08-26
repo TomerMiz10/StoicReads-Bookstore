@@ -11,12 +11,16 @@ async function renderExistingBooks() {
             const row = `
                 <tr>
                     <td>${book.bookID}</td>
+                    <td><img src="${book.image}" width="100" height="150" alt="Book Cover" /></td>
                     <td>${book.title}</td>
                     <td>${book.price}</td>
+                    <td>${book.quantity}</td>
                     <td>
                         <input type="number" id="newPrice_${book.bookID}" placeholder="New Price">
+                        <input type="number" id="newQuantity_${book.bookID}" placeholder="New Quantity">
                         <button class="btn btn-danger" onclick="deleteBook(${book.bookID})">Delete</button>
                         <button class="btn btn-success" onclick="changePrice(${book.bookID})">Change Price</button>
+                        <button class="btn btn-success" onclick="changeQuantity(${book.bookID})">Change Quantity</button>
                     </td>
                 </tr>
             `;
@@ -42,17 +46,20 @@ async function renderBooksBySearch() {
                 response.items.forEach(book => {
                     const selfLink = book.selfLink;
                     const title = book.volumeInfo.title;
-                    const author = book.volumeInfo.authors[0];
-                    const thumbnail = book.volumeInfo.imageLinks.thumbnail;
+                    const author = book.volumeInfo?.authors[0] || book.volumeInfo?.authors;
+                    const thumbnail = book.volumeInfo.imageLinks.thumbnail
+                    const id = book.id;
 
                     const row = `
                         <tr>
-                            <td>${title}</td>
                             <td><img src="${thumbnail}" alt="Book Cover"></td>
+                            <td>${title}</td>
                             <td>${author}</td>
                             <td>
+                                <input type="number" id="priceInput_${id}" placeholder="Price" min="0" max="100">
+                                <input type="number" id="quantityInput_${id}" placeholder="Quantity" min="0" max="100">
                                 <a class="btn btn-success" href="${selfLink}" target="_blank">View Details</a>
-                                <button class="btn btn-success" onclick="addBook('${title}', '${author}')">Add Book</button>
+                                <button class="btn btn-success" onclick="addBook('${title}', '${author}', '${selfLink}', '${id}')">Add Book</button>
                             </td>
                         </tr>
                     `;
@@ -67,19 +74,40 @@ async function renderBooksBySearch() {
     });
 }
 
+async function addBook(title, author, bookDetails, id) {
+    const priceInput = $(`#priceInput_${id}`).val();
+    const quantityInput = $(`#quantityInput_${id}`).val();
 
-async function addBook(title, author) {
+    console.log('Price input:', priceInput);
+    console.log('Quantity input:', quantityInput);
+
+    if (priceInput === '' || quantityInput === '') {
+        alert('Price and quantity cannot be empty');
+        return;
+    }
+
+    const price = parseFloat(priceInput);
+    const quantity = parseInt(quantityInput);
+
+    if (isNaN(price) || isNaN(quantity) || price < 0 || price > 100 || quantity < 0 || quantity > 100) {
+        alert('Invalid price or quantity. Price and quantity should be between 0 and 100.');
+        return;
+    }
+
     try {
-        const response = await adminService.createBook(title, author);
-        console.log('Book added successfully:', response);
+        await adminService.createBook(title, author, price, quantity, bookDetails);
+        alert('Book added successfully');
+        window.location.reload();
     } catch (error) {
-        console.error('Error adding book: ', error);
+        console.log('Error adding book: ' + error.message);
     }
 }
+
 
 async function deleteBook(bookID) {
     try {
         await adminService.deleteBook(bookID)
+        alert('Book deleted successfully');
         window.location.reload();
     } catch (err) {
         console.log('Error deleting book: ', err);
@@ -90,17 +118,36 @@ async function changePrice(bookID) {
     const newPriceInput = $(`#newPrice_${bookID}`);
     const newPrice = newPriceInput.val();
 
-    if (newPrice < 1 || newPrice > 100) {
+    if (!newPrice || isNaN(newPrice) || newPrice < 1 || newPrice > 100) {
         alert("Price must be between 1 and 100.");
         return;
     }
 
     try {
         const response = await adminService.changeBookPrice(bookID, newPrice);
-        console.log('Price changed successfully:', response);
-        // window.location.reload();
+        alert('Price changed successfully');
+        window.location.reload();
     } catch (error) {
         console.error('Error changing price:', error);
+    }
+}
+
+async function changeQuantity(bookID) {
+    const newQuantityInput = $(`#newQuantity_${bookID}`).val();
+
+    if (!newQuantityInput || isNaN(newQuantityInput) || newQuantityInput < 1 || newQuantityInput > 100) {
+        alert('Please enter a valid quantity.');
+        return;
+    }
+
+    const newQuantity = parseInt(newQuantityInput);
+
+    try {
+        await adminService.updateBookQuantity(bookID, newQuantity);
+        alert('Quantity updated successfully.');
+        window.location.reload();
+    } catch (error) {
+        console.error('Error updating quantity:', error);
     }
 }
 

@@ -2,8 +2,8 @@ const adminService = require("../services/adminService");
 
 const createBook = async (req, res) => {
     try {
-        const {title, author} = req.body;
-        const newBook = await adminService.createBook(title, author);
+        const {title, author, price, quantity, bookDetails} = req.body;
+        const newBook = await adminService.createBook(title, author, price, quantity, bookDetails);
         console.log('Successfully created a new book and inserted it into the DB')
         res.status(201).json(newBook);
     } catch (err) {
@@ -53,10 +53,29 @@ const changeBookPrice = async (req, res) => {
 };
 
 
+const changeBookQuantity = async (req, res) => {
+    try {
+        const bookID = req.body.bookID;
+        const newQuantity = req.body.quantity;
+
+        await adminService.changeBookQuantity(bookID, newQuantity);
+        res.status(200).json({ message: 'Quantity changed successfully', success: true});
+    } catch (err) {
+        console.log(err);
+        res
+            .status(500)
+            .json({
+                error: "An error occurred while creating the product",
+                success: false,
+            });
+    }
+};
+
 module.exports = {
     createBook,
     deleteBook,
     changeBookPrice,
+    changeBookQuantity,
 };
 
 

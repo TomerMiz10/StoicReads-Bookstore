@@ -50,12 +50,12 @@ class AdminService {
         }
     }
 
-    async createBook(title, author) {
+    async createBook(title, author, price, quantity, bookDetails) {
         try {
             const response = await $.ajax({
                 url: `${this.baseUrl}/admin/createBooks`,
                 type: 'POST',
-                data: {title, author},
+                data: {title, author, price, quantity, bookDetails},
             });
 
             return response;
@@ -95,6 +95,20 @@ class AdminService {
         }
     }
 
+    async updateBookQuantity(bookID, quantity) {
+        try {
+            console.log(`${bookID} + ${quantity}`)
+            const response = await $.ajax({
+                url: `${this.baseUrl}/admin/changeBookQuantity`,
+                type: 'PUT',
+                data: {bookID, quantity}
+            });
+
+            return response;
+        } catch (error) {
+            console.log("Failed to change the book's price:", error);
+        }
+    }
 }
 
 window.AdminService = AdminService;
