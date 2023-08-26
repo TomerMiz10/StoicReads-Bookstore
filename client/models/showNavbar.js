@@ -11,5 +11,31 @@ document.addEventListener('DOMContentLoaded', async function() {
     xhr.send();
 });
 
+function updateCartCount(userId) {
+    const cartItemCountElement = document.getElementById('cart-item-count');
+    $.ajax({
+        url: baseUrl + '/cart/getCart/' + userId,
+        type: 'GET',
+        success: function(cartItems) {
+            cartItemCountElement.textContent = cartItems.length;
+        },
+        error: function(error){
+            console.error('Error fetching cart. Please try again.', error);
+        }
+    });
+}
 
-
+window.onload = async () => {
+    const response = await fetch(baseUrl + '/auth/status', {
+        method: 'GET',
+        credentials: 'include'
+    });
+    const data = await response.json();
+    if (data.status) {
+        updateCartCount(data.userId);
+    }
+    else {
+        alert('Please login to view your cart')
+        window.location.href = 'login.html';
+    }
+}
