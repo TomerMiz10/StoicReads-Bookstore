@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.use("/book", require("./routes/bookRoute"));
 app.use("/auth", require("./routes/authRoute"));
 app.use("/admin", require("./routes/adminRoute"));
+app.use("/map", require("./routes/mapRoute"));
 app.use("/cart", require("./routes/cartRoute"));
 
 
