@@ -7,30 +7,31 @@ class AdminService {
         };
     }
 
-    async doesExistInDB(searchInput) {
-        try {
-            const response = await $.ajax({
-                url: this.baseUrl + '/book/search/?title=' + searchInput,
-                type: 'GET'
-            });
-
-            return true;
-        } catch (err) {
-            if (err.status === 404) {
-                return false;
-            } else {
-                console.error('Error checking if book exists in DB:', err);
-                return true; // Return true for other status codes to avoid throwing an error
-            }
-        }
-    }
+    // async doesExistInDB(searchInput) {
+    //     try {
+    //         const response = await $.ajax({
+    //             url: this.baseUrl + '/book/search/?title=' + searchInput,
+    //             type: 'GET'
+    //         });
+    //
+    //         return true;
+    //     } catch (err) {
+    //         if (err.status === 404) {
+    //             return false;
+    //         } else {
+    //             console.error('Error checking if book exists in DB:', err);
+    //             return true; // Return true for other status codes to avoid throwing an error
+    //         }
+    //     }
+    // }
 
 
     async getBooksFromAPI(title) {
         try {
             const searchInput = title;
 
-            if (await this.doesExistInDB(searchInput)) return;
+            // Need to remove
+            // if (await this.doesExistInDB(searchInput)) return;
 
             const cachedResponse = this.cache["responses"].find(item => item.searchInput === searchInput);
             if (cachedResponse) {
