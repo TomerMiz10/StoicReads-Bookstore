@@ -57,9 +57,13 @@ User.post('save', function(doc, next) {
 });
 
 User.pre('save', async function(next) {
-    const salt = await bcrypt.genSaltSync();
-    this.password = await bcrypt.hashSync(this.password, salt);
-    next();
+    try{
+        this.password = await bcrypt.hashSync(this.password, parseInt(process.env.SALT));
+        next();
+    } catch(err) {
+        console.warn("An error has been thrown when attempting to hash the password: ", err);
+    }
+
 });
 
 User.statics.login = async function(email, password) {

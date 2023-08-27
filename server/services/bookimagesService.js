@@ -7,7 +7,7 @@ const extractBookCoverImage = async (title, author) => {
         const encodedTitle = encodeURIComponent(title);
         const encodedAuthor = encodeURIComponent(author);
 
-        const response = await axios.get(`https://api.bookcover.longitood.com/bookcover?book_title=${encodedTitle}&author_name=${encodedAuthor}`);
+        const response = await axios.get(`https://bookcover-api.herokuapp.com/bookcover?book_title=${encodedTitle}&author_name=${encodedAuthor}`);
         const imageUrl = response.data.url;
 
         console.log('Book cover image extracted and saved successfully.');
