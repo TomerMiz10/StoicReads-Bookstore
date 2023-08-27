@@ -13,6 +13,18 @@ class AjaxWrapper {
         }
     }
 
+    async getMapData(storeName) {
+        try {
+            const response = await $.ajax({
+                url: this.baseUrl + '/map/getMapData/' + storeName, type: 'GET'
+            });
+
+            return response;
+        } catch (error) {
+            console.log('Failed to retrieve map location:', error);
+        }
+    }
+
 
 }
 
