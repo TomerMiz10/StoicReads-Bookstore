@@ -1,8 +1,5 @@
 const Book = require("../models/Book");
 const {getBookDetails} = require('./googlebookService');
-const {extractBookCoverImage} = require('./bookimagesService');
-
-const axios = require('axios');
 
 const getAllBooks = async () => await Book.find({});
 const getBooksBySearch = async (query) => {

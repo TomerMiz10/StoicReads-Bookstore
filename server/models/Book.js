@@ -1,4 +1,3 @@
-// represents a product in the store, with properties like name, price, description
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
