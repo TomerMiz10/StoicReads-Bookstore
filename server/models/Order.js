@@ -23,6 +23,11 @@ const Order = new mongoose.Schema({
     orderDate: {
         type: Date,
         default: Date.now
+    },
+    totalPrice:{
+        type: Number,
+        required: true,
+        min: [0, 'Price cannot be less than zero']
     }
 });
 
