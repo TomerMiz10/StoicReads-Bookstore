@@ -3630,7 +3630,7 @@ textarea.form-control-lg {
 }
 
 #cart-item-count{
-    position: absolute;
+    position: inherit;
     top: -2px;
     right: -2px;
 }
