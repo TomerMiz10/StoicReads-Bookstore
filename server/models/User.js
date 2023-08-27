@@ -60,7 +60,6 @@ User.pre('save', async function(next) {
         next();
     } catch(err) {
         console.warn("An error has been thrown when attempting to hash the password: ", err);
-        console.log(process.env.SALT);
     }
 
 });
