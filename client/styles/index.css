@@ -69,7 +69,9 @@ iframe {
 }
 
 .footer-container {
+    text-shadow: 1px 1px 1px #8a5a2d;
     background-color: #e3c29a;
     text-align: center;
     padding: 2%;
 }
+

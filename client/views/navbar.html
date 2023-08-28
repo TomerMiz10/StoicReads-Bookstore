@@ -22,11 +22,17 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item" id="signupNav">
         <a class="nav-link fs-3" href="signup.html">Sign-up</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="loginNav">
         <a class="nav-link fs-3" href="login.html">Login</a>
+      </li>
+      <li class="nav-item" id="adminNav" style="display: none;">
+        <a class="nav-link fs-3" href="admin_dashboard.html">Admins-page</a>
+      </li>
+      <li class="nav-item" id="logoutNav" style="display: none;">
+        <a class="nav-link fs-3" href="#" onclick="logOut()">Logout</a>
       </li>
       <li class="nav-item dropdown fs-3">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
