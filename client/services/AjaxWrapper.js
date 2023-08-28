@@ -25,7 +25,21 @@ class AjaxWrapper {
         }
     }
 
+    async getAuthData() {
+        try {
+            const response = await fetch(this.baseUrl + '/auth/status', {
+                method: 'GET',
+                credentials: 'include'
+            });
 
+            const data = await response.json();
+
+            return data;
+        } catch (err) {
+            console.log('Error fetching auth data', err);
+        }
+    }
 }
+
 
 window.AjaxWrapper = AjaxWrapper;
