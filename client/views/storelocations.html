@@ -13,7 +13,8 @@
         }
 
         body {
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             background: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
             color: #fff;
             font-family: Arial, sans-serif;
@@ -32,7 +33,7 @@
             flex-direction: column;
             justify-content: center;
             width: 100vw;
-            height: 84vh;
+            height: 100vh;
         }
 
         .options {
@@ -81,11 +82,10 @@
         <button class="btn btn-primary location_btn" data-location="Herzliya">Herzliya</button>
         <button class="btn btn-primary location_btn" data-location="Bat Yam">Bat Yam</button>
     </div>
-    <div id="map"></div>
+    <div class="mx-auto" id="map"></div>
 </main>
 <script src='https://www.bing.com/api/maps/mapcontrol?callback=getMap' async defer></script>
 <script src="../models/showNavbar.js"></script>
-<script src="../services/displayDesiredNavs.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="../services/AjaxWrapper.js"></script>
