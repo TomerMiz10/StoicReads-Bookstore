@@ -27,20 +27,40 @@
             text-align: center;
         }
 
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+
         .container h1 {
             margin-bottom: 20px; /* Add spacing below the title */
         }
 
         .table-container {
-            margin-top: 20px; /* Add spacing above the table */
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-
-
-        .col-md-6 {
+        .table {
             width: 100%;
+            max-width: 100%;
         }
+
+        .btn {
+            margin-top: 10px;
+            margin-right: 10px;
+            border-radius: 20px;
+            padding: 10px 20px;
+        }
+
     </style>
+    >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -49,11 +69,8 @@
 
     <a href="admin_dashboard.html" class="btn btn-secondary mt-3">Go Back to Admin Dashboard</a>
 
-
-    <div class="row">
-    <div class="col-md-6">
+    <div class="table-container center">
         <h2>Existing Books</h2>
-        <div class="table-container">
         <table class="table">
             <thead>
             <tr>
@@ -69,10 +86,9 @@
             <!-- Existing books will be added here using JavaScript -->
             </tbody>
         </table>
-        </div>
-    </div>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
