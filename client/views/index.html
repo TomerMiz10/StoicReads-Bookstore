@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>StoicReads</title>
@@ -7,27 +8,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StoicReads - an online bookstore</title>
   <link rel="shortcut icon" href="../bookIcon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../bootStrap.css">
+  <link rel="stylesheet" href="../styles/bootStrap.css">
+  <link rel="stylesheet" href="../styles/index.css">
 </head>
+
 <body>
 <div id="navbar-container"></div>
-  <header>
-    <h1 id="welcome-message" class="flex-center bg-secondary text-light display-4">Welcome to Stoic Reads book store! browse books from our collections! sign up or log in to make a purchase</h1>
-  </header>
-<div id="books-list-container">
-
+<div class="container-fluid header-container">
+  <div class="video-container">
+    <div class="interview-info">
+      <span>An interview with the author of our featured book</span>
+    </div>
+    <<iframe width="560" height="315" src="https://www.youtube.com/embed/uTO9TUa797E?si=jiYD18l0xbEU0bBw"
+             title="YouTube video player"
+             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+             allowfullscreen></iframe>
+  </div>
+  <div class="middle-header">
+    <header>
+      <h1>Welcome to Stoic Reads book store!<br>browse books from our collections</h1>
+    </header>
+  </div>
+  <div>
+    <canvas id="bookCanvas" width="500" height="400"></canvas>
+  </div>
 </div>
-
-<footer>
+<div id="books-list-container"></div>
+<footer class="footer-container">
   <p>&copy; 2023 Online Store. All rights reserved.</p>
 </footer>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="../models/showNavbar.js"></script>
-<script src="../services/displayDesiredNavs.js"></script>
 <script src="../models/indexModel.js"></script>
+<script src="../models/canvas.js"></script>
 </body>
+
 </html>
+

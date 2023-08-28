@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>StoicReads</title>
-  <link rel="shortcut icon" href="../bookIcon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../bootStrap.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/bootStrap.css">
+  <link rel="stylesheet" href="../styles/navbar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="index.html"><img src="../bookIcon.png" alt=""></a>
+<nav class="navbar navbar-expand-sm navbar-light bg-custom">
+  <a class="navbar-brand" href="index.html">
+    <img src="../logo.png" alt="Book Icon" class="brand-icon">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a id= "signupNav" class="nav-link fs-3" href="signup.html">Sign-up</a>
+      <li class="nav-item" id="signupNav">
+        <a class="nav-link fs-3" href="signup.html">Sign-up</a>
       </li>
-      <li class="nav-item">
-        <a id="loginNav" class="nav-link fs-3" href="login.html">Login</a>
+      <li class="nav-item" id="loginNav">
+        <a class="nav-link fs-3" href="login.html">Login</a>
       </li>
-      <li class="nav-item">
-        <a id="adminNav" class="nav-link fs-3" href="admin_dashboard.html">Admins-page</a>
+      <li class="nav-item" id="adminNav" style="display: none;">
+        <a class="nav-link fs-3" href="admin_dashboard.html">Admins-page</a>
       </li>
-      <li class="nav-item">
-        <a id="logout-button" class="nav-link fs-3" href="#" onclick="logOut()" >Logout</a>
+      <li class="nav-item" id="logoutNav" style="display: none;">
+        <a class="nav-link fs-3" href="#" onclick="logOut()">Logout</a>
       </li>
       <li class="nav-item dropdown fs-3">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
@@ -39,35 +46,40 @@
           <a class="dropdown-item fs-3" href="#" onclick="getBooksByGenre('Business')">Business</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cart.html">
-          <img src="../cartIcon.png" alt="" class="btn">
-          <span id="cart-item-count" class="badge badge-primary">0</span>
-        </a>
-      </li>
     </ul>
-    <div class="align-items-center">
-      <div style="width: 200px;position:relative; left:100%;">
-        <select class="dropdown-menu-sm-start " id="search-by">
-          <option value="none">Search by...</option>
-          <option value="author">Author</option>
-          <option value="title">Title</option>
-        </select>
-      </div>
-      <div style = "position:relative; left:100%;" class="search-bar" >
-        <form  id="book-search-form" class="align-content-end">
+
+    <div class="search-components">
+      <label for="search-by"></label><select class="custom-select" id="search-by">
+        <option value="none">Search by...</option>
+        <option value="author">Author</option>
+        <option value="title">Title</option>
+      </select>
+      <div class="search-bar">
+        <form id="book-search-form">
           <div class="input-group">
-            <label for="search-input"></label>
-            <input id="search-input" placeholder="Search book by Author/Title..." type="text" style="width: 220px" class="col-form-label-sm" maxlength="255"  />
+            <label for="search-input"></label><input id="search-input" placeholder="Search book by Author/Title..." type="text" class="col-form-label-sm" maxlength="255" />
             <div class="input-group-append">
-              <label for="search-btn"></label>
-              <input id="search-btn" class="btn btn-primary" style="width: 100px" value="Search"  onclick="getBooksBySearch()"/>
+              <button id="search-btn" class="btn btn-primary" onclick="getBooksBySearch()"> <i class="fa fa-search"></i> </button>
             </div>
           </div>
         </form>
       </div>
     </div>
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="cart.html">
+          <img src="../cartIcon.png" alt="Cart Icon" class="cart-btn">
+          <span id="cart-item-count" class="badge badge-primary">0</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
