@@ -1,4 +1,4 @@
-var books = [];
+let books = [];
 let userId = '';
 const baseUrl = 'http://localhost:3000';
 const welcomeMessage = $('#welcome-message');

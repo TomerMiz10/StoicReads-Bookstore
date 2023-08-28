@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'storeFont';
+    src: url('../styles/PacificNorthwestRough-NormalMed.ttf') format('truetype');
+}
+
+body {
+    background-color: #f5e9da;
+}
+
+h1 {
+    font-family: 'storeFont', fallbackFont, sans-serif;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background-color: #f5e9da;
+    padding: 1rem;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.middle-header {
+    border: 2px solid #8a5a2d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+
+.header-container h1 {
+    color: #8a5a2d;
+    font-size: 2.7em;
+    overflow: hidden;
+    margin: 0;
+    text-align: center;
+}
+
+.interview-info {
+    font-family: 'storeFont', serif;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 30px;
+    color: #8a5a2d;
+    margin-bottom: 1em;
+}
+
+.video-container {
+    width: 560px;
+    overflow: hidden;
+    margin-left: 100px;
+}
+
+#bookCanvas {
+    border: 1px solid #8a5a2d;
+    display: block;
+    margin: 20px auto;
+}
+
+iframe {
+    border: none;
+}
+
+#books-list-container {
+    margin-top: 30px;
+    background-color: #f5e9da;
+}
+
+.footer-container {
+    background-color: #e3c29a;
+    text-align: center;
+    padding: 2%;
+}
