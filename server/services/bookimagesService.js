@@ -15,7 +15,8 @@ const extractBookCoverImage = async (title, author) => {
         return imageUrl;
 
     } catch (error) {
-        console.error('Error extracting book cover image:', error);
+        console.error('There was an error extracting book cover image');
+        return null;
     }
 };
 

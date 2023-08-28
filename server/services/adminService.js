@@ -31,7 +31,15 @@ const createBook = async (title, author, price, quantity, bookURL) => {
         }
 
         const genre = bookDetails.volumeInfo.categories && bookDetails.volumeInfo.categories[0] ? bookDetails.volumeInfo.categories[0] : "Novel";
-        const imageURL = await extractBookCoverImage(title, author);
+
+        let imageURL;
+
+        try {
+            imageURL = await extractBookCoverImage(title, author);
+            if (!imageURL) imageURL = bookDetails.volumeInfo.imageLinks.thumbnail
+        } catch (err) {
+            imageURL = bookDetails.volumeInfo.imageLinks.thumbnail;
+        }
 
         const bookID = Number(await generateUniqueRandomID());
 
