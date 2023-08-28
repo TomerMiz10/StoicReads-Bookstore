@@ -98,7 +98,7 @@ class AdminService {
 
             const data = await response.json();
 
-            if (!data.status && !data.isAdmin) {
+            if (!data.status || !data.user.isAdmin) {
                 window.location = '../views/404page.html';
             }
         } catch (err) {
