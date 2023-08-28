@@ -45,7 +45,7 @@ async function renderBooksBySearch() {
 
                 response.items.forEach(book => {
                     const selfLink = book.selfLink;
-                    const title = book.volumeInfo.title;
+                    const title = book.volumeInfo.title.replace(/'/g, "\\'"); // Edge case to replace single quotes.
                     const thumbnail = book.volumeInfo.imageLinks?.thumbnail || 'No Image Available';
                     const id = book.id;
 
