@@ -27,16 +27,29 @@
             text-align: center;
         }
 
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+
         .container h1 {
             margin-bottom: 20px; /* Add spacing below the title */
         }
 
         .table-container {
-            margin-top: 20px; /* Add spacing above the table */
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .col-md-6 {
+        .table {
             width: 100%;
+            max-width: 100%;
         }
 
         .btn-back {
@@ -51,29 +64,27 @@
 
     <a href="admin_dashboard.html" class="btn btn-secondary btn-back">Go Back to Admin Dashboard</a>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="table-container">
-                <div class="form-group">
-                    <label for="searchInput">Search by Title:</label>
-                    <input type="text" class="form-control" id="searchInput" placeholder="Enter title">
-                </div>
-                <button id="searchButton" class="btn btn-primary">Search</button>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                    </tr>
-                    </thead>
-                    <tbody id="apiBooks">
-                    <!-- API search results will be added here using JavaScript -->
-                    </tbody>
-                </table>
-            </div>
+    <div class="table-container">
+        <div class="form-group">
+            <label for="searchInput">Search by Title:</label>
+            <input type="text" class="form-control" id="searchInput" placeholder="Enter title">
         </div>
+        <button id="searchButton" class="mb-3 btn btn-primary">Search</button>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="apiBooks">
+            <!-- API search results will be added here using JavaScript -->
+            </tbody>
+        </table>
     </div>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
