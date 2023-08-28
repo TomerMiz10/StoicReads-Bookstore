@@ -155,7 +155,9 @@ async function changeQuantity(bookID) {
     }
 }
 
-
+document.addEventListener('DOMContentLoaded', async () => {
+    await adminService.authAdmin();
+})
 $(document).ready(function () {
     renderExistingBooks();
     renderBooksBySearch();
