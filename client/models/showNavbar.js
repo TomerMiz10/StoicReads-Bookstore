@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', async function() {
     const navbarContainer = document.getElementById('navbar-container');
     const xhr =await new XMLHttpRequest();
