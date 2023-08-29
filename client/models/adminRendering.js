@@ -31,6 +31,61 @@ async function renderExistingBooks() {
     }
 }
 
+async function renderExistingOrders() {
+    try {
+        // Fetch users and populate the sidebar
+        const users = await ajaxWrapper.getAllUsers();
+        console.table('All users data', users);
+        const usersList = $('#usersList');
+
+        users.forEach(user => {
+            const userItem = `<li data-userid="${user._id}" class="user-item">${user.username}</li>`;
+            usersList.append(userItem);
+        });
+
+        // Show orders when a user is clicked
+        $('.user-item').click(async function () {
+            const userId = $(this).data('userid');
+            const orders = await ajaxWrapper.getAllOrdersOfUser(userId);
+            console.table('All orders of the user',orders);
+            const orderHistoryTable = $('#orderHistoryTable');
+
+            orderHistoryTable.empty();
+            const table = $('<table class="table">');
+            table.append(`
+                    <thead>
+                        <tr>
+                            <th>Book ID</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                `);
+
+            const tbody = table.find('tbody');
+            orders.forEach(order => {
+                tbody.append(`
+                        <tr>
+                            <td>${order.bookID}</td>
+                            <td>${order.title}</td>
+                            <td>${order.price}</td>
+                        </tr>
+                    `);
+            });
+
+            orderHistoryTable.append(table);
+        });
+
+        // Show orders button
+        $('#showOrdersButton').click(function () {
+            $('#orderHistoryTable').toggle();
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
 async function renderBooksBySearch() {
     $('#searchButton').click(async function () {
