@@ -39,7 +39,7 @@ module.exports.addToCart = async (req, res) => {
 }
 
 module.exports.getOneUserCart = async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.params.userID;
     console.log('userId:', userId)
     try {
         const user = await User.findById(userId).populate('cart.bookId');

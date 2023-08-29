@@ -47,7 +47,7 @@ class AjaxWrapper {
                 credentials: 'include'
             });
 
-            return response;
+            return response.json();
         } catch (err) {
             console.log('Error fetching all users', err);
         }
@@ -55,12 +55,12 @@ class AjaxWrapper {
 
     async getAllOrdersOfUser(userId) {
         try {
-            const response = await fetch(this.baseUrl + '/order/getAllOrders/' + userId, {
+            const response = await fetch(this.baseUrl + '/order/getAllOrdersOfUser/' + userId, {
                 method: 'GET',
                 credentials: 'include'
             });
 
-            return response;
+            return response.json();
         } catch (err) {
             console.log('Error fetching auth data', err);
         }
