@@ -8,8 +8,8 @@ const getAllBooks = async (req, res) => {
   } catch (err) {
     console.log(err);
     res
-      .status(404)
-      .json({ error: "Couldn`t fetch books 404 error", success: false });
+        .status(404)
+        .json({ error: "Couldn`t fetch books 404 error", success: false });
   }
 };
 
@@ -75,14 +75,14 @@ const getBooksByGenre = async (req, res) => {
   try {
     if(genre === 'all')  books = await booksDbService.getAllBooks();
     else books = await booksDbService.getBooksByGenre(genre);
-        console.log('Successfully retrieved all books by genre')
-        res.status(200).json(books);
-    }catch (err) {
-      console.log(err);
-      res
+    console.log('Successfully retrieved all books by genre')
+    res.status(200).json(books);
+  }catch (err) {
+    console.log(err);
+    res
         .status(404)
         .json({ error: "Couldn't find books by genre", success: false });
-    }
+  }
 }
 
 
@@ -109,6 +109,5 @@ module.exports = {
   getGoogleBooksDetails,
   getBookDetailsByObjectID,
 };
-
 
 

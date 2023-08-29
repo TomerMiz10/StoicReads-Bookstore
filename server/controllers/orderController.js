@@ -65,7 +65,9 @@ const handlePurchase = async (req, res) => {
 const getAllOrdersOfUser = async (req, res) => {
     try {
         const userID = req.params.userId;
+        console.log('userID', userID)
         const ordersOfUser = await orderService.getAllOrdersOfUser(userID);
+        console.log('ordersOfUser', ordersOfUser)
         res.status(200).json({ordersOfUser});
     } catch (error) {
         console.error('Error fetching the orders', error);
