@@ -80,12 +80,18 @@ module.exports.removeFromCart = async (req, res) => {
         const book = await Book.findById(bookId);
         if (book) {
             book.quantity += 1;
-            await book.save();
         }
 
-        await user.save();
+        await User.findOneAndUpdate(
+            {_id: userId},
+            {$set: {cart: user.cart}},
+            {new: true}
+        );
+
+        await book.save();
+
         res.status(200).json(user.cart);
     } catch (error) {
         res.status(500).json({message: "Error decrementing book from cart"});
     }
-}
+};
