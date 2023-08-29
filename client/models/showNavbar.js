@@ -20,25 +20,23 @@ const setNavbarState = async () => {
             credentials: 'include'
         });
         const data = await response.json();
-
-        // Default state: Not logged in
-        document.getElementById("signupNav").style.display = "block";
-        document.getElementById("loginNav").style.display = "block";
-        document.getElementById("adminNav").style.display = "none";
-        document.getElementById("logoutNav").style.display = "none";
-
         if (data.status) {
             // User is logged in
             document.getElementById("signupNav").style.display = "none";
             document.getElementById("loginNav").style.display = "none";
             document.getElementById("logoutNav").style.display = "block";
-
+            document.getElementById("userProfile").style.display = "block";
 
             if (data.user.isAdmin) {
                 // User is also an admin
                 document.getElementById("adminNav").style.display = "block";
             }
         } else {
+            document.getElementById("signupNav").style.display = "block";
+            document.getElementById("loginNav").style.display = "block";
+            document.getElementById("adminNav").style.display = "none";
+            document.getElementById("logoutNav").style.display = "none";
+            document.getElementById("userProfile").style.display = "none";
             welcomeMessage.text('Welcome to Stoic Reads book store! Browse books from our collections! Sign up or login to make a purchase.');
         }
     } catch (error) {
