@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const {isEmail } = require('validator');
 const bcrypt = require('bcrypt');
-const Order = require('./Order');   //import Order Schema
 
 const BookInCartSchema = new Schema({
     bookId: {
@@ -49,7 +48,6 @@ const User = new Schema({
         required: true
     },
     cart: [BookInCartSchema],
-    pastOrders: [Order.schema]  //use .schema to ref Order schema
 });
 User.post('save', function(doc, next) {
     console.log('new user was created & saved', doc);

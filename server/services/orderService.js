@@ -5,21 +5,14 @@ const User = require('../models/User');
 const createOrder = async (orderObj) => {
     try {
 
-        console.log('orderObj', orderObj);
         const order = new Order({
             userID: orderObj.userID,
             items: JSON.parse(orderObj.items),
             orderDate: new Date(),
             totalPrice: orderObj.totalPrice
         });
-        console.log('orderObj.items', JSON.parse(orderObj.items));
 
-        await order.save();
-        return  await User.findOneAndUpdate(
-            {_id: order.userID},
-            {$push: {pastOrders: {order}}},
-            {new: true} // Return the updated document
-        );
+       return await order.save();
     } catch (error) {
         console.error('Error creating order:', error);
         throw error;
