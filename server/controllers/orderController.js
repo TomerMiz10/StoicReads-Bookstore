@@ -45,7 +45,7 @@ const getUserById = async (req, res) => {
 
 const handlePurchase = async (req, res) => {
     try {
-        const userId = req.userID;
+        const userId = req.userId;
         const cartItems = await cartController.getOneUserCart();
 
         if (!cartItems || cartItems.length === 0) {
@@ -60,6 +60,20 @@ const handlePurchase = async (req, res) => {
         res.status(200).json({message: 'Order updated successfully', order: order});
     } catch (error) {
         console.error('error making purchase request', error);
+        res.status(500).json({message: 'Internal Server Error', error})
+    }
+}
+
+
+const getAllOrdersOfUser = async (req, res) => {
+    try {
+        const userID = req.params.userId;
+        console.log("User id is: ", userID);
+        const ordersOfUser = await orderService.getAllOrdersOfUser(userID);
+        console.log('orders of the user are: ', ordersOfUser);
+        res.status(200).json({ordersOfUser});
+    } catch (error) {
+        console.error('Error fetching the orders', error);
         res.status(500).json({message: 'Internal Server Error', error})
     }
 }

@@ -1,7 +1,6 @@
 const Order = require('../models/Order');
 const User = require('../models/User');
 
-
 const createOrder = async (orderObj) => {
     try {
 
@@ -67,8 +66,10 @@ const calculateTotalPrice = async (cartItems) => {
 }
 
 
-const getAllOrdersOfUser = async (userID) => {
-    await Order.find({userID});
+const getAllOrdersOfUser = async (userId) => {
+   const res = await Order.find({});
+   console.log(res);
+
 }
 
 module.exports = {
