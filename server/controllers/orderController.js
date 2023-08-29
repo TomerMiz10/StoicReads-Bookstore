@@ -60,10 +60,23 @@ const handlePurchase = async (req, res) => {
     }
 }
 
+const getAllOrdersOfUser = async (req, res) => {
+    try {
+        const userID = req.params.userId;
+        const ordersOfUser = await orderService.getAllOrdersOfUser(userID);
+
+        res.status(200).json({message: 'Order updated successfully', data: ordersOfUser});
+    } catch (error) {
+        console.error('Error fetching the existing orders of user', error);
+        res.status(500).json({message: 'Internal Server Error', error})
+    }
+}
+
 
 module.exports = {
     createOrder,
     deleteOrder,
     getUserById,
-    handlePurchase
+    handlePurchase,
+    getAllOrdersOfUser,
 };

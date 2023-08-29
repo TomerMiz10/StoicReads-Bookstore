@@ -39,6 +39,32 @@ class AjaxWrapper {
             console.log('Error fetching auth data', err);
         }
     }
+
+    async getAllUsers() {
+        try {
+            const response = await fetch(this.baseUrl + '/user/getAllUsers', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response;
+        } catch (err) {
+            console.log('Error fetching all users', err);
+        }
+    }
+
+    async getAllOrdersOfUser(userId) {
+        try {
+            const response = await fetch(this.baseUrl + '/order/getAllOrders/' + userId, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response;
+        } catch (err) {
+            console.log('Error fetching auth data', err);
+        }
+    }
 }
 
 
