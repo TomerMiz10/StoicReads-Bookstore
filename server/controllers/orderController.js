@@ -1,10 +1,6 @@
-const  getOrdersByUserId=async ()=> {
-
-}
 
 const orderService = require('../services/orderService');
 const cartController = require('../controllers/cartController');
-
 
 const  getOrdersByUserId=async (req,res)=> {
 
