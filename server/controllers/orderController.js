@@ -62,12 +62,12 @@ const handlePurchase = async (req, res) => {
 
 const getAllOrdersOfUser = async (req, res) => {
     try {
-        const userID = req.params.userId;
+        const userID = req.params.userID;
         const ordersOfUser = await orderService.getAllOrdersOfUser(userID);
 
-        res.status(200).json({message: 'Order updated successfully', data: ordersOfUser});
+        res.status(200).json({message: 'Orders of users retrieved successfully', data: ordersOfUser});
     } catch (error) {
-        console.error('Error fetching the existing orders of user', error);
+        console.error('Error fetching the orders', error);
         res.status(500).json({message: 'Internal Server Error', error})
     }
 }

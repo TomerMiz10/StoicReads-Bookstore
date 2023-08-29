@@ -35,11 +35,11 @@ async function renderExistingOrders() {
     try {
         // Fetch users and populate the sidebar
         const users = await ajaxWrapper.getAllUsers();
-        console.table('All users data', users);
+        console.table(users);
         const usersList = $('#usersList');
 
         users.forEach(user => {
-            const userItem = `<li data-userid="${user._id}" class="user-item">${user.username}</li>`;
+            const userItem = `<li data-userid="${user._id}" class="user-item">${user.userName}</li>`;
             usersList.append(userItem);
         });
 
@@ -47,7 +47,8 @@ async function renderExistingOrders() {
         $('.user-item').click(async function () {
             const userId = $(this).data('userid');
             const orders = await ajaxWrapper.getAllOrdersOfUser(userId);
-            console.table('All orders of the user',orders);
+            console.log('All orders of the user')
+            console.table(orders);
             const orderHistoryTable = $('#orderHistoryTable');
 
             orderHistoryTable.empty();
@@ -216,4 +217,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 $(document).ready(function () {
     renderExistingBooks();
     renderBooksBySearch();
+    renderExistingOrders();
 });
