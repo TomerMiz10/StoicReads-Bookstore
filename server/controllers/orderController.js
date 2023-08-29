@@ -84,5 +84,5 @@ module.exports = {
     deleteOrder,
     getUserById,
     handlePurchase,
-    getOrdersByUserId
+    getAllOrdersOfUser
 };
