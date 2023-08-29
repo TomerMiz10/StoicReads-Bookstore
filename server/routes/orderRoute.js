@@ -6,6 +6,6 @@ orderRoute.post("/createOrder", orderController.createOrder);
 orderRoute.post("/deleteOrder/:userId", orderController.deleteOrder);
 orderRoute.get("/getUserById/:userId", orderController.getUserById);
 orderRoute.get("/handlePurchase/", orderController.handlePurchase);
-orderRoute.get("/getOrdersByUserId/:userId", orderController.getOrdersByUserId);
+orderRoute.get("/getAllOrdersOfUser/:userId", orderController.getAllOrdersOfUser);
 
 module.exports = orderRoute;
