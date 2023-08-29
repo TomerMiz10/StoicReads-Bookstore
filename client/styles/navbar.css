@@ -1,0 +1,75 @@
+.bg-custom {
+    background-color: #e3c29a;
+}
+
+.brand-icon {
+    width: 200px;
+    height: 80px;
+}
+
+.navbar-nav .nav-link.fs-3 {
+    color: #8a5a2d;
+}
+
+.navbar-nav .dropdown-toggle {
+    color: #8a5a2d;
+}
+
+.nav-item.dropdown .nav-link.dropdown-toggle {
+    color: #8a5a2d;
+}
+
+.navbar-nav .nav-link.fs-3:hover {
+    color: #654321;
+}
+
+.navbar-nav .dropdown-toggle:hover {
+    color: #654321;
+}
+
+.nav-item.dropdown .nav-link.dropdown-toggle:hover {
+    color: #654321;/
+}
+
+.search-components {
+    margin-right: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.custom-select {
+    width: 180px;
+    border-radius: 20px;
+    border: 1px solid #8a5a2d;
+}
+
+.search-bar {
+    margin-left: 10px;
+}
+
+#search-input {
+    margin-right: 10px;
+    width: 400px;
+    border-radius: 20px;
+    border-left: none;
+}
+
+#search-btn {
+    border: 2px solid #e3c29a;
+    background-color: #8a5a2d;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.cart-btn {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.badge-primary {
+    background-color: #8a5a2d;
+    margin-right: 20px;
+}

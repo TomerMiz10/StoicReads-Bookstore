@@ -1,27 +1,15 @@
 class AdminService {
-    baseUrl = 'http://localhost:3000';
 
     constructor() {
-        this.cache = {
-            responses: []
-        };
+       this.ajaxWrapper = new AjaxWrapper();
     }
 
     async getBooksFromAPI(title) {
         try {
-            const searchInput = title;
-
-            const cachedResponse = this.cache["responses"].find(item => item.searchInput === searchInput);
-            if (cachedResponse) {
-                return cachedResponse["data"];
-            }
-
             const response = await $.ajax({
-                url: this.baseUrl + '/book/getGoogleBooksDetails/' + searchInput,
+                url: this.ajaxWrapper.baseUrl + '/book/getGoogleBooksDetails/' + title,
                 type: 'GET'
             });
-
-            this.cache["responses"].push({searchInput, data: response});
 
             return response;
         } catch (error) {
@@ -32,7 +20,7 @@ class AdminService {
     async createBook(title, author, price, quantity, bookDetails) {
         try {
             const response = await $.ajax({
-                url: `${this.baseUrl}/admin/createBooks`,
+                url: `${this.ajaxWrapper.baseUrl}/admin/createBooks`,
                 type: 'POST',
                 data: {title, author, price, quantity, bookDetails},
             });
@@ -47,7 +35,7 @@ class AdminService {
     async deleteBook(bookID) {
         try {
             const response = await $.ajax({
-                url: `${this.baseUrl}/admin/deleteBook/${bookID}`,
+                url: `${this.ajaxWrapper.baseUrl}/admin/deleteBook/${bookID}`,
                 type: 'DELETE'
             });
 
@@ -63,7 +51,7 @@ class AdminService {
 
             console.log(`${bookID} + ${price}`)
             const response = await $.ajax({
-                url: `${this.baseUrl}/admin/changeBookPrice`,
+                url: `${this.ajaxWrapper.baseUrl}/admin/changeBookPrice`,
                 type: 'PUT',
                 data: {bookID, price}
             });
@@ -78,7 +66,7 @@ class AdminService {
         try {
             console.log(`${bookID} + ${quantity}`)
             const response = await $.ajax({
-                url: `${this.baseUrl}/admin/changeBookQuantity`,
+                url: `${this.ajaxWrapper.baseUrl}/admin/changeBookQuantity`,
                 type: 'PUT',
                 data: {bookID, quantity}
             });
@@ -91,14 +79,9 @@ class AdminService {
 
     async authAdmin() {
         try {
-            const response = await fetch(this.baseUrl + '/auth/status', {
-                method: 'GET',
-                credentials: 'include'
-            });
+            const data = await this.ajaxWrapper.getAuthData();
 
-            const data = await response.json();
-
-            if (!data.status && !data.isAdmin) {
+            if (!data.status || !data.user.isAdmin) {
                 window.location = '../views/404page.html';
             }
         } catch (err) {
