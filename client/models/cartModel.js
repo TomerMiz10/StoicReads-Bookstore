@@ -121,11 +121,17 @@ function mapCartIntoItems(cartItems){
     }));
 }
 
-function clearCartView(userId){
+async function clearCartView(userId) {
     $.ajax({
         url: baseUrl + '/cart/clearCart',
         type: 'PUT',
         data: {userId},
+        success: function(response) {
+            window.location.reload();
+        },
+        error: function(error) {
+            console.log(('Error Clearing Cart. Please try again.'));
+        }
     });
 }
 
@@ -141,14 +147,12 @@ function handlePurchase(userId, cartItems) {
         url: baseUrl + '/order/createOrder/',
         type: 'POST',
         data: orderData,
-        //contentType: 'application/json',
         success: function(response) {
             console.log('Order created successfully:', response);
             alert('Order placed successfully');
 
             updateCartCount(userId);
             clearCartView(userId);
-            window.location.reload();
         },
         error: function(error) {
             console.error('Error creating order:', error);
