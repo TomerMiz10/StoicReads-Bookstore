@@ -3,8 +3,10 @@ const bookId = urlParams.get('id');
 const book_id = urlParams.get('_id');
 const baseUrl = 'http://localhost:3000';
 const userId = urlParams.get('userId');
+const welcomeMessage = $('#welcome-message');
 let book = {};
 let recommendedBooks = [];
+
 
 const renderSpecificBookDetails = () => {
     console.log('user: ', userId);
@@ -14,6 +16,7 @@ const renderSpecificBookDetails = () => {
     const bookPrice = document.getElementById('bookPrice');
     const bookDescription = document.getElementById('bookDescription');
     const bookImage = document.getElementById('bookImage');
+    const welcomeMessage = document.getElementById('welcomeMessage');
     $.ajax({
         url: baseUrl+'/book/bookId/' + bookId,
         type: 'GET',
@@ -102,6 +105,29 @@ const addToCart = () => {
             errorMessage.includes('out of stock') ? alert('Book is out of stock') : alert('Error adding book to cart. Please try again.');
         }
     });
+};
+
+const logOut = () => {
+    if(welcomeMessage.text().includes('Welcome to Stoic Reads book store! browse books from our collections! sign up or login to make a purchase')){
+        alert('You are not logged in!');
+        return;
+    }
+    $.ajax({
+        url: baseUrl + '/auth/logout',
+        type: 'GET',
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(response) {
+            console.log(response.status);
+            alert('Logged out successfully!');
+            window.location.href = '../views/login.html';
+        },
+        error: function(error) {
+            console.error('Error during logout:', error);
+        }
+    });
+
 };
 
 

@@ -44,35 +44,13 @@ p#password-error {
     background-color: #6f4734;
 }
 
-#login-form input[type="email"], #login-form input[type="password"] {
-    background-color: #ffffff !important;
-    border: 1px solid #8a5a44;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+.nav-link {
+    color: #8B4513 !important;
+    margin-left: 10px;
 }
 
-#login-form input[type="email"]:focus, #login-form input[type="password"]:focus {
-    background-color: #ffffff;
-    outline: none;
-    box-shadow: 0 0 10px #8a5a44;
-}
-
-
-a.nav-link {
-    margin: 10px;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s;
-    display: inline-block;
-    background-color: #8a5a44;
-    color: #ffffff !important;
-    padding: 5px 15px;
-    border-radius: 10px;
-    text-decoration: none;
-}
-
-a.nav-link:hover {
-    background-color: #6f4734;
-    color: #f5e9d8 !important;
+.nav-link:hover {
+    text-decoration: underline;
 }
 
 .text-center a {
