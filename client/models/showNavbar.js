@@ -5,13 +5,35 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (this.readyState === 4 && this.status === 200) {
             navbarContainer.innerHTML = this.responseText;
             setNavbarState();
+            setNavBar();
         }
     };
     await xhr.open('GET', 'navbar.html', true);
     xhr.send();
 });
 
+const setNavBar =  () => {
+    if (!window.location.href.endsWith('index.html' || 'index')) {
+        console.log('hey')
+        const navItemDropdown = document.querySelector('.nav-item.dropdown.fs-3');
+        const searchComponents = document.querySelector('.search-components');
+        const searchBar = document.querySelector('.search-bar');
 
+        console.log(navItemDropdown);
+
+        if (navItemDropdown) {
+            navItemDropdown.style.display = 'none';
+        }
+
+        if (searchComponents) {
+            searchComponents.style.display = 'none';
+        }
+
+        if (searchBar) {
+            searchBar.style.display = 'none';
+        }
+    }
+};
 
 const setNavbarState = async () => {
     try {
@@ -45,3 +67,4 @@ const setNavbarState = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', setNavbarState);
+document.addEventListener('DOMContentLoaded', setNavBar);
