@@ -68,7 +68,7 @@ const calculateTotalPrice = async (cartItems) => {
 
 
 const getAllOrdersOfUser = async (userID) => {
-    return Order.find({userID})
+    await Order.find({userID});
 }
 
 module.exports = {
