@@ -76,7 +76,7 @@ class AjaxWrapper {
             console.log('Error fetching auth data', err);
         }
     }
-
+}
 
 
 window.AjaxWrapper = AjaxWrapper;
