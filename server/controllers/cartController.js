@@ -105,14 +105,6 @@ module.exports.clearCart = async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // Decrement book quantities and clear the cart
-        for (const cartItem of user.cart) {
-            const book = await Book.findById(cartItem.bookId);
-            if (book) {
-                book.quantity += cartItem.quantity;
-                await book.save();
-            }
-        }
 
         await User.findOneAndUpdate(
             { _id: userId },
@@ -120,6 +112,7 @@ module.exports.clearCart = async (req, res) => {
             { new: true }
         );
 
+        console.log('Cart cleared successfully');
         res.status(200).json({ message: "Cart cleared successfully" });
     } catch (error) {
         res.status(500).json({ message: "Error clearing cart" });
