@@ -18,6 +18,11 @@ const getBooksBySearch = async (query) => {
 
 const getBookByID = async (bookID) => await Book.findOne({bookID});
 
+const getBookByObjectID = async (bookID) =>
+{
+    const res =  await Book.findById({_id: bookID});
+    return res;
+}
 const getBooksByGenre = async (genre) => await Book.find({genre});
 
 const getGoogleBooksDetails = async (title) => {
@@ -63,4 +68,5 @@ module.exports = {
     getBookByID,
     getBooksByGenre,
     getGoogleBooksDetails,
+    getBookByObjectID,
 };
