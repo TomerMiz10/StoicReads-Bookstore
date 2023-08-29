@@ -1,6 +1,10 @@
+
 const orderService = require('../services/orderService');
 const cartController = require('../controllers/cartController');
 
+const  getOrdersByUserId=async (req,res)=> {
+
+}
 const createOrder = async (req, res) => {
     try {
         const order = await orderService.createOrder(req.body);
@@ -60,6 +64,7 @@ const handlePurchase = async (req, res) => {
     }
 }
 
+
 const getAllOrdersOfUser = async (req, res) => {
     try {
         const userID = req.params.userId;
@@ -79,5 +84,5 @@ module.exports = {
     deleteOrder,
     getUserById,
     handlePurchase,
-    getAllOrdersOfUser,
+    getOrdersByUserId
 };
