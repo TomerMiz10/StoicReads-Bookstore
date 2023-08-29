@@ -9,7 +9,6 @@ let recommendedBooks = [];
 
 
 const renderSpecificBookDetails = () => {
-    console.log('user: ', userId);
     const bookTitle = document.getElementById('bookTitle');
     const bookAuthor = document.getElementById('bookAuthor');
     const bookGenre = document.getElementById('bookGenre');
@@ -101,7 +100,7 @@ const addToCart = () => {
             window.location.reload();
         },
         error: function (error) {
-            const errorMessage = error.responseJSON.message;
+            const errorMessage = error.response.JSON.message;
             errorMessage.includes('out of stock') ? alert('Book is out of stock') : alert('Error adding book to cart. Please try again.');
         }
     });

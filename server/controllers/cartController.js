@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const Book = require("../models/Book");
 
-module.exports.addToCart = async (req, res)  =>{
+module.exports.addToCart = async (req, res) => {
     const userId = req.body.userId;
     const bookId = req.body.book_id;
     const quantity = req.body.quantity || 1;
@@ -9,29 +9,34 @@ module.exports.addToCart = async (req, res)  =>{
     try {
         const book = await Book.findById(bookId);
         if (!book) {
-            return res.status(404).json({ message: "Book not found" });
+            return res.status(404).json({message: "Book not found"});
         }
 
         // Ensure book stock is available
         if (book.quantity < quantity) {
-            return res.status(400).json({ message: "Book is out of stock" });
+            return res.status(400).json({message: "Book is out of stock"});
         }
         // Decrement book quantity
         book.quantity -= quantity;
         await book.save();
 
-        let user = await User.findOne({ _id: userId })
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
+        // Update the user's cart array using findOneAndUpdate
+        const updatedUser = await User.findOneAndUpdate(
+            {_id: userId},
+            {$push: {cart: {bookId, quantity}}},
+            {new: true} // Return the updated document
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({message: "User not found"});
         }
-       user.cart.push({bookId , quantity});
-        await user.save();
-        res.status(200).json(user.cart);
+
+        return res.status(200).json({message: "Book added to cart successfully", user: updatedUser});
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Error adding book to cart" });
+        res.status(500).json({message: "Error adding book to cart"});
     }
-};
+}
 
 module.exports.getOneUserCart = async (req, res) => {
     const userId = req.params.userId;
@@ -39,12 +44,12 @@ module.exports.getOneUserCart = async (req, res) => {
     try {
         const user = await User.findById(userId).populate('cart.bookId');
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(404).json({message: "User not found"});
         }
         res.status(200).json(user.cart);
     } catch (error) {
         console.log(error)
-        res.status(500).json({ message: "Error fetching cart" });
+        res.status(500).json({message: "Error fetching cart"});
     }
 };
 
@@ -55,13 +60,13 @@ module.exports.removeFromCart = async (req, res) => {
     try {
         const user = await User.findById(userId);
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(404).json({message: "User not found"});
         }
 
         const bookInCartIndex = user.cart.findIndex(item => item.bookId.toString() === bookId.toString());
 
         if (bookInCartIndex === -1) {
-            return res.status(404).json({ message: "Book not found in cart" });
+            return res.status(404).json({message: "Book not found in cart"});
         }
 
         // If the quantity is more than 1, decrement. Otherwise, remove from the cart.
@@ -75,12 +80,41 @@ module.exports.removeFromCart = async (req, res) => {
         const book = await Book.findById(bookId);
         if (book) {
             book.quantity += 1;
-            await book.save();
         }
 
-        await user.save();
+        await User.findOneAndUpdate(
+            {_id: userId},
+            {$set: {cart: user.cart}},
+            {new: true}
+        );
+
+        await book.save();
+
         res.status(200).json(user.cart);
     } catch (error) {
-        res.status(500).json({ message: "Error decrementing book from cart" });
+        res.status(500).json({message: "Error decrementing book from cart"});
     }
-}
+};
+
+module.exports.clearCart = async (req, res) => {
+    const userId = req.body.userId;
+
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+
+        await User.findOneAndUpdate(
+            { _id: userId },
+            { $set: { cart: [] } },
+            { new: true }
+        );
+
+        console.log('Cart cleared successfully');
+        res.status(200).json({ message: "Cart cleared successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Error clearing cart" });
+    }
+};

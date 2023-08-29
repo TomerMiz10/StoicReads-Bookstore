@@ -47,7 +47,7 @@ const User = new Schema({
         type: Boolean,
         required: true
     },
-    cart: [BookInCartSchema]
+    cart: [BookInCartSchema],
 });
 User.post('save', function(doc, next) {
     console.log('new user was created & saved', doc);

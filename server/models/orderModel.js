@@ -1,1 +1,0 @@
-// represents an order, with properties like customer, products, total amount, etc

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Chat Room</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="../services/AjaxWrapper.js"></script>
+    <script defer src="../models/chatRoomModel.js"></script>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #67B26F, #4CA2CD);
+            margin: 0; /* Reset default body margin */
+        }
+
+        .room_container {
+            display: flex;
+            flex-direction: column; /* Align items vertically */
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 50px; /* Add space at the bottom */
+        }
+
+        .chat-container {
+            max-width: 800px; /* Adjust container width */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            flex: 1; /* Allow the container to take remaining vertical space */
+            display: flex;
+            flex-direction: column; /* Align messages vertically */
+        }
+
+        .message-container {
+            flex: 1; /* Allow messages to grow vertically */
+            height: 500px;
+            width: 1000px;
+            overflow-y: auto; /* Allow scrolling when messages exceed container height */
+            padding: 20px;
+        }
+
+        .message {
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin-top: 10px; /* Reduce margin for better spacing */
+            max-width: 80%; /* Limit message width for better readability */
+        }
+
+        .message.user-message {
+            background-color: #dff6f7;
+        }
+
+        #send-container {
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #ddd;
+        }
+
+        #message-input {
+            flex-grow: 1;
+        }
+
+        #send-button {
+            border-radius: 5px;
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        #send-button:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<a href="./index.html" class="btn btn-secondary position-absolute top-0 start-0 m-3" id="return-button">Return to Main Page</a>
+
+<div class="room_container">
+    <h1 class="text-white mt-5 mb-4">Users Chat Room</h1>
+    <div class="chat-container">
+        <div class="message-container" id="message-container">
+            <!-- Messages will be appended here -->
+        </div>
+        <form id="send-container" class="d-flex">
+            <input type="text" id="message-input" class="form-control" placeholder="Type your message">
+            <button type="submit" id="send-button" class="btn ml-2">Send</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
