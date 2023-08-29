@@ -29,6 +29,21 @@ const getBookByID = async (req, res) => {
   }
 };
 
+const getBookDetailsByObjectID = async (req, res) => {
+  try {
+    const { bookID } = req.params;
+    const book = await booksDbService.getBookByObjectID(bookID);
+
+    if (!book) {
+      return res.status(404).json({ error: "Book not found, please make sure it's the correct id", success: false });
+    }
+    res.status(200).json(book);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error, couldn't fetch book by it's ID", success: false });
+  }
+};
+
 const getBooksBySearch = async (req, res) => {
   try {
     let books;
@@ -92,6 +107,7 @@ module.exports = {
   getBooksBySearch,
   getBooksByGenre,
   getGoogleBooksDetails,
+  getBookDetailsByObjectID,
 };
 
 
