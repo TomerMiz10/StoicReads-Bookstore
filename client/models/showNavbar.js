@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 const setNavBar =  () => {
-    if (!window.location.href.endsWith('index.html' || 'index')) {
+    if (!window.location.href.includes('index.html') && !window.location.href.includes('index')) {
         console.log('hey')
         const navItemDropdown = document.querySelector('.nav-item.dropdown.fs-3');
         const searchComponents = document.querySelector('.search-components');
