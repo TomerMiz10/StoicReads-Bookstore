@@ -26,6 +26,7 @@ app.use("/auth", require("./routes/authRoute"));
 app.use("/admin", require("./routes/adminRoute"));
 app.use("/map", require("./routes/mapRoute"));
 app.use("/cart", require("./routes/cartRoute"));
+app.use("/user", require("./routes/userRoute"));
 app.use("/order", require("./routes/orderRoute"));
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
