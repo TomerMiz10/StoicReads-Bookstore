@@ -35,19 +35,22 @@ async function renderExistingOrders() {
     try {
         // Fetch users and populate the sidebar
         const users = await ajaxWrapper.getAllUsers();
-        console.table('All users data', users);
         const usersList = $('#usersList');
 
         users.forEach(user => {
-            const userItem = `<li data-userid="${user._id}" class="user-item">${user.username}</li>`;
+            const userItem = `<li data-userid="${user._id}" class="user-item">${user.userName}</li>`;
             usersList.append(userItem);
         });
 
         // Show orders when a user is clicked
         $('.user-item').click(async function () {
             const userId = $(this).data('userid');
-            const orders = await ajaxWrapper.getAllOrdersOfUser(userId);
-            console.table('All orders of the user',orders);
+            const userOrdersResponse = await ajaxWrapper.getAllOrdersOfUser(userId);
+            const orders = userOrdersResponse.ordersOfUser;
+
+            console.log('All orders of the user');
+            console.table(orders);
+
             const orderHistoryTable = $('#orderHistoryTable');
 
             orderHistoryTable.empty();
@@ -55,9 +58,12 @@ async function renderExistingOrders() {
             table.append(`
                     <thead>
                         <tr>
+                            <th>Order Index</th>
                             <th>Book ID</th>
+                            <th>Image</th>
                             <th>Title</th>
                             <th>Price</th>
+                            <th>Date Purchased</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,27 +71,40 @@ async function renderExistingOrders() {
                 `);
 
             const tbody = table.find('tbody');
-            orders.forEach(order => {
-                tbody.append(`
+            for (let i = 0; i < orders.length; i++) {
+                const order = orders[i];
+                let totalPrice = 0; // Initialize total price for this order
+                for (const item of order.items) {
+                    let bookDetails = await ajaxWrapper.getBookDetailsByObjectID(item.bookId);
+                    tbody.append(`
                         <tr>
-                            <td>${order.bookID}</td>
-                            <td>${order.title}</td>
-                            <td>${order.price}</td>
+                            <td><strong>${i + 1}</strong></td> <!-- Order index -->
+                            <td>${bookDetails.bookID}</td>
+                            <td><img src="${bookDetails.image}" width="100" height="100"/></td>
+                            <td>${bookDetails.title}</td>
+                            <td>${bookDetails.price}</td>
+                            <td>${new Date(order.orderDate).toISOString().split('T')[0]}</td>
                         </tr>
                     `);
-            });
+                    totalPrice += bookDetails.price * item.quantity;
+                }
+                tbody.append(`
+                    <tr>
+                        <td colspan="4"></td>
+                        <td><strong>Total Price:</strong></td>
+                        <td>${totalPrice.toFixed(2)}</td>
+                    </tr>
+                `);
+            }
 
             orderHistoryTable.append(table);
         });
 
-        // Show orders button
-        $('#showOrdersButton').click(function () {
-            $('#orderHistoryTable').toggle();
-        });
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
 
 async function renderBooksBySearch() {
     $('#searchButton').click(async function () {
@@ -216,4 +235,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 $(document).ready(function () {
     renderExistingBooks();
     renderBooksBySearch();
+    renderExistingOrders();
 });

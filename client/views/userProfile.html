@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="../styles/bootStrap.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 id="user-name" class="card-title">User name: </h5>
+                    <p id="user-email" class="card-text">Email: </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h3>Your Orders:</h3>
+    <div id="orders-list">
+        <!-- This is where we will programmatically add order details using JavaScript -->
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="../services/AjaxWrapper.js"></script>
+<script src="../models/userProfileModel.js"></script>
+
+</body>
+</html>
+
+

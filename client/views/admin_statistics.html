@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users Order History</title>
+    <title>Orders Statistics</title>
     <style>
         body {
             margin: 0;
@@ -39,17 +40,6 @@
             margin-bottom: 20px;
         }
 
-        .table-container {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .table {
-            width: 100%;
-            max-width: 100%;
-        }
 
         .btn {
             margin-top: 10px;
@@ -58,56 +48,33 @@
             padding: 10px 20px;
         }
 
-        /* New styles for sidebar and content */
-        .sidebar {
-            float: left;
-            width: 25%;
-            height: 100vh;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
+        .graph-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .content {
-            float: left;
-            width: 75%;
-            padding: 20px;
-        }
-
-        .sidebar h2 {
-            margin-bottom: 10px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            cursor: pointer;
-            padding: 5px 0;
-        }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="mb-4">Users Order History</h1>
+    <h1 class="mb-4">Orders Statistics</h1>
 
     <a href="admin_dashboard.html" class="btn btn-secondary mt-3">Go Back to Admin Dashboard</a>
 
-    <div class="sidebar">
-        <h2>Users List</h2>
-        <ul id="usersList">
-            <!-- Users will be listed here using JavaScript -->
-        </ul>
+    <h3 class="mt-5">Average cumulative amount of purchases for every month</h3>
+    <div class="graph-container">
+        <svg id="graph1" width="600" height="300"></svg>
     </div>
 
-    <div class="content">
-        <div id="orderHistoryTable" class="table-container center">
-            <!-- Order history table will be added here using JavaScript -->
-        </div>
+    <h3 class="mt-5">Total price distribution</h3>
+    <!-- Graph container for the second graph -->
+    <div class="graph-container">
+        <svg id="graph2" width="600" height="300"></svg>
     </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -115,6 +82,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="../services/AjaxWrapper.js"></script>
 <script src="../services/AdminService.js"></script>
-<script src="../models/adminRendering.js"></script>
+<script src="../models/adminGraphRendering.js"></script>
 </body>
 </html>

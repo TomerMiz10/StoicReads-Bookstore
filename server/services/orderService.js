@@ -1,7 +1,6 @@
 const Order = require('../models/Order');
 const User = require('../models/User');
 
-
 const createOrder = async (orderObj) => {
     try {
 
@@ -12,7 +11,7 @@ const createOrder = async (orderObj) => {
             totalPrice: orderObj.totalPrice
         });
 
-       return await order.save();
+        return await order.save();
     } catch (error) {
         console.error('Error creating order:', error);
         throw error;
@@ -26,7 +25,7 @@ const deleteOrder = async (userID) => {
 const getUserById = async (userId) => await User.findOne(userId);
 
 const handlePurchase = async (userId, cartItems) => {
-    try{
+    try {
         const totalPrice = await calculateTotalPrice(cartItems);
         const order = await createOrder(userId, cartItems, totalPrice);
         await updateUserPastOrders(userId, cartItems);
@@ -37,10 +36,10 @@ const handlePurchase = async (userId, cartItems) => {
     }
 }
 
-const updateUserPastOrders = async (userId, cartItems) =>{
-    try{
+const updateUserPastOrders = async (userId, cartItems) => {
+    try {
         const user = await getUserById(userId);
-        if(!user){
+        if (!user) {
             alert('no user found! moving to login page');
             window.location.href = '../../client/views/login.html';
         }
@@ -67,8 +66,22 @@ const calculateTotalPrice = async (cartItems) => {
 }
 
 
-const getAllOrdersOfUser = async (userID) => {
-    return Order.find({userID})
+const getAllOrders = async () => {
+    try {
+        const res = await Order.find({});
+        return res;
+    } catch (err) {
+        console.log('Error fetching all orders', err);
+    }
+}
+
+const getAllOrdersOfUser = async (userId) => {
+    try {
+        const res = await Order.find({userID: userId});
+        return res;
+    } catch (err) {
+        console.log('Error fetching orders of user', err);
+    }
 }
 
 module.exports = {
@@ -79,4 +92,5 @@ module.exports = {
     updateUserPastOrders,
     calculateTotalPrice,
     getAllOrdersOfUser,
+    getAllOrders,
 };

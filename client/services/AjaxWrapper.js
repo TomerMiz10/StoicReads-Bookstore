@@ -31,9 +31,7 @@ class AjaxWrapper {
                 method: 'GET',
                 credentials: 'include'
             });
-
             const data = await response.json();
-
             return data;
         } catch (err) {
             console.log('Error fetching auth data', err);
@@ -47,7 +45,7 @@ class AjaxWrapper {
                 credentials: 'include'
             });
 
-            return response;
+            return response.json();
         } catch (err) {
             console.log('Error fetching all users', err);
         }
@@ -55,14 +53,41 @@ class AjaxWrapper {
 
     async getAllOrdersOfUser(userId) {
         try {
-            const response = await fetch(this.baseUrl + '/order/getAllOrders/' + userId, {
+            const response = await fetch(this.baseUrl + '/order/getAllOrdersOfUser/' + userId, {
                 method: 'GET',
                 credentials: 'include'
             });
 
-            return response;
+            return response.json();
         } catch (err) {
-            console.log('Error fetching auth data', err);
+            console.log('Error fetching all orders of the user', err);
+        }
+    }
+
+    async getBookDetailsByObjectID(bookID) {
+        try {
+            const response = await fetch(this.baseUrl + '/book/objectBookId/' + bookID, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response.json();
+        } catch (err) {
+            console.log('Error fetching book details with book object id', err);
+        }
+    }
+
+
+    async getAllOrders() {
+        try {
+            const response = await fetch(this.baseUrl + '/order/getAllOrders', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response.json();
+        } catch (err) {
+            console.log('Error fetching orders data', err);
         }
     }
 }
