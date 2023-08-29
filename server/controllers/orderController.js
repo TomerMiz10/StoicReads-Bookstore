@@ -2,9 +2,6 @@
 const orderService = require('../services/orderService');
 const cartController = require('../controllers/cartController');
 
-const  getOrdersByUserId=async (req,res)=> {
-
-}
 const createOrder = async (req, res) => {
     try {
         const order = await orderService.createOrder(req.body);
@@ -68,9 +65,7 @@ const handlePurchase = async (req, res) => {
 const getAllOrdersOfUser = async (req, res) => {
     try {
         const userID = req.params.userId;
-        console.log("User id is: ", userID);
         const ordersOfUser = await orderService.getAllOrdersOfUser(userID);
-        console.log('orders of the user are: ', ordersOfUser);
         res.status(200).json({ordersOfUser});
     } catch (error) {
         console.error('Error fetching the orders', error);
@@ -84,5 +79,5 @@ module.exports = {
     deleteOrder,
     getUserById,
     handlePurchase,
-    getAllOrdersOfUser
+    getAllOrdersOfUser,
 };

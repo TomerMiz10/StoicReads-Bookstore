@@ -35,7 +35,6 @@ async function renderExistingOrders() {
     try {
         // Fetch users and populate the sidebar
         const users = await ajaxWrapper.getAllUsers();
-        console.table(users);
         const usersList = $('#usersList');
 
         users.forEach(user => {
@@ -46,9 +45,12 @@ async function renderExistingOrders() {
         // Show orders when a user is clicked
         $('.user-item').click(async function () {
             const userId = $(this).data('userid');
-            const orders = await ajaxWrapper.getAllOrdersOfUser(userId);
-            console.log('All orders of the user')
+            const userOrdersResponse = await ajaxWrapper.getAllOrdersOfUser(userId);
+            const orders = userOrdersResponse.ordersOfUser;
+
+            console.log('All orders of the user');
             console.table(orders);
+
             const orderHistoryTable = $('#orderHistoryTable');
 
             orderHistoryTable.empty();
@@ -66,14 +68,16 @@ async function renderExistingOrders() {
                 `);
 
             const tbody = table.find('tbody');
-            orders.forEach(order => {
-                tbody.append(`
+            orders.forEach((order) => {
+                order.items.forEach((item) => {
+                    tbody.append(`
                         <tr>
-                            <td>${order.bookID}</td>
-                            <td>${order.title}</td>
-                            <td>${order.price}</td>
+                            <td>${item.bookId}</td>
+                            <td>${item.title}</td>
+                            <td>${item.price}</td>
                         </tr>
                     `);
+                });
             });
 
             orderHistoryTable.append(table);
@@ -87,6 +91,7 @@ async function renderExistingOrders() {
         console.error('Error:', error);
     }
 }
+
 
 async function renderBooksBySearch() {
     $('#searchButton').click(async function () {
