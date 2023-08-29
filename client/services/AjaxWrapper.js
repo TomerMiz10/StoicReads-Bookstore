@@ -63,6 +63,45 @@ class AjaxWrapper {
             console.log('Error fetching auth data', err);
         }
     }
+
+    async getBookDetailsByObjectID(bookID) {
+        try {
+            const response = await fetch(this.baseUrl + '/book/objectBookId/' + bookID, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response.json();
+        } catch (err) {
+            console.log('Error fetching auth data', err);
+        }
+    }
+
+    async getBookDetailsByObjectID(bookID) {
+        try {
+            const response = await fetch(this.baseUrl + '/book/objectBookId/' + bookID, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response.json();
+        } catch (err) {
+            console.log('Error fetching auth data', err);
+        }
+    }
+
+    async getBookDetailsByObjectID(bookID) {
+        try {
+            const response = await fetch(this.baseUrl + '/book/objectBookId/' + bookID, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response.json();
+        } catch (err) {
+            console.log('Error fetching auth data', err);
+        }
+    }
 }
 
 

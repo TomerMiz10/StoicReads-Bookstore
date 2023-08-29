@@ -8,8 +8,8 @@ const getAllBooks = async (req, res) => {
   } catch (err) {
     console.log(err);
     res
-      .status(404)
-      .json({ error: "Couldn`t fetch books 404 error", success: false });
+        .status(404)
+        .json({ error: "Couldn`t fetch books 404 error", success: false });
   }
 };
 
@@ -22,6 +22,21 @@ const getBookByID = async (req, res) => {
       return res.status(404).json({ error: "Book not found, please make sure it's the correct id", success: false });
     }
     console.log('Successfully retrieved a book by its ID')
+    res.status(200).json(book);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal Server Error, couldn't fetch book by it's ID", success: false });
+  }
+};
+
+const getBookDetailsByObjectID = async (req, res) => {
+  try {
+    const { bookID } = req.params;
+    const book = await booksDbService.getBookByObjectID(bookID);
+
+    if (!book) {
+      return res.status(404).json({ error: "Book not found, please make sure it's the correct id", success: false });
+    }
     res.status(200).json(book);
   } catch (err) {
     console.log(err);
@@ -60,14 +75,14 @@ const getBooksByGenre = async (req, res) => {
   try {
     if(genre === 'all')  books = await booksDbService.getAllBooks();
     else books = await booksDbService.getBooksByGenre(genre);
-        console.log('Successfully retrieved all books by genre')
-        res.status(200).json(books);
-    }catch (err) {
-      console.log(err);
-      res
+    console.log('Successfully retrieved all books by genre')
+    res.status(200).json(books);
+  }catch (err) {
+    console.log(err);
+    res
         .status(404)
         .json({ error: "Couldn't find books by genre", success: false });
-    }
+  }
 }
 
 
@@ -92,7 +107,7 @@ module.exports = {
   getBooksBySearch,
   getBooksByGenre,
   getGoogleBooksDetails,
+  getBookDetailsByObjectID,
 };
-
 
 
