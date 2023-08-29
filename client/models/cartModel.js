@@ -68,6 +68,11 @@ function fetchAndRenderCart(userId) {
                 tableBody.append(mapBookToTableRow(book, userId));
             });
             totalPriceDiv.textContent = "total price: " + calculateTotalPrice(cartItems) + "$";
+            document.getElementById('cart-item-count').textContent = cartItems.length;
+
+            if(cartItems.length > 0) {
+                createPurchaseButton(userId, cartItems);
+            }
         },
         error: function (error) {
             console.error('Error fetching cart:', error);
@@ -81,6 +86,77 @@ function calculateTotalPrice(cartItems) {
         return total + item.bookId.price * item.quantity;
     }, 0);
 }
+function updateCartCount(userId) {
+    const cartItemCountElement = document.getElementById('cart-item-count');
+    $.ajax({
+        url: baseUrl + '/cart/getCart/' + userId,
+        type: 'GET',
+        success: function(cartItems) {
+            cartItemCountElement.textContent = cartItems.length;
+        },
+        error: function(error){
+            console.error('Error fetching cart. Please try again.', error);
+        }
+    });
+}
+
+function createPurchaseButton(userId, cartItems) {
+    const purchaseButtonContainer = document.createElement('div');
+    purchaseButtonContainer.classList.add('purchase-button-container');
+
+    const purchaseButton = document.createElement('button');
+    purchaseButton.textContent = "Purchase";
+    purchaseButton.classList.add('btn', 'btn-primary', 'btn-purchase');
+    purchaseButton.type = 'button';
+    purchaseButton.addEventListener('click', () =>  handlePurchase(userId, cartItems));
+    purchaseButtonContainer.appendChild(purchaseButton);
+
+    document.querySelector('#total-price').after(purchaseButtonContainer);
+}
+
+function mapCartIntoItems(cartItems){
+    return items = cartItems.map(item =>({
+        bookId: item.bookId._id,
+        quantity: item.quantity
+    }));
+}
+
+function clearCartView(userId){
+    $.ajax({
+        url: baseUrl + '/cart/clearCart',
+        type: 'PUT',
+        data: {userId},
+    });
+}
+
+function handlePurchase(userId, cartItems) {
+    const orderData = {
+        userID: userId,
+        items: JSON.stringify(mapCartIntoItems(cartItems)),
+        totalPrice: calculateTotalPrice(cartItems)
+    };
+
+    console.log('cartModel - this is orderData: ', orderData);
+    $.ajax({
+        url: baseUrl + '/order/createOrder/',
+        type: 'POST',
+        data: orderData,
+        //contentType: 'application/json',
+        success: function(response) {
+            console.log('Order created successfully:', response);
+            alert('Order placed successfully');
+
+            updateCartCount(userId);
+            clearCartView(userId);
+            window.location.reload();
+        },
+        error: function(error) {
+            console.error('Error creating order:', error);
+            alert('Error placing order. Please try again.');
+        }
+    });
+
+}
 
 window.onload = async () => {
     const response = await fetch(baseUrl + '/auth/status', {
@@ -89,8 +165,12 @@ window.onload = async () => {
     });
     const data = await response.json();
     if (data.status) {
-        fetchAndRenderCart(data.userId);
-    } else {
+        console.table(data);
+        const userId = data.userId;
+        fetchAndRenderCart(userId);
+        updateCartCount(userId);
+    }
+    else {
         alert('Please login to view your cart')
         window.location.href = 'login.html';
     }
