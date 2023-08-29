@@ -33,7 +33,6 @@ const setNavbarState = async () => {
             document.getElementById("loginNav").style.display = "none";
             document.getElementById("logoutNav").style.display = "block";
 
-            welcomeMessage.text('Welcome back '+data.user.userName+ '! Browse books from our collection.');
 
             if (data.user.isAdmin) {
                 // User is also an admin
