@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const ALREADY_EXIST_IN_DATABASE_CODE = 11000;
-const THREE_DAYS = 3 * 24 * 60 * 60;
+const THREE_DAYS = 3 * 24 * 60 * 60 * 1000
 const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = {email: '', password: '',userName:''};
