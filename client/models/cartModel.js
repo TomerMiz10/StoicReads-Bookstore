@@ -12,7 +12,7 @@ const removeFromCart = (bookId, userId) => {
         success: function (cart) {
             row.remove();
             alert('Book removed from cart successfully!');
-            window.location.reload();
+            window.location = 'orderSuccess.html';
         },
         error: function (error) {
             console.error('Error removing book from cart:', error);
