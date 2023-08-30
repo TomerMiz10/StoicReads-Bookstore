@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Bing Maps Api</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            width: 100vw;
+            height: auto;
+            color: #fff;
+        }
+
+        main {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .options {
+            margin-top: 10px;
+        }
+
+        .location_btn {
+            width: 10vw;
+            height: 6vh;
+            border-radius: 15px;
+            margin: 5px;
+        }
+
+        .location_btn[data-location="Tel Aviv"] {
+            background-color: #3498db;
+            border-color: #3498db;
+        }
+
+        .location_btn[data-location="Herzliya"] {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .location_btn[data-location="Bat Yam"] {
+            background-color: #2ecc71;
+            border-color: #2ecc71;
+        }
+
+        #map {
+            width: 80vw;
+            height: 80vh;
+            margin: 10px;
+            background: #555;
+        }
+    </style>
 </head>
 <body>
 <header>
