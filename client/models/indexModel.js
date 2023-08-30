@@ -74,7 +74,7 @@ const getBooksBySearch = () => {
         alert('Please select a search option');
         return;
     }
-    console.log('URL:', URL);
+
     $.ajax({
         url: URL,
         type: 'GET',
