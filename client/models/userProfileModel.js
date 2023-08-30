@@ -1,3 +1,4 @@
+
 const renderProfile = async () => {
     const data = await ajaxWrapper.getAuthData();
     if(data.status) {

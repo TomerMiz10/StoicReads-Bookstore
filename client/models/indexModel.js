@@ -74,7 +74,7 @@ const getBooksBySearch = () => {
         alert('Please select a search option');
         return;
     }
-    console.log('URL:', URL);
+
     $.ajax({
         url: URL,
         type: 'GET',
@@ -101,7 +101,7 @@ const getBooksBySearch = () => {
         else{
             welcomeMessage.text('Welcome to Stoic Reads book store! browse books from our collections! sign up or login to make a purchase');
         }
-        // updateCartCount(data.userId);
+          updateCartCount(data.userId);
     };
 const logOut = () => {
     if(welcomeMessage.text().includes('Welcome to Stoic Reads book store! browse books from our collections! sign up or login to make a purchase')){

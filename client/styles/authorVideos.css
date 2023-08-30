@@ -1,0 +1,57 @@
+
+
+@font-face {
+    font-family: 'storeFont';
+    src: url('../styles/PacificNorthwestRough-NormalMed.ttf') format('truetype');
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #8a5a2d!important;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'storeFont', fallbackFont, sans-serif;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.container {
+    color: #8a5a2d!important;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+.video-wrapper, aside {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+video {
+    max-width: 100%;
+    border: 1px solid #8a5a2d;
+    display: block;
+    margin: 0 auto;
+}
+
+aside {
+    background-color: #f5e9da!important;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 1rem;
+}

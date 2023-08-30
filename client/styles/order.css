@@ -27,15 +27,6 @@ p.lead {
     color: white;
 }
 
-.nav-link {
-    color: #8B4513 !important;
-    margin-left: 10px;
-}
-
-.nav-link:hover {
-    text-decoration: underline;
-}
-
 #stock-status {
     color: green;
     font-size: 1.2em;
