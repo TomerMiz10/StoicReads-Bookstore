@@ -16,12 +16,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 const setNavBar =  () => {
     if (!window.location.href.includes('index.html') && !window.location.href.includes('index')) {
-        console.log('hey')
         const navItemDropdown = document.querySelector('.nav-item.dropdown.fs-3');
         const searchComponents = document.querySelector('.search-components');
         const searchBar = document.querySelector('.search-bar');
-
-        console.log(navItemDropdown);
 
         if (navItemDropdown) {
             navItemDropdown.style.display = 'none';
@@ -64,10 +61,26 @@ const setNavbarState = async () => {
             document.getElementById('chatNav').style.display = 'none';
             welcomeMessage.text('Welcome to Stoic Reads book store! Browse books from our collections! Sign up or login to make a purchase.');
         }
+        await updateCartCount(data.user._id);
     } catch (error) {
         console.error('Error fetching user status:', error);
     }
 };
+
+const updateCartCount = async (userId)=> {
+    try{
+        const response = await fetch(baseUrl + '/cart/getCart/' +userId, {
+            method: 'GET',
+            credentials: 'include'
+        });
+        const data = await response.json();
+        const cartItemCountElement = document.getElementById('cart-item-count');
+        cartItemCountElement.textContent = data.length;
+    } catch (error) {
+        console.error('Error fetching user status', error);
+    }
+
+}
 
 document.addEventListener('DOMContentLoaded', setNavbarState);
 document.addEventListener('DOMContentLoaded', setNavBar);
