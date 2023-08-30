@@ -89,7 +89,6 @@ class AjaxWrapper {
             console.log('Error fetching orders data', err);
         }
     }
-
 }
 
 window.AjaxWrapper = AjaxWrapper;

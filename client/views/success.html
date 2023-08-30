@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StoicReads</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoicReads - an online bookstore</title>
+    <link rel="shortcut icon" href="../images/bookIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/bootStrap.css">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <div class="share-btn-container">
+        <button id="facebook-btn" class="facebook-btn" type="button" onclick="">
+            Share on Facebook
+        </button>
+    </div>
+
+    <div id="totalPrice" class="text-center"></div>
+
+    <footer class="footer-container">
+        <p>&copy; 2023 Online Store. All rights reserved.</p>
+    </footer>
+
+    <script src="../services/AjaxWrapper.js"></script>
+    <script src="../models/showNavbar.js"></script>
+    <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=231054739933827&autoLogAppEvents=1" nonce="YOUR_NONCE">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</body>
+</html>
