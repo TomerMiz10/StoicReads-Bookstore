@@ -1,38 +1,53 @@
 body {
-    background-color: #ffffff;
+    background-color: #f5e9da;
     font-family: Arial, sans-serif;
 }
 
 .container {
-    margin-top: 5%;
-    background-color: #ead9c2;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-    max-width: 45%;
+    margin: 20px;
 }
 
-h5.card-title {
-    color: #8a5a44;
-    margin-bottom: 15px;
-}
-
+/* Card Styles */
 .card {
-    border-color: #8a5a44;
+    border: 1px solid #8a5a2d;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
 }
 
 .card-header {
-    background-color: #8a5a44;
-    color: white;
+    background-color: #8a5a2d!important;
+    color: #f5e9da;
+    font-size: 1.4em;
+    text-align: center;
 }
 
-
-.card-body h5, .card-body p {
-    color: #8a5a44;
+.card-body {
+    background-color: #f5e9da;
+    color: #8a5a2d;
+    margin: 20px;
 }
 
-#orders-list {
-    margin-top: 15px;
+.card-title {
+    font-size: 1.2em;
 }
 
-/* Additional styles for order list, which will be added later, can go here */
+.card-text {
+    color: #8a5a2d;
+}
+
+.mt-5 {
+    margin-top: 30px;
+}
+
+/* Adding responsiveness */
+@media screen and (max-width: 768px) {
+    .card {
+        margin: 10px;
+    }
+    .card-header, .card-body {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1em;
+    }
+}

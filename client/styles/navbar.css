@@ -7,7 +7,7 @@
     height: 80px;
 }
 
-.navbar-nav .nav-link.fs-3 {
+.navbar-nav .nav-link.fs-3, .material-icons {
     color: #8a5a2d;
 }
 
@@ -19,7 +19,7 @@
     color: #8a5a2d;
 }
 
-.navbar-nav .nav-link.fs-3:hover {
+.navbar-nav .nav-link.fs-3:hover, .navbar-nav .nav-link:hover .material-icons {
     color: #654321;
 }
 
@@ -28,7 +28,12 @@
 }
 
 .nav-item.dropdown .nav-link.dropdown-toggle:hover {
-    color: #654321;/
+    color: #654321;
+}
+
+#location .material-icons {
+    vertical-align: middle;
+    margin-top: 12px;
 }
 
 .search-components {
@@ -67,21 +72,29 @@
 .cart-btn {
     width: 40px;
     height: 40px;
-    margin-right: 20px;
 }
 
 .badge-primary {
     background-color: #8a5a2d;
-    margin-right: 40px;
+    margin-right: 20px;
 }
 
-@media (min-width: 1201px) and (max-width: 1680px) {
+.material-icons {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+@media (min-width: 1150px) and (max-width: 1680px) {
     .search-components {
         margin-right: 150px;
     }
 
     #search-input {
         width: 300px;
+    }
+
+    .search-bar{
+        width:60%!important;
     }
 
     .brand-icon {
@@ -92,21 +105,6 @@
 
 @media screen and (max-width: 1200px) {
     .search-components {
-        justify-content: flex-end;
-    }
-    .custom-select, #search-input, #search-btn {
-        flex: 1 1 auto;
-        min-width: 150px;
-        max-width: 200px;
-        margin-bottom: 10px;
-    }
-    #search-btn {
-        flex: 0 1 auto;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .search-components {
         flex-direction: column;
         align-items: flex-start;
     }
@@ -114,8 +112,42 @@
         width: 100%;
         max-width: 200px;
     }
+
+    .search-bar{
+        width: 60%;
+    }
+
     #search-btn {
         width: 100%;
         max-width: 200px;
+    }
+    .fs-3 {
+        font-size: 1rem;
+    }
+    .material-icons {
+        font-size: 18px;
+    }
+}
+
+
+@media screen and (max-width: 840px) {
+    .search-components {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .custom-select, #search-input {
+        width: 100%;
+        max-width: 100px;
+    }
+
+    #search-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+    .fs-3 {
+        font-size: 1rem;
+    }
+    .material-icons {
+        font-size: 18px;
     }
 }
