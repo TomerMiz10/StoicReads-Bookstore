@@ -1,3 +1,5 @@
+const ajaxWrapper = new AjaxWrapper();
+
 document.addEventListener('DOMContentLoaded', async function() {
     const navbarContainer = document.getElementById('navbar-container');
     const xhr =await new XMLHttpRequest();
@@ -34,7 +36,7 @@ const setNavBar =  () => {
 
 const setNavbarState = async () => {
     try {
-        const response = await fetch(baseUrl + '/auth/status', {
+        const response = await fetch(ajaxWrapper.baseUrl + '/auth/status', {
             method: 'GET',
             credentials: 'include'
         });

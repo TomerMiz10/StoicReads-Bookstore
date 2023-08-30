@@ -27,16 +27,32 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            max-width: 90%; /* Added max-width to limit container width */
         }
 
         .btn-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Changed to column for better stacking on small screens */
             margin-top: 20px;
         }
 
         .btn {
-            margin: 0 10px;
+            margin: 10px 0; /* Added vertical margin for better spacing */
+        }
+
+        /* Media queries for responsiveness */
+        @media screen and (min-width: 576px) {
+            .container {
+                max-width: 70%; /* Adjust the container width for larger screens */
+            }
+
+            .btn-container {
+                flex-direction: row; /* Align buttons horizontally on larger screens */
+            }
+
+            .btn {
+                margin: 0 10px; /* Revert to original horizontal margin */
+            }
         }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
