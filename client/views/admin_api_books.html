@@ -21,30 +21,18 @@
             background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
-            max-width: 600px;
+            max-width: 95%; /* Adjusted the maximum width for responsiveness */
             width: 100%;
             overflow: auto;
             text-align: center;
         }
 
-        .center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
-
-
         .container h1 {
-            margin-bottom: 20px; /* Add spacing below the title */
+            margin-bottom: 20px;
         }
 
         .table-container {
             margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .table {
@@ -52,9 +40,12 @@
             max-width: 100%;
         }
 
+        .form-group {
+            margin-bottom: 10px;
+        }
+
         .btn {
             margin-top: 10px;
-            margin-right: 10px;
             border-radius: 20px;
             padding: 10px 20px;
         }
@@ -69,14 +60,14 @@
 <div class="container mt-5">
     <h1 class="mb-4">Search Books from API</h1>
 
-    <a href="admin_dashboard.html" class="mx-auto btn btn-secondary btn-back">Go Back to Admin Dashboard</a>
+    <a href="admin_dashboard.html" class="btn btn-secondary btn-back">Go Back to Admin Dashboard</a>
 
     <div class="table-container">
         <div class="form-group">
             <label for="searchInput">Search by Title:</label>
             <input type="text" class="form-control" id="searchInput" placeholder="Enter title">
         </div>
-        <button id="searchButton" class="mx-auto mb-3 btn btn-primary">Search</button>
+        <button id="searchButton" class="btn btn-primary">Search</button>
         <table class="table">
             <thead>
             <tr>
@@ -91,7 +82,6 @@
             </tbody>
         </table>
     </div>
-</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
