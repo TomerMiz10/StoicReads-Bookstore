@@ -173,6 +173,7 @@ async function addBook(title, author, bookDetails, id) {
     }
 
     try {
+        alert('Adding book, please wait..');
         await adminService.createBook(title, author, price, quantity, bookDetails);
         alert('Book added successfully');
         window.location.reload();
