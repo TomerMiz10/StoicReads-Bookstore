@@ -1,0 +1,41 @@
+/* Header styling */
+header {
+    color: #8a5a2d;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Main content */
+main {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 20px;
+}
+
+.options {
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #8a5a2d!important;
+    border-color: #8a5a2d!important;
+    color: #ffffff!important;
+}
+
+.btn-primary:hover {
+    background-color: #654321;
+    border-color: #654321;
+}
+
+/* Map container */
+#map {
+    width: 60%;
+    height: 500px;
+    border: 3px solid #654321;
+}
