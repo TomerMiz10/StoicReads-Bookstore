@@ -129,13 +129,13 @@ function handlePurchase(userId, cartItems) {
         totalPrice: calculateTotalPrice(cartItems)
     };
 
-    console.log('cartModel - this is orderData: ', orderData);
+    // console.log('cartModel - this is orderData: ', orderData);
     $.ajax({
         url: baseUrl + '/order/createOrder/',
         type: 'POST',
         data: orderData,
         success: function(response) {
-            console.log('Order created successfully:', response);
+            //console.log('Order created successfully:', response);
             alert('Order placed successfully');
             clearCartView(userId);
         },
