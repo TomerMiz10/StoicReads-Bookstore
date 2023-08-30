@@ -26,18 +26,6 @@ h5.card-title {
     color: white;
 }
 
-.navbar {
-    background-color: #8a5a44 !important;
-}
-
-.navbar .navbar-nav .nav-item .nav-link {
-    color: #f5e9d8 !important;
-    transition: color 0.3s;
-}
-
-.navbar .navbar-nav .nav-item .nav-link:hover {
-    color: #ffffff !important;
-}
 
 .card-body h5, .card-body p {
     color: #8a5a44;

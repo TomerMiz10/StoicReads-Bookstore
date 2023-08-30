@@ -69,7 +69,7 @@ const setNavbarState = async () => {
 
 const updateCartCount = async (userId)=> {
     try{
-        const response = await fetch(baseUrl + '/cart/getCart/' +userId, {
+        const response = await fetch(ajaxWrapper.baseUrl + '/cart/getCart/' +userId, {
             method: 'GET',
             credentials: 'include'
         });
