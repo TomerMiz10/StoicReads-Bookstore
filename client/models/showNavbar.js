@@ -14,12 +14,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 const setNavBar =  () => {
     if (!window.location.href.includes('index.html') && !window.location.href.includes('index')) {
-        console.log('hey')
         const navItemDropdown = document.querySelector('.nav-item.dropdown.fs-3');
         const searchComponents = document.querySelector('.search-components');
         const searchBar = document.querySelector('.search-bar');
-
-        console.log(navItemDropdown);
 
         if (navItemDropdown) {
             navItemDropdown.style.display = 'none';
@@ -61,10 +58,25 @@ const setNavbarState = async () => {
             document.getElementById("userProfile").style.display = "none";
             welcomeMessage.text('Welcome to Stoic Reads book store! Browse books from our collections! Sign up or login to make a purchase.');
         }
+        updateCartCount(data.user._id);
     } catch (error) {
         console.error('Error fetching user status:', error);
     }
 };
+
+function updateCartCount(userId) {
+    const cartItemCountElement = document.getElementById('cart-item-count');
+    $.ajax({
+        url: baseUrl + '/cart/getCart/' + userId,
+        type: 'GET',
+        success: function(cartItems) {
+            cartItemCountElement.textContent = cartItems.length;
+        },
+        error: function(error){
+            console.error('Error fetching cart. Please try again.', error);
+        }
+    });
+}
 
 document.addEventListener('DOMContentLoaded', setNavbarState);
 document.addEventListener('DOMContentLoaded', setNavBar);
