@@ -36,6 +36,26 @@
     margin-top: 12px;
 }
 
+.material-icons {
+    position: relative;  /* Needed to position the tooltip */
+    cursor: pointer;  /* Change cursor style on hover */
+}
+
+.material-icons:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #654321;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 10;
+    font-size: 1em;
+}
+
 .search-components {
     margin-right: 250px;
     display: flex;
