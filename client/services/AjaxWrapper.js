@@ -76,7 +76,7 @@ class AjaxWrapper {
             console.log('Error fetching book details with book object id', err);
         }
     }
-
+}
 
     async getAllOrders() {
         try {
