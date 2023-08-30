@@ -76,7 +76,6 @@ class AjaxWrapper {
             console.log('Error fetching book details with book object id', err);
         }
     }
-}
 
     async getAllOrders() {
         try {
@@ -90,7 +89,7 @@ class AjaxWrapper {
             console.log('Error fetching orders data', err);
         }
     }
-}
 
+}
 
 window.AjaxWrapper = AjaxWrapper;
