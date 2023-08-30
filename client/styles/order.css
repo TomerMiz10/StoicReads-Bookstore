@@ -1,0 +1,49 @@
+body {
+    background-color: #f4f1ea;
+}
+
+.container {
+    background-color: #ead9c2;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+h1, h2 {
+    color: #8B4513;
+}
+
+p.lead {
+    color: #333;
+}
+
+.btn-outline-dark {
+    border-color: #8B4513;
+    color: #8B4513;
+}
+
+.btn-outline-dark:hover {
+    background-color: #8B4513;
+    color: white;
+}
+
+.nav-link {
+    color: #8B4513 !important;
+    margin-left: 10px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+#stock-status {
+    color: green;
+    font-size: 1.2em;
+}
+
+.footer-container {
+    text-shadow: 1px 1px 1px #8a5a2d;
+    background-color: #e3c29a;
+    text-align: center;
+    padding: 2%;
+}

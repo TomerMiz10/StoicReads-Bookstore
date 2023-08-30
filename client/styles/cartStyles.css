@@ -1,50 +1,41 @@
 body {
-    background-color: #ffffff;
-    font-family: Arial, sans-serif;
+    background-color: #f4f1ea;
 }
 
 .container {
-    margin-top: 5%;
-    background-color: #ead9c2;
-    padding: 20px 30px; /* Increased padding for better appearance */
+    background-color: white;
     border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-    max-width: 85%; /* Adjusted for the table's width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.nav-link {
+    color: #8B4513 !important;
+    margin-left: 10px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.table-bordered {
+    border-color: #8B4513;
+}
+
+.table-bordered th, .table-bordered td {
+    border-color: #A0522D;
+}
+
+.table thead th {
+    background-color: #8B4513;
+    color: white;
 }
 
 h2 {
-    color: #8a5a44;
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-}
-
-table th, table td {
-    color: #8a5a44;
-    padding: 10px;
-}
-
-table tbody tr:nth-child(odd) {
-    background-color: #f5e9d8;
-}
-
-table tbody tr:hover {
-    background-color: #d5c1a9;
+    color: #8B4513;
 }
 
 #total-price {
-    color: #8a5a44;
-    font-size: 20px;
-}
-
-a.btn.btn-primary {
-    background-color: #8a5a44;
-    border: none;
-    transition: background-color 0.3s;
-}
-
-a.btn.btn-primary:hover {
-    background-color: #6f4734;
+    color: #8B4513;
+    font-size: 1.5em;
 }
