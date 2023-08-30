@@ -60,7 +60,7 @@ class AjaxWrapper {
 
             return response.json();
         } catch (err) {
-            console.log('Error fetching auth data', err);
+            console.log('Error fetching all orders of the user', err);
         }
     }
 
@@ -73,7 +73,21 @@ class AjaxWrapper {
 
             return response.json();
         } catch (err) {
-            console.log('Error fetching auth data', err);
+            console.log('Error fetching book details with book object id', err);
+        }
+    }
+}
+
+    async getAllOrders() {
+        try {
+            const response = await fetch(this.baseUrl + '/order/getAllOrders', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            return response.json();
+        } catch (err) {
+            console.log('Error fetching orders data', err);
         }
     }
 }

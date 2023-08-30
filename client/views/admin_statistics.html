@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="shortcut icon" href="../images/bookIcon.png" type="image/x-icon">
-
+    <title>Orders Statistics</title>
     <style>
         body {
             margin: 0;
@@ -13,46 +12,69 @@
             background: #CC95C0;
             background: -webkit-linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0);
             background: linear-gradient(to bottom, #7AA1D2, #DBD4B4, #CC95C0);
-            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
         }
 
         .container {
             background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 600px;
+            width: 100%;
+            overflow: auto;
             text-align: center;
         }
 
-        .btn-container {
+        .center {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            margin-top: 20px;
+            height: 100%;
         }
 
-        .btn {
-            margin: 0 10px;
+        .container h1 {
+            margin-bottom: 20px;
         }
+
+
+        .btn {
+            margin-top: 10px;
+            margin-right: 10px;
+            border-radius: 20px;
+            padding: 10px 20px;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container mt-5">
+    <h1 class="mb-4">Orders Statistics</h1>
 
-<div class="container">
-    <h1 class="mb-4">Admin Dashboard</h1>
+    <a href="admin_dashboard.html" class="btn btn-secondary mt-3">Go Back to Admin Dashboard</a>
 
-    <div class="btn-container">
-        <a href="admin_api_books.html" class="btn btn-primary">Search and Add Books from API</a>
-        <a href="admin_existing_books.html" class="btn btn-primary">Manage existing books in the store</a>
-        <a href="admin_ordersUsers.html" class="btn btn-primary">View Existing Orders Of All Users</a>
-        <a href="admin_statistics.html" class="btn btn-primary">View Statistics Of All Orders </a>
-        <a href="index.html" class="btn btn-secondary btn-back">Go Back to Store</a>
+    <h3 class="mt-5">Average cumulative amount of purchases for every month</h3>
+    <div class="graph-container">
+        <svg id="graph1" width="600" height="300"></svg>
     </div>
+
+    <h3 class="mt-5">Total price distribution</h3>
+    <!-- Graph container for the second graph -->
+    <div class="graph-container">
+        <svg id="graph2" width="600" height="300"></svg>
+    </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -60,9 +82,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="../services/AjaxWrapper.js"></script>
 <script src="../services/AdminService.js"></script>
-<script src="../models/adminRendering.js"></script>
-
-<script>
-</script>
+<script src="../models/adminGraphRendering.js"></script>
 </body>
 </html>
