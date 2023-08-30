@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const ALREADY_EXIST_IN_DATABASE_CODE = 11000;
-const MAX_INT = Infinity;
+const THREE_DAYS = 3 * 24 * 60 * 60 * 1000
 const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = {email: '', password: '',userName:''};
@@ -34,7 +34,7 @@ const handleErrors = (err) => {
 
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: MAX_INT
+        expiresIn: THREE_DAYS
     });
 }
 
@@ -44,7 +44,7 @@ module.exports.signup_post = async (req, res) => {
     try{
         const user = await User.create({userID,email, password,userName,fullName, isAdmin: false})
         const token = createToken(user._id);
-        res.cookie('jwt', token, { maxAge: MAX_INT , domain: 'localhost' });
+        res.cookie('jwt', token, { maxAge: THREE_DAYS * 1000, domain: 'localhost' });
         res.status(200).json(user._id);
     }catch (err){
         const errors = handleErrors(err);
@@ -56,7 +56,7 @@ module.exports.login_post = async (req, res) => {
     try{
         const user = await User.login(email, password);
         const token = createToken(user._id);
-        res.cookie('jwt', token, { maxAge: MAX_INT , domain: 'localhost' });
+        res.cookie('jwt', token, { maxAge: THREE_DAYS * 1000, domain: 'localhost' });
         res.status(200).json({ user: user._id });
     }catch (err){
         const errors = handleErrors(err);
