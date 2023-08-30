@@ -22,36 +22,25 @@ const removeFromCart = (bookId, userId) => {
 };
 const mapBookToTableRow = (book, userId) => {
     const row = document.createElement('tr');
-
-    // Title
     const titleCell = document.createElement('td');
-    titleCell.textContent = book.title;
-    row.appendChild(titleCell);
-
-    // Author
     const authorCell = document.createElement('td');
-    authorCell.textContent = book.author;
-    row.appendChild(authorCell);
-
-    // Quantity - Assuming you pass the quantity within the book object for cart purposes
     const quantityCell = document.createElement('td');
-    quantityCell.textContent = book.quantity;
-    row.appendChild(quantityCell);
-
-    // Price
     const priceCell = document.createElement('td');
-    priceCell.textContent = `$${book.price}`;
-    row.appendChild(priceCell);
-
-    // Action (Remove Button)
     const actionCell = document.createElement('td');
     const removeButton = document.createElement('button');
+    titleCell.textContent = book.title;
+    authorCell.textContent = book.author;
+    quantityCell.textContent = book.quantity;
+    priceCell.textContent = `$${book.price}`;
     removeButton.textContent = "Remove";
     removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'remove-from-cart');
     removeButton.addEventListener('click', () => removeFromCart(book._id, userId));
+    row.appendChild(titleCell);
+    row.appendChild(authorCell);
+    row.appendChild(quantityCell);
+    row.appendChild(priceCell);
     actionCell.appendChild(removeButton);
     row.appendChild(actionCell);
-
     return row;
 }
 
