@@ -45,7 +45,7 @@ const setNavbarState = async () => {
             document.getElementById("loginNav").style.display = "none";
             document.getElementById("logoutNav").style.display = "block";
             document.getElementById("userProfile").style.display = "block";
-
+            document.getElementById('chatNav').style.display = 'block';
             if (data.user.isAdmin) {
                 // User is also an admin
                 document.getElementById("adminNav").style.display = "block";
@@ -56,6 +56,7 @@ const setNavbarState = async () => {
             document.getElementById("adminNav").style.display = "none";
             document.getElementById("logoutNav").style.display = "none";
             document.getElementById("userProfile").style.display = "none";
+            document.getElementById('chatNav').style.display = 'none';
             welcomeMessage.text('Welcome to Stoic Reads book store! Browse books from our collections! Sign up or login to make a purchase.');
         }
         updateCartCount(data.user._id);

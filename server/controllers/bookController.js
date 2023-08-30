@@ -1,5 +1,5 @@
 const booksDbService = require("../services/booksDbService");
-
+const lodash = require("lodash");
 const getAllBooks = async (req, res) => {
   try {
     const books = await booksDbService.getAllBooks();
@@ -74,7 +74,10 @@ const getBooksByGenre = async (req, res) => {
   const { genre } = req.params;
   try {
     if(genre === 'all')  books = await booksDbService.getAllBooks();
-    else books = await booksDbService.getBooksByGenre(genre);
+    else {
+      const groupedBooks = await booksDbService.groupBooksByGenre();
+      books = groupedBooks[genre];
+    }
     console.log('Successfully retrieved all books by genre')
     res.status(200).json(books);
   }catch (err) {

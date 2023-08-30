@@ -1,6 +1,6 @@
 const Book = require("../models/Book");
 const {getBookDetails} = require('./googlebookService');
-
+const lodash = require("lodash");
 const getAllBooks = async () => await Book.find({});
 const getBooksBySearch = async (query) => {
     const searchQuery = {};
@@ -25,6 +25,10 @@ const getBookByObjectID = async (bookID) =>
 }
 const getBooksByGenre = async (genre) => await Book.find({genre});
 
+const groupBooksByGenre = async () => {
+    const books = await getAllBooks();
+    return lodash.groupBy(books, "genre");
+}
 const getGoogleBooksDetails = async (title) => {
     try {
         const response = await getBookDetails(title);
@@ -69,4 +73,5 @@ module.exports = {
     getBooksByGenre,
     getGoogleBooksDetails,
     getBookByObjectID,
+    groupBooksByGenre
 };
