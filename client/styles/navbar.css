@@ -32,11 +32,12 @@
 }
 
 .search-components {
-    margin-right: 400px;
+    margin-right: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    flex-wrap: wrap;
 }
 
 .custom-select {
@@ -71,5 +72,50 @@
 
 .badge-primary {
     background-color: #8a5a2d;
-    margin-right: 20px;
+    margin-right: 40px;
+}
+
+@media (min-width: 1201px) and (max-width: 1680px) {
+    .search-components {
+        margin-right: 150px;
+    }
+
+    #search-input {
+        width: 300px;
+    }
+
+    .brand-icon {
+        width: 150px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .search-components {
+        justify-content: flex-end;
+    }
+    .custom-select, #search-input, #search-btn {
+        flex: 1 1 auto;
+        min-width: 150px;
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+    #search-btn {
+        flex: 0 1 auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .search-components {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .custom-select, #search-input {
+        width: 100%;
+        max-width: 200px;
+    }
+    #search-btn {
+        width: 100%;
+        max-width: 200px;
+    }
 }
