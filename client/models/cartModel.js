@@ -86,19 +86,6 @@ function calculateTotalPrice(cartItems) {
         return total + item.bookId.price * item.quantity;
     }, 0);
 }
-function updateCartCount(userId) {
-    const cartItemCountElement = document.getElementById('cart-item-count');
-    $.ajax({
-        url: baseUrl + '/cart/getCart/' + userId,
-        type: 'GET',
-        success: function(cartItems) {
-            cartItemCountElement.textContent = cartItems.length;
-        },
-        error: function(error){
-            console.error('Error fetching cart. Please try again.', error);
-        }
-    });
-}
 
 function createPurchaseButton(userId, cartItems) {
     const purchaseButtonContainer = document.createElement('div');
@@ -127,10 +114,10 @@ async function clearCartView(userId) {
         type: 'PUT',
         data: {userId},
         success: function(response) {
-            window.location.reload();
+            window.location.href = 'success.html';
         },
         error: function(error) {
-            console.log(('Error Clearing Cart. Please try again.'));
+            console.log('Error Clearing Cart. Please try again.', error);
         }
     });
 }
@@ -150,8 +137,6 @@ function handlePurchase(userId, cartItems) {
         success: function(response) {
             console.log('Order created successfully:', response);
             alert('Order placed successfully');
-
-            updateCartCount(userId);
             clearCartView(userId);
         },
         error: function(error) {
@@ -169,14 +154,12 @@ window.onload = async () => {
     });
     const data = await response.json();
     if (data.status) {
-        console.table(data);
+        // console.table('Current user info: ', data);
         const userId = data.userId;
         fetchAndRenderCart(userId);
-        updateCartCount(userId);
     }
     else {
         alert('Please login to view your cart')
         window.location.href = 'login.html';
     }
 }
-
