@@ -73,6 +73,16 @@ const getAllOrdersOfUser = async (req, res) => {
     }
 }
 
+const getAllOrders = async (req, res) => {
+    try {
+        const allOrders = await orderService.getAllOrders();
+        res.status(200).json({allOrders});
+    } catch (error) {
+        console.error('Error fetching the orders', error);
+        res.status(500).json({message: 'Internal Server Error', error})
+    }
+}
+
 
 module.exports = {
     createOrder,
@@ -80,4 +90,5 @@ module.exports = {
     getUserById,
     handlePurchase,
     getAllOrdersOfUser,
+    getAllOrders,
 };

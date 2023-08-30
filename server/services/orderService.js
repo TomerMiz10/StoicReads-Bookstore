@@ -66,6 +66,15 @@ const calculateTotalPrice = async (cartItems) => {
 }
 
 
+const getAllOrders = async () => {
+    try {
+        const res = await Order.find({});
+        return res;
+    } catch (err) {
+        console.log('Error fetching all orders', err);
+    }
+}
+
 const getAllOrdersOfUser = async (userId) => {
     try {
         const res = await Order.find({userID: userId});
@@ -83,4 +92,5 @@ module.exports = {
     updateUserPastOrders,
     calculateTotalPrice,
     getAllOrdersOfUser,
+    getAllOrders,
 };

@@ -99,7 +99,7 @@ async function renderExistingOrders() {
 
             orderHistoryTable.append(table);
         });
-        
+
     } catch (error) {
         console.error('Error:', error);
     }
