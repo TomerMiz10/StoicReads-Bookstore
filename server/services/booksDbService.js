@@ -18,17 +18,38 @@ const getBooksBySearch = async (query) => {
 
 const getBookByID = async (bookID) => await Book.findOne({bookID});
 
-const getBookByObjectID = async (bookID) =>
-{
-    const res =  await Book.findById({_id: bookID});
+const getBookByObjectID = async (bookID) => {
+    const res = await Book.findById({_id: bookID});
     return res;
 }
 const getBooksByGenre = async (genre) => await Book.find({genre});
 
 const groupBooksByGenre = async () => {
     const books = await getAllBooks();
-    return lodash.groupBy(books, "genre");
+    const groupedBooks = lodash.groupBy(books, "genre");
+
+    // Iterate through each book and split genres
+    for (const book of books) {
+
+        if (book.genre.includes(" / ")) {
+            const genres = book.genre.split(" / ");
+
+            // Iterate through each genre of the book
+            for (const genre of genres) {
+                // Check if the genre is already a top-level key in the groupedBooks object
+                if (!groupedBooks.hasOwnProperty(genre)) {
+                    groupedBooks[genre] = [book]; // Create a new entry with the book
+                } else {
+                    groupedBooks[genre].push(book); // Add the book to the existing genre
+                }
+            }
+        }
+
+    }
+
+    return groupedBooks;
 }
+
 const getGoogleBooksDetails = async (title) => {
     try {
         const response = await getBookDetails(title);
@@ -37,7 +58,7 @@ const getGoogleBooksDetails = async (title) => {
         for (const book of response.items) {
             const title = book.volumeInfo.title;
 
-            if (!(await Book.findOne({ title }))) {
+            if (!(await Book.findOne({title}))) {
                 // Construct the filteredItem object for this book
                 const filteredItem = {
                     kind: book.kind,
