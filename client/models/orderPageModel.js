@@ -55,8 +55,12 @@ const renderRecommendedBooks = () => {
 
 };
 const getRecommendedBooks = () => {
+    let genre = book.genre;
+    if(genre.includes('/')) {
+        genre = genre.split('/')[1].trim();
+    }
     $.ajax({
-        url: baseUrl+'/book/genre/'+book.genre,
+        url: baseUrl+'/book/genre/'+genre,
         type: 'GET',
         success: function(response) {
             recommendedBooks = response;
