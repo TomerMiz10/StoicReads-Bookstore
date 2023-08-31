@@ -4,13 +4,12 @@
     const ajaxWrapper = new AjaxWrapper();
     async function handlePostToFacebook() {
         let accessToken =
-            'EAAEc4GYbUlkBO0U5ADtnxNeyINEnLWVeBn9WYTG6KG2hloUOTZBGlIaH3RFYyfq2kLRHjjInugg9JSHp6ZBZCKuIDMQjGmbATBWx6cDGXHxIIAigeEsMl8dDdfnKajBxZCwcw3U46S0l7ZAswEyXdI9AEGzJCIRI2lje2yO9FfQPOagBUzuFgZC8lriYrYdZBOuF496GbXmcat2SklP869rie4ZD'
+            'EAAEb7aKGxG0BOZB6L30UzGIkCqiipa49nZBqE7FGaTMkQOaqTIcOUVTm9oBTS2giqpyXiW3qhI7EruhHA77VIbUZBexbin4qK6WR4AXluzqoqKC1Ep5A75cTrwqmEstb9cscMa9FOkQZCZB97OexMkuDaVhb0ELC524eZAoITqsYj4zAeQfwwW4gw1z8Xw5kgaMSD65knBePu6jg0ZCfZCdYeLwZD';
         const pageId = "110550248813774";
-        const appId = '313225088029273'
         const data = await ajaxWrapper.getAuthData();
         const user = data.user;
         const postMessage = user.userName+' has just purchased a product from our store!';
-        var apiUrl = "https://graph.facebook.com/v16.0/" + pageId + "/feed";
+        var apiUrl = "https://graph.facebook.com/v17.0/" + pageId + "/feed";
         // Set up the post data
         var postData = {
             message: postMessage,

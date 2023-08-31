@@ -114,7 +114,7 @@ async function clearCartView(userId) {
         type: 'PUT',
         data: {userId},
         success: function(response) {
-            window.location.href = 'success.html';
+            window.location.href = 'orderSuccess.html';
         },
         error: function(error) {
             console.log('Error Clearing Cart. Please try again.', error);
